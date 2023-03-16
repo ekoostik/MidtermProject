@@ -10,5 +10,7 @@
 
 
 <h2> Welcome Dream Team!</h2>
+
+<h1> User: ${smoketest }</h1> <!--  DEBUG   -->
 </body>
 </html>

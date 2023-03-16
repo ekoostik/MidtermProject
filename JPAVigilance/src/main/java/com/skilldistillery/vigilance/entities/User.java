@@ -1,8 +1,10 @@
 package com.skilldistillery.vigilance.entities;
 
+
+
+
 import java.util.Objects;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,14 +18,26 @@ public class User {
 	
 	private String username;
 	
+	private String password;
+	
 	private boolean enabled;
 	
 	private String role;
 	
 	
 //	==========================================================
+	
+	
 	public User() {
 		super();
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public int getId() {
@@ -77,6 +91,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", enabled=" + enabled + ", role=" + role + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
+				+ ", role=" + role + "]";
 	}
 }
