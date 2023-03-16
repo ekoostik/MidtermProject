@@ -15,9 +15,9 @@
 
 
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/FixMe?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
-      <property name="javax.persistence.jdbc.user" value="FixMe"/>
-      <property name="javax.persistence.jdbc.password" value="FixMe" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/vigilancedb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
+      <property name="javax.persistence.jdbc.user" value="vigil"/>
+      <property name="javax.persistence.jdbc.password" value="vigil" />
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 
       <property name="hibernate.show_sql" value="false" />

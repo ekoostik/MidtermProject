@@ -5,15 +5,15 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema vilgilancedb
+-- Schema vigilancedb
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `vilgilancedb` ;
+DROP SCHEMA IF EXISTS `vigilancedb` ;
 
 -- -----------------------------------------------------
--- Schema vilgilancedb
+-- Schema vigilancedb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `vilgilancedb` DEFAULT CHARACTER SET utf8 ;
-USE `vilgilancedb` ;
+CREATE SCHEMA IF NOT EXISTS `vigilancedb` DEFAULT CHARACTER SET utf8 ;
+USE `vigilancedb` ;
 
 -- -----------------------------------------------------
 -- Table `user`
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `enable` TINYINT NOT NULL,
+  `enabled` TINYINT NOT NULL,
   `role` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
@@ -45,8 +45,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- Data for table `user`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `vilgilancedb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enable`, `role`) VALUES (1, 'admin', 'admin', 1, NULL);
+USE `vigilancedb`;
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`) VALUES (1, 'admin', 'admin', 1, NULL);
 
 COMMIT;
 
