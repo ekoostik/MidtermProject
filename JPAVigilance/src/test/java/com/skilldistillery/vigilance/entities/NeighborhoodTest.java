@@ -15,6 +15,36 @@ import org.junit.jupiter.api.Test;
 
 public class NeighborhoodTest {
 
+	private static EntityManagerFactory emf;
+	private EntityManager em;
+	private Neighborhood nHood;
+	@BeforeAll
+	static void setUpBeforeClass() throws Exception {
+		emf = Persistence.createEntityManagerFactory("JPAVigilance");
+	}
+
+	@AfterAll
+	static void tearDownAfterClass() throws Exception {
+		emf.close();
+	}
+
+	@BeforeEach
+	void setUp() throws Exception {
+		em = emf.createEntityManager();
+		nHood = em.find(Neighborhood.class, 1);
+	}
+
+	@AfterEach
+	void tearDown() throws Exception {
+		em.close();
+		nHood= null;
+	}
+
+	@Test
+	void test_Neighborhood_mappings() {
+		assertNotNull(nHood);
+		assertEquals("Rolling Meadows", nHood.getName());
+	}
 
 }
 
