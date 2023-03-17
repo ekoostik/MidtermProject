@@ -25,6 +25,6 @@ public class UserController {
 		u = userDao.login(u);
 		model.addAttribute("smoketest", u);
 		////////////////DEBUG
-		return "home";
+		return "webpages/home";
 	}
 }
