@@ -43,6 +43,6 @@ public class NeighborhoodEventTest {
 	@Test
 	void test_NeighborhoodEvent_mappings() {
 		assertNotNull(nEvent);
-		assertEquals("", nEvent.getName());
+		assertEquals("BYOB", nEvent.getDescription());
 	}
 }
