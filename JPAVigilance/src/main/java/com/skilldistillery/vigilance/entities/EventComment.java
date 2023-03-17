@@ -20,6 +20,7 @@ public class EventComment {
 	
 	@Column(name ="create_date")
 	private Date createDate;
+	
 //	TODO -- add foreign keys user_id & neighborhood_event_id
 //	@Column(name ="user_id")
 //	private int userId;
