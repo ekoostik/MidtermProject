@@ -1,5 +1,9 @@
 package com.skilldistillery.vigilance.entities;
 
+import java.util.Date;
+import java.util.Objects;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,4 +17,85 @@ public class Neighborhood {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	private String name;
+	
+	@Column(name="image_url")
+	private String imageUrl;
+	
+	private String description;
+	
+	@Column(name="create_date")
+	private Date createDate;
+	
+	//TODO MAP Objects
+//	private Address address;
+//	
+//	private HomeOwnerAssociation hoa;
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Neighborhood other = (Neighborhood) obj;
+		return id == other.id;
+	}
+
+	@Override
+	public String toString() {
+		return "Neighborhood [id=" + id + ", name=" + name + ", imageUrl=" + imageUrl + ", description=" + description
+				+ ", createDate=" + createDate + "]";
+	}
+	
+	
 }

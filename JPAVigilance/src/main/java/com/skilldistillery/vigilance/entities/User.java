@@ -49,6 +49,20 @@ public class User {
 	@Column(name="date_of_birth")
 	private Date dateOfBirth;
 	
+	//TODO MAP Objects
+//	private HouseHold household;
+//	
+//	private EventComment eventComment;
+//	
+//	private NeighborhoodEvent neighborhoodEvent;
+//	
+//	private Comment comment;
+//	
+//	private Post post;
+//	
+//	private Report report;
+	
+	
 	
 	
 	public User() {
