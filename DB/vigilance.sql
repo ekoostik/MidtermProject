@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `neighborhood` (
   `name` VARCHAR(45) NULL,
   `image_url` VARCHAR(2000) NULL,
   `description` TEXT NULL,
-  `create_date` DATETIME NULL,
+  `create_date` DATE NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -89,8 +89,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `household_id` INT NOT NULL,
   `profile_url` VARCHAR(2000) NULL,
   `about_me` TEXT NULL,
-  `create_date` DATETIME NULL,
-  `update_date` DATETIME NULL,
+  `create_date` DATE NULL,
+  `update_date` DATE NULL,
   `date_of_birth` DATE NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `description` TEXT NULL,
   `image` VARCHAR(2000) NULL,
   `user_id` INT NOT NULL,
-  `create_date` DATETIME NULL,
+  `create_date` DATE NULL,
   `neighborhood_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_post_user1_idx` (`user_id` ASC),
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `description` TEXT NULL,
   `post_id` INT NOT NULL,
   `user_id` INT NOT NULL,
-  `create_date` DATETIME NULL,
+  `create_date` DATE NULL,
   `reply_id` INT NULL,
   INDEX `fk_comment_post1_idx` (`post_id` ASC),
   INDEX `fk_comment_user1_idx` (`user_id` ASC),
@@ -174,8 +174,8 @@ CREATE TABLE IF NOT EXISTS `neighborhood_event` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `description` TEXT NULL,
-  `event_date` DATETIME NULL,
-  `creation_date` DATETIME NULL,
+  `event_date` DATE NULL,
+  `creation_date` DATE NULL,
   `active` TINYINT NULL,
   `user_id` INT NOT NULL,
   `neighborhood_id` INT NOT NULL,
@@ -225,7 +225,6 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   `model` VARCHAR(45) NULL,
   `color` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
-  `residential` TINYINT NULL,
   `license_plate_id` INT NOT NULL,
   `household_id` INT NOT NULL,
   `state_plate` VARCHAR(45) NULL,
@@ -254,7 +253,7 @@ DROP TABLE IF EXISTS `report` ;
 CREATE TABLE IF NOT EXISTS `report` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `description` TEXT NULL,
-  `report_time` DATETIME NULL,
+  `report_time` DATE NULL,
   `contact_authority` TINYINT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -318,7 +317,7 @@ DROP TABLE IF EXISTS `person_of_interest` ;
 
 CREATE TABLE IF NOT EXISTS `person_of_interest` (
   `id` INT NOT NULL,
-  `incident_time` DATETIME NULL,
+  `incident_time` DATE NULL,
   `description` TEXT NULL,
   `report_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -339,7 +338,7 @@ DROP TABLE IF EXISTS `animal` ;
 CREATE TABLE IF NOT EXISTS `animal` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `species` VARCHAR(45) NULL,
-  `spotting_time` DATETIME NULL,
+  `spotting_time` DATE NULL,
   `description` TEXT NULL,
   `report_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -408,7 +407,7 @@ DROP TABLE IF EXISTS `event_comment` ;
 CREATE TABLE IF NOT EXISTS `event_comment` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `comment` TEXT NULL,
-  `create_date` DATETIME NULL,
+  `create_date` DATE NULL,
   `user_id` INT NOT NULL,
   `neighborhood_event_id` INT NOT NULL,
   `reply_id` INT NULL,
@@ -449,7 +448,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `neighborhood` (`id`, `name`, `image_url`, `description`, `create_date`) VALUES (1, NULL, NULL, NULL, NULL);
+INSERT INTO `neighborhood` (`id`, `name`, `image_url`, `description`, `create_date`) VALUES (1, 'Rolling Meadows', NULL, NULL, NULL);
+INSERT INTO `neighborhood` (`id`, `name`, `image_url`, `description`, `create_date`) VALUES (2, 'Shady Acres', NULL, NULL, NULL);
 
 COMMIT;
 
@@ -459,7 +459,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `address` (`id`, `address1`, `address2`, `city`, `state`, `zip_code`, `neighborhood_id`) VALUES (1, NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `address` (`id`, `address1`, `address2`, `city`, `state`, `zip_code`, `neighborhood_id`) VALUES (1, '123 Seasme St', NULL, 'Lowell', 'HI', '39430', 1);
+INSERT INTO `address` (`id`, `address1`, `address2`, `city`, `state`, `zip_code`, `neighborhood_id`) VALUES (2, '590 Third St', NULL, 'Lowell', 'HI', '39430', 1);
 
 COMMIT;
 
@@ -470,6 +471,7 @@ COMMIT;
 START TRANSACTION;
 USE `vigilancedb`;
 INSERT INTO `household` (`id`, `occupants`, `address_id`) VALUES (1, 1, 1);
+INSERT INTO `household` (`id`, `occupants`, `address_id`) VALUES (2, 5, 2);
 
 COMMIT;
 
@@ -480,6 +482,119 @@ COMMIT;
 START TRANSACTION;
 USE `vigilancedb`;
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (1, 'admin', 'admin', 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (2, 'DRich', 'user', 1, NULL, 'Damien', NULL, 'Richards', 2, NULL, NULL, NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `post`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `post` (`id`, `description`, `image`, `user_id`, `create_date`, `neighborhood_id`) VALUES (1, 'I have a bunch of plants I need to rehome, any takers?', NULL, 2, NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `comment` (`id`, `description`, `post_id`, `user_id`, `create_date`, `reply_id`) VALUES (1, 'Yeah, I\'ll take a few for my garden!!!', 1, 1, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `neighborhood_event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `neighborhood_event` (`id`, `name`, `description`, `event_date`, `creation_date`, `active`, `user_id`, `neighborhood_id`, `address_id`) VALUES (1, 'Block Party in the cul-de-sac on 3rd!', 'BYOB', NULL, NULL, 1, 2, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `vehicle_type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `vehicle_type` (`id`, `name`) VALUES (1, 'Compact');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `vehicle`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `license_plate_id`, `household_id`, `state_plate`, `vehicle_type_id`) VALUES (1, 'Pontiac', 'Sunfire', 'Gray', 'Mirror is missing', 1, 1, NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `report`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (1, 'Moose found in driveway', NULL, NULL, 2);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (2, 'Person looking to brake into cars.', NULL, NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `pet`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `pet` (`id`, `species`, `tag`, `breed`, `household_id`, `color`, `name`) VALUES (1, 'Dog ', NULL, 'Doberman', 1, 'Blue/Tan', 'Memphis');
+INSERT INTO `pet` (`id`, `species`, `tag`, `breed`, `household_id`, `color`, `name`) VALUES (2, 'Chicken', NULL, 'Americana Hen', 2, 'Red', 'Hennifer ');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `home_owner_association`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `home_owner_association` (`id`, `name`, `description`, `monthly_due`, `neighborhood_id`) VALUES (1, 'Sell-Your-Soul Home Owers Association', NULL, 135.00, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `person_of_interest`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `person_of_interest` (`id`, `incident_time`, `description`, `report_id`) VALUES (1, NULL, 'Person shooping around cars at night, have footage of them on my ringdoor bell camera.', 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `animal`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `animal` (`id`, `species`, `spotting_time`, `description`, `report_id`) VALUES (1, 'Moose', NULL, 'A bull male moose rammed my car in the driveway this morning!', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `event_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `event_comment` (`id`, `comment`, `create_date`, `user_id`, `neighborhood_event_id`, `reply_id`) VALUES (1, 'I be there!!!', NULL, 1, 1, NULL);
 
 COMMIT;
 
