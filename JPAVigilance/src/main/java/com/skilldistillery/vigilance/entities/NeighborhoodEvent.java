@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -40,6 +42,10 @@ public class NeighborhoodEvent {
 	
 	@Column(name="address_id")
 	private int addressId;
+	
+	@ManyToOne
+	@JoinColumn(name="address_id")
+	private Address address;
 
 	public int getId() {
 		return id;
