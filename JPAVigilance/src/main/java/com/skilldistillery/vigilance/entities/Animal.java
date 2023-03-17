@@ -24,7 +24,7 @@ public class Animal {
 	private String description;
 	
 //	@ManyToOne
-	private Report report;
+//	private Report report;
 
 	
 
@@ -64,13 +64,13 @@ public class Animal {
 		this.description = description;
 	}
 
-	public Report getReport() {
-		return report;
-	}
-
-	public void setReport(Report report) {
-		this.report = report;
-	}
+//	public Report getReport() {
+//		return report;
+//	}
+//
+//	public void setReport(Report report) {
+//		this.report = report;
+//	}
 
 	@Override
 	public int hashCode() {

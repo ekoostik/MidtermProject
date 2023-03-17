@@ -27,8 +27,8 @@ public class Address {
 	private String zipCode;
 
 //	@ManyToOne
-	 @Column(name="neighborhood_id")
-	 private Neighborhood neighborhood;
+//	 @Column(name="neighborhood_id")
+//	 private Neighborhood neighborhood;
 
 	public Address() {
 
@@ -85,13 +85,13 @@ public class Address {
 
 
 
-	public Neighborhood getNeighborhood() {
-		return neighborhood;
-	}
-
-	public void setNeighborhood(Neighborhood neighborhood) {
-		this.neighborhood = neighborhood;
-	}
+//	public Neighborhood getNeighborhood() {
+//		return neighborhood;
+//	}
+//
+//	public void setNeighborhood(Neighborhood neighborhood) {
+//		this.neighborhood = neighborhood;
+//	}
 
 	@Override
 	public int hashCode() {

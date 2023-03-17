@@ -23,6 +23,7 @@ public class HomeOwnerAssociation {
 	
 	@Column(name = "monthly_due")
 	private double monthlyDues;
+	
 //	TODO -- add Foreign Key neighborhood_id
 
 	public HomeOwnerAssociation() {

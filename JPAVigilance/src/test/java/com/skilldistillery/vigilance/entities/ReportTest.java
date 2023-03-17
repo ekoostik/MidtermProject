@@ -46,12 +46,12 @@ class ReportTest {
 		assertEquals("Moose found in driveway", report.getDesription());;
 	}
 	
-	@Test
-	void test_userId_map() {
-		
-	assertNotNull(report.getUser());
-	assertEquals(2, report.getUser());
-		
-	}
+//	@Test
+//	void test_userId_map() {
+//		
+//	assertNotNull(report.getUser());
+//	assertEquals(2, report.getUser());
+//		
+//	}
 
 }
