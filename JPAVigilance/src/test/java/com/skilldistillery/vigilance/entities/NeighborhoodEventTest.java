@@ -49,9 +49,20 @@ public class NeighborhoodEventTest {
 	
 	@Test
 	void test_address_map() {
-		assertNotNull(nEvent.getAddressId());
-		assertEquals(1, nEvent.getAddressId());
+		assertNotNull(nEvent.getAddress());
+		assertEquals(1, nEvent.getAddress().getId());
 		
 		
+	}
+	@Test
+	void test_user_map() {
+		assertNotNull(nEvent);
+		assertEquals("Damien", nEvent.getUser().getFirstName());
+	}
+	
+	@Test
+	void test_nEvent_map() {
+		assertNotNull(nEvent.getNeighborhoodId());
+		assertEquals(1, nEvent.getNeighborhoodId().getId());
 	}
 }

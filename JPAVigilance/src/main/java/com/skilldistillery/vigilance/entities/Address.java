@@ -36,6 +36,8 @@ public class Address {
 	 
 	 @OneToMany(mappedBy="address")
 	 private List<NeighborhoodEvent> nEvents;
+	 
+	 
 
 	public Address() {
 

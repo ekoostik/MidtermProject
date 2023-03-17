@@ -32,9 +32,10 @@ public class Neighborhood {
 	
 	@OneToMany(mappedBy="neighborhood")
 	private List<Address> addresses;
-//	
-//	private HomeOwnerAssociation hoa;
 	
+
+	@OneToMany(mappedBy="neighborhoodId")
+	private List<NeighborhoodEvent> nEvents;
 
 	public int getId() {
 		return id;
@@ -82,6 +83,14 @@ public class Neighborhood {
 
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
+	}
+
+	public List<NeighborhoodEvent> getnEvents() {
+		return nEvents;
+	}
+
+	public void setnEvents(List<NeighborhoodEvent> nEvents) {
+		this.nEvents = nEvents;
 	}
 
 	@Override

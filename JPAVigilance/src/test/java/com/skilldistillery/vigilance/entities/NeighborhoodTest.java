@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -44,6 +45,12 @@ public class NeighborhoodTest {
 	void test_Neighborhood_mappings() {
 		assertNotNull(nHood);
 		assertEquals("Rolling Meadows", nHood.getName());
+	}
+	
+	@Test
+	void test_neighborhood_event_map() {
+		assertNotNull(nHood);
+		assertFalse(nHood.getnEvents().isEmpty());
 	}
 
 }

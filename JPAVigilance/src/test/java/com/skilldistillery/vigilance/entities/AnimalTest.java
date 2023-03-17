@@ -45,5 +45,11 @@ class AnimalTest {
 		assertNotNull(animal);
 		assertEquals("Moose", animal.getSpecies());
 	}
+	
+	@Test
+	void test_report_map() {
+		assertNotNull(animal.getReport());
+		assertEquals("Damien", animal.getReport().getUser().getFirstName());
+	}
 
 }

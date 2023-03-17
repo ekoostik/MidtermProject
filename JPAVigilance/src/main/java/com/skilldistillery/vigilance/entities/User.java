@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.entities;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -53,14 +55,15 @@ public class User {
 //	private HouseHold household;
 //	
 //	private EventComment eventComment;
-//	
-//	private NeighborhoodEvent neighborhoodEvent;
+	@OneToMany(mappedBy="user")
+	private List<NeighborhoodEvent> neighborhoodEvent;
 //	
 //	private Comment comment;
 //	
 //	private Post post;
 //	
-//	private Report report;
+	@OneToMany(mappedBy="user")
+	private List<Report> reports;
 	
 	
 	
@@ -182,12 +185,28 @@ public class User {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public List<NeighborhoodEvent> getNeighborhoodEvent() {
+		return neighborhoodEvent;
+	}
+
+	public void setNeighborhoodEvent(List<NeighborhoodEvent> neighborhoodEvent) {
+		this.neighborhoodEvent = neighborhoodEvent;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
 
 
+
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

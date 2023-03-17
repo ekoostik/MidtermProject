@@ -34,18 +34,21 @@ public class NeighborhoodEvent {
 	
 	private boolean active;
 	
-	@Column(name="user_id")
-	private int userId;
-	
-	@Column(name="neighborhood_id")
-	private int neighborhoodId;
-	
-	@Column(name="address_id")
-	private int addressId;
-	
+	@ManyToOne
+	@JoinColumn(name="neighborhood_id")
+	private Neighborhood neighborhoodId;
+
 	@ManyToOne
 	@JoinColumn(name="address_id")
 	private Address address;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	
+	
+	
 
 	public int getId() {
 		return id;
@@ -95,28 +98,32 @@ public class NeighborhoodEvent {
 		this.active = active;
 	}
 
-	public int getUserId() {
-		return userId;
+	
+
+
+
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
-	public int getNeighborhoodId() {
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Neighborhood getNeighborhoodId() {
 		return neighborhoodId;
 	}
 
-	public void setNeighborhoodId(int neighborhoodId) {
+	public void setNeighborhoodId(Neighborhood neighborhoodId) {
 		this.neighborhoodId = neighborhoodId;
-	}
-
-	public int getAddressId() {
-		return addressId;
-	}
-
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
 	}
 
 	@Override
@@ -139,8 +146,8 @@ public class NeighborhoodEvent {
 	@Override
 	public String toString() {
 		return "NeighborhoodEvent [id=" + id + ", name=" + name + ", description=" + description + ", eventDate="
-				+ eventDate + ", createDate=" + createDate + ", active=" + active + ", userId=" + userId
-				+ ", neighborhoodId=" + neighborhoodId + ", addressId=" + addressId + "]";
+				+ eventDate + ", createDate=" + createDate + ", active=" + active + ", userId=" + 
+			  ", addressId="  + "]";
 	}
 	
 	

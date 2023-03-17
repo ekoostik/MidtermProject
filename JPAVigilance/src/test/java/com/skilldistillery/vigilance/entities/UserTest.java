@@ -1,7 +1,9 @@
 package com.skilldistillery.vigilance.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -47,4 +49,16 @@ class UserTest {
 		assertEquals("admin", user.getUsername());
 	}
 
+	@Test
+	void test_report_map() {
+		assertNotNull(user);
+		assertFalse(user.getReports().isEmpty());
+	}
+	
+	@Test
+	void test_neighborhoodEV_map() {
+		user=em.find(User.class, 2);
+		assertNotNull(user.getNeighborhoodEvent());
+		assertFalse(user.getNeighborhoodEvent().isEmpty());
+	}
 }
