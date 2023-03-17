@@ -14,7 +14,7 @@
 	<class>com.skilldistillery.vigilance.entities.HomeOwnerAssociation</class>
 	<class>com.skilldistillery.vigilance.entities.Neighborhood</class>
 	<class>com.skilldistillery.vigilance.entities.NeighborhoodEvent</class>
-     <class>com.skilldistillery.vigilance.entities.Address</class>
+    <class>com.skilldistillery.vigilance.entities.Address</class>
 	<class>com.skilldistillery.vigilance.entities.PersonOfInterest</class>
 	<class>com.skilldistillery.vigilance.entities.Report</class>
 	<class>com.skilldistillery.vigilance.entities.Animal</class>

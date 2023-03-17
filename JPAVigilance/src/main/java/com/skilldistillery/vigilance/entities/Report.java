@@ -24,8 +24,8 @@ public class Report {
 	@Column(name = "contact_authority")
 	private Boolean contactAuthority;
 
-	@Column(name = "user_id")
-	private User user;
+//	@Column(name = "user_id")
+//	private User user;
 
 	public Report() {
 
@@ -55,14 +55,14 @@ public class Report {
 		this.contactAuthority = contactAuthority;
 	}
 
-	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 
 	@Override
 	public int hashCode() {

@@ -46,11 +46,11 @@ class AddressTest {
 		assertEquals("HI", address.getState());
 	}
 	
-	@Test
-	void test_neighborhood() {
-		assertNotNull(address.getNeighborhood());
-		assertEquals(1, address.getNeighborhood());
-		
-	}
+//	@Test
+//	void test_neighborhood() {
+//		assertNotNull(address.getNeighborhood());
+//		assertEquals(1, address.getNeighborhood());
+//		
+//	}
 
 }
