@@ -22,6 +22,9 @@
 	<class>com.skilldistillery.vigilance.entities.Post</class>
 	<class>com.skilldistillery.vigilance.entities.Comment</class> 
 	<class>com.skilldistillery.vigilance.entities.EventComment</class> 
+	<class>com.skilldistillery.vigilance.entities.Address</class> 
+	<class>com.skilldistillery.vigilance.entities.Report</class> 
+
 
 	<!--end entities  -->
 
