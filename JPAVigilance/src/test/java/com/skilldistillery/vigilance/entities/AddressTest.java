@@ -45,5 +45,12 @@ class AddressTest {
 		assertNotNull(address);
 		assertEquals("HI", address.getState());
 	}
+	
+	@Test
+	void test_neighborhood() {
+		assertNotNull(address.getNeighborhood());
+		assertEquals(1, address.getNeighborhood());
+		
+	}
 
 }

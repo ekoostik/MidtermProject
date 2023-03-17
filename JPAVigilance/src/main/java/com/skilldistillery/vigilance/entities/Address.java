@@ -26,8 +26,9 @@ public class Address {
 	@Column(name = "zip_code")
 	private String zipCode;
 
-	// @Column(name="neighborhood_id")
-	// private int neighborhoodId;
+//	@ManyToOne
+	 @Column(name="neighborhood_id")
+	 private Neighborhood neighborhood;
 
 	public Address() {
 
@@ -79,6 +80,17 @@ public class Address {
 
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+
+
+
+
+	public Neighborhood getNeighborhood() {
+		return neighborhood;
+	}
+
+	public void setNeighborhood(Neighborhood neighborhood) {
+		this.neighborhood = neighborhood;
 	}
 
 	@Override

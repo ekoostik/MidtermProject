@@ -22,8 +22,11 @@ public class Animal {
 	private Date spottingTime;
 
 	private String description;
+	
+//	@ManyToOne
+	private Report report;
 
-//	
+	
 
 	public Animal() {
 
@@ -59,6 +62,14 @@ public class Animal {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Report getReport() {
+		return report;
+	}
+
+	public void setReport(Report report) {
+		this.report = report;
 	}
 
 	@Override
