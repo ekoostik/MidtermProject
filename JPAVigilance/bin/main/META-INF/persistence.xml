@@ -10,7 +10,21 @@
 
 		
 	<class>com.skilldistillery.vigilance.entities.User</class>
-	
+    <class>com.skilldistillery.vigilance.entities.HouseHold</class>
+	<class>com.skilldistillery.vigilance.entities.HomeOwnerAssociation</class>
+	<class>com.skilldistillery.vigilance.entities.Neighborhood</class>
+	<class>com.skilldistillery.vigilance.entities.NeighborhoodEvent</class>
+<!-- 	<class>com.skilldistillery.vigilance.entities.Address</class>
+	<class>com.skilldistillery.vigilance.entities.PersonOfInterest</class>
+	<class>com.skilldistillery.vigilance.entities.Report</class>
+	<class>com.skilldistillery.vigilance.entities.Pet</class>
+	<class>com.skilldistillery.vigilance.entities.Vehicle</class>
+	<class>com.skilldistillery.vigilance.entities.VehicleType</class>
+	<class>com.skilldistillery.vigilance.entities.Post</class>
+	<class>com.skilldistillery.vigilance.entities.Animal</class>
+	<class>com.skilldistillery.vigilance.entities.Comment</class>
+	<class>com.skilldistillery.vigilance.entities.EventComment</class> -->
+
 	<!--end entities  -->
 
 
