@@ -1,5 +1,6 @@
 package com.skilldistillery.vigilance.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,24 +8,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class HomeOwnerAssociation {
+@Table(name="person_of_interest")
+public class PersonOfInterest {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String name;
+	@Column(name = "incident_time")
+	private LocalDateTime incidentTime;
 
 	private String description;
-	
-	@Column(name = "monthly_due")
-	private double monthlyDues;
-//	TODO -- add Foreign Key neighborhood_id
 
-	public HomeOwnerAssociation() {
-		super();
+//	@Column(name="report_id")
+//	private int reportId;
+
+	public PersonOfInterest() {
+
 	}
 
 	public int getId() {
@@ -35,12 +38,12 @@ public class HomeOwnerAssociation {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public LocalDateTime getIncidentTime() {
+		return incidentTime;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setIncidentTime(LocalDateTime incidentTime) {
+		this.incidentTime = incidentTime;
 	}
 
 	public String getDescription() {
@@ -49,14 +52,6 @@ public class HomeOwnerAssociation {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public double getMonthlyDues() {
-		return monthlyDues;
-	}
-
-	public void setMonthlyDues(double monthlyDues) {
-		this.monthlyDues = monthlyDues;
 	}
 
 	@Override
@@ -72,14 +67,12 @@ public class HomeOwnerAssociation {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		HomeOwnerAssociation other = (HomeOwnerAssociation) obj;
+		PersonOfInterest other = (PersonOfInterest) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "HomeOwnerAssociation [id=" + id + ", name=" + name + ", description=" + description + ", monthlyDues="
-				+ monthlyDues + "]";
+		return "PersonOfInterest [id=" + id + ", incidentTime=" + incidentTime + ", description=" + description + "]";
 	}
-
 }

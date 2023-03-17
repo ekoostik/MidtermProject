@@ -1,7 +1,6 @@
 package com.skilldistillery.vigilance.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,11 +12,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class NeighborhoodTest {
+class ReportTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Neighborhood nHood;
+	private Report report;
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPAVigilance");
@@ -31,21 +31,19 @@ public class NeighborhoodTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		nHood = em.find(Neighborhood.class, 1);
+		report = em.find(Report.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		nHood= null;
+		report = null;
 	}
 
 	@Test
-	void test_Neighborhood_mappings() {
-		assertNotNull(nHood);
-		assertEquals("Rolling Meadows", nHood.getName());
+	void test_report_map() {
+		assertNotNull(report);
+		assertEquals("Moose found in driveway", report.getDesription());;
 	}
 
 }
-
-

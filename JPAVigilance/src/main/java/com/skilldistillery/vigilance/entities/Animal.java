@@ -1,5 +1,6 @@
 package com.skilldistillery.vigilance.entities;
 
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,22 +10,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class HomeOwnerAssociation {
+public class Animal {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String name;
+	private String species;
+
+	@Column(name = "spotting_time")
+	private Date spottingTime;
 
 	private String description;
-	
-	@Column(name = "monthly_due")
-	private double monthlyDues;
-//	TODO -- add Foreign Key neighborhood_id
 
-	public HomeOwnerAssociation() {
-		super();
+//	
+
+	public Animal() {
+
 	}
 
 	public int getId() {
@@ -35,12 +37,20 @@ public class HomeOwnerAssociation {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getSpecies() {
+		return species;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setSpecies(String species) {
+		this.species = species;
+	}
+
+	public Date getSpottingTime() {
+		return spottingTime;
+	}
+
+	public void setSpottingTime(Date spottingTime) {
+		this.spottingTime = spottingTime;
 	}
 
 	public String getDescription() {
@@ -49,14 +59,6 @@ public class HomeOwnerAssociation {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public double getMonthlyDues() {
-		return monthlyDues;
-	}
-
-	public void setMonthlyDues(double monthlyDues) {
-		this.monthlyDues = monthlyDues;
 	}
 
 	@Override
@@ -72,14 +74,14 @@ public class HomeOwnerAssociation {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		HomeOwnerAssociation other = (HomeOwnerAssociation) obj;
+		Animal other = (Animal) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "HomeOwnerAssociation [id=" + id + ", name=" + name + ", description=" + description + ", monthlyDues="
-				+ monthlyDues + "]";
+		return "Animal [id=" + id + ", species=" + species + ", spottingTime=" + spottingTime + ", description="
+				+ description + "]";
 	}
 
 }
