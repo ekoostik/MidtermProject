@@ -1,5 +1,8 @@
 package com.skilldistillery.vigilance.entities;
 
+import java.util.Objects;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,11 +10,76 @@ import javax.persistence.Id;
 
 @Entity
 public class HomeOwnerAssociation {
-	
-	public HomeOwnerAssociation() {}
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	private String name;
+
+	private String description;
+	
+	@Column(name = "monthly_due")
+	private double monthlyDues;
+//	TODO -- add Foreign Key neighborhood_id
+
+	public HomeOwnerAssociation() {
+		super();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public double getMonthlyDues() {
+		return monthlyDues;
+	}
+
+	public void setMonthlyDues(double monthlyDues) {
+		this.monthlyDues = monthlyDues;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		HomeOwnerAssociation other = (HomeOwnerAssociation) obj;
+		return id == other.id;
+	}
+
+	@Override
+	public String toString() {
+		return "HomeOwnerAssociation [id=" + id + ", name=" + name + ", description=" + description + ", monthlyDues="
+				+ monthlyDues + "]";
+	}
 
 }
