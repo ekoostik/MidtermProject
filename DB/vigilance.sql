@@ -142,11 +142,9 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `post_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `create_date` DATE NULL,
-  `reply_id` INT NULL,
   INDEX `fk_comment_post1_idx` (`post_id` ASC),
   INDEX `fk_comment_user1_idx` (`user_id` ASC),
   PRIMARY KEY (`id`),
-  INDEX `fk_comment_comment1_idx` (`reply_id` ASC),
   CONSTRAINT `fk_comment_post1`
     FOREIGN KEY (`post_id`)
     REFERENCES `post` (`id`)
@@ -155,11 +153,6 @@ CREATE TABLE IF NOT EXISTS `comment` (
   CONSTRAINT `fk_comment_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_comment_comment1`
-    FOREIGN KEY (`reply_id`)
-    REFERENCES `comment` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -179,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `neighborhood_event` (
   `active` TINYINT NULL,
   `user_id` INT NOT NULL,
   `neighborhood_id` INT NOT NULL,
-  `address_id` INT NULL,
+  `address_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_event_user1_idx` (`user_id` ASC),
   INDEX `fk_neighborhood_event_neighborhood1_idx` (`neighborhood_id` ASC),
@@ -410,11 +403,9 @@ CREATE TABLE IF NOT EXISTS `event_comment` (
   `create_date` DATE NULL,
   `user_id` INT NOT NULL,
   `neighborhood_event_id` INT NOT NULL,
-  `reply_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_event_comment_user1_idx` (`user_id` ASC),
   INDEX `fk_event_comment_neighborhood_event1_idx` (`neighborhood_event_id` ASC),
-  INDEX `fk_event_comment_event_comment1_idx` (`reply_id` ASC),
   CONSTRAINT `fk_event_comment_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
@@ -423,11 +414,6 @@ CREATE TABLE IF NOT EXISTS `event_comment` (
   CONSTRAINT `fk_event_comment_neighborhood_event1`
     FOREIGN KEY (`neighborhood_event_id`)
     REFERENCES `neighborhood_event` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_event_comment_event_comment1`
-    FOREIGN KEY (`reply_id`)
-    REFERENCES `event_comment` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -502,7 +488,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `comment` (`id`, `description`, `post_id`, `user_id`, `create_date`, `reply_id`) VALUES (1, 'Yeah, I\'ll take a few for my garden!!!', 1, 1, NULL, NULL);
+INSERT INTO `comment` (`id`, `description`, `post_id`, `user_id`, `create_date`) VALUES (1, 'Yeah, I\'ll take a few for my garden!!!', 1, 1, NULL);
+INSERT INTO `comment` (`id`, `description`, `post_id`, `user_id`, `create_date`) VALUES (2, 'Me, too!!', 1, 2, NULL);
 
 COMMIT;
 
@@ -594,7 +581,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `event_comment` (`id`, `comment`, `create_date`, `user_id`, `neighborhood_event_id`, `reply_id`) VALUES (1, 'I be there!!!', NULL, 1, 1, NULL);
+INSERT INTO `event_comment` (`id`, `comment`, `create_date`, `user_id`, `neighborhood_event_id`) VALUES (1, 'I be there!!!', NULL, 1, 1);
 
 COMMIT;
 
