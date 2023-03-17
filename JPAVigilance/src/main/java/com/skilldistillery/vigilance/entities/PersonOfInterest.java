@@ -23,8 +23,8 @@ public class PersonOfInterest {
 
 	private String description;
 
-//	@Column(name="report_id")
-//	private int reportId;
+	@Column(name="report_id")
+	private Report report;
 
 	public PersonOfInterest() {
 
@@ -52,6 +52,16 @@ public class PersonOfInterest {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	
+
+	public Report getReport() {
+		return report;
+	}
+
+	public void setReport(Report report) {
+		this.report = report;
 	}
 
 	@Override

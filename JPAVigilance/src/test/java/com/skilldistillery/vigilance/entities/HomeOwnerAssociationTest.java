@@ -42,5 +42,6 @@ public class HomeOwnerAssociationTest {
 	void test_HOA_mappings() {
 		assertNotNull(hoa);
 		assertEquals("Sell-Your-Soul Home Owers Association", hoa.getName());
+		assertEquals(135, hoa.getMonthlyDues());
 	}
 }

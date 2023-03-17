@@ -12,12 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class AddressTest {
+class EventCommentTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Address address;
-
+	private EventComment eComment;
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPAVigilance");
@@ -31,26 +30,20 @@ class AddressTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		address = em.find(Address.class, 1);
+		eComment = em.find(EventComment.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		address = null;
+		eComment = null;
 	}
 
 	@Test
-	void test_address_map() {
-		assertNotNull(address);
-		assertEquals("HI", address.getState());
-	}
-	
-	@Test
-	void test_neighborhood() {
-		assertNotNull(address.getNeighborhood());
-		assertEquals(1, address.getNeighborhood());
-		
+	void test_HOA_mappings() {
+		assertNotNull(eComment);
+		assertEquals("I be there!!!", eComment.getComment());
+		assertEquals(1, eComment.getId());
 	}
 
 }

@@ -44,6 +44,17 @@ class PersonOfInterestTest {
 	void test_POI_mapping() {
 		assertNotNull(personOfInterest);
 		assertEquals('P', personOfInterest.getDescription().charAt(0));
+		
 	}
+	
+	@Test
+	
+	void test_reportID_mapping() {
+		assertNotNull(personOfInterest.getReport());
+		assertEquals(2, personOfInterest.getReport());
+	}
+	
+
+	
 
 }
