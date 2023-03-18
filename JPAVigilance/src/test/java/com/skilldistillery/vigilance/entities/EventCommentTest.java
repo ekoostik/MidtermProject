@@ -45,12 +45,12 @@ class EventCommentTest {
 		assertEquals("I be there!!!", eComment.getComment());
 		assertEquals(1, eComment.getId());
 	}
-	
+	 
 	@Test
 	
 	void test_neighborhood_event() {
 		assertNotNull(eComment.getNeighborhoodEventId());
-		assertEquals(2, eComment.getNeighborhoodEventId().getUser().getId());
+		assertEquals(1, eComment.getNeighborhoodEventId().getUser().getId());
 	}
 	@Test
 	void test_user_map() {

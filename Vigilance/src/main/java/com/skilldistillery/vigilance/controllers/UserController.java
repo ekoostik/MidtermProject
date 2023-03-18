@@ -1,9 +1,17 @@
 package com.skilldistillery.vigilance.controllers;
 
+
+import java.time.LocalDate;
+import java.util.Date;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.vigilance.data.UserDAO;
 import com.skilldistillery.vigilance.entities.User;
@@ -15,28 +23,45 @@ public class UserController {
 	private UserDAO userDao;
 
 
+
 	@RequestMapping(path = {"/", "login.do"})
 	public String home (Model model) {
 		
-		////////////////DEBUG
-		User u = new User();
-		u.setUsername("vigil");
-		u.setPassword("vigil");
-		u = userDao.login(u);
-		model.addAttribute("smoketest", u);
-		////////////////DEBUG
+//		////////////////DEBUG
+//		User u = new User();
+//		u.setUsername("vigil");
+//		u.setPassword("vigil");
+//		u = userDao.login(u);
+//		model.addAttribute("smoketest", u);
+//		////////////////DEBUG
 		return "/webpages/forms/login_register";
 		}
 	
-	@RequestMapping(path="login.do")
-	public String login(Model model) {
-		//add logic to call DAOImpl to verify user and apply to session manager
-		return "/webpages/forms/login_register";
+	
+	@RequestMapping(path="userlogin.do", method = RequestMethod.POST)
+	public String login(User user, Model model, HttpSession session) {
+//	User user = userOne;
+		user = userDao.login(user);
+		if (user != null) {
+			session.setAttribute("loggedinuser", user);
+			return "/webpages/home";
+		} else {
+			
+			return "webpages/forms/login_register"; 
+		}
 	}
-		
-	@RequestMapping(path="register.do")
-	public String register(Model model) {
+	@RequestMapping(path="registration.do") 
+	public String register(Model model) {		
 		return "/webpages/forms/registrationForm";
+	}	
+		
+	@RequestMapping(path="register.do", params = {"dob", "city", "state",},method = RequestMethod.POST) 
+	public String register(User user, Model model, @RequestParam("city") String city, @RequestParam("state") String state, @RequestParam("dob") String dob ) {
+		LocalDate birthDate = LocalDate.parse(dob);
+		user.setDateOfBirth(birthDate);
+		user = userDao.registerNewUser(user);
+				
+		return "";
 		
 	}
 }

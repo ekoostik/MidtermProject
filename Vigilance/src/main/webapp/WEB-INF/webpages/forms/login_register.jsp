@@ -7,7 +7,7 @@
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Vigilance Login</title>
-<link rel="stylesheet" href="css/stylesheet.css">
+<link rel="stylesheet" href="../../../css/stylesheet.css">
 </head>
 <div class="container">
   <div class="row">
@@ -15,10 +15,10 @@
       Place Logo and Welcome statement
     </div>
     <div class="col-6">
-      	<form action="login.do" method="GET">
-		Username <input type="text" name="username" />
+      	<form action="userlogin.do" method="POST">
+		Username <input type="text" name="username"  />
 		Password <input type="password" name="password" />
-		<button name="update" type="submit" class="btn btn-primary">Login</button>
+		<button type="submit" class="btn btn-primary">Login</button>
 		</form>
     </div>
   </div>
@@ -27,10 +27,10 @@
     </div>
     <div class="col-6">
     No Account? Register Here!
-	<form action="register.do" method="GET">
+	<form action="registration.do" method="GET">
 	<button name="register" type="submit" 
-	class="btn btn-success">Register</button>
-	</form>
+	class="btn btn-success">Register</button> 
+	</form> 
     </div>
   </div>
 </div>
