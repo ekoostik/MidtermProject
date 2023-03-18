@@ -61,4 +61,14 @@ class UserTest {
 		assertNotNull(user.getNeighborhoodEvent());
 		assertFalse(user.getNeighborhoodEvent().isEmpty());
 	}
+	@Test
+	void test_event_comment_map() {
+		assertNotNull(user.getEventComments());
+		assertFalse(user.getEventComments().isEmpty());
+	}
+	@Test
+	void test_houseHold_map() {
+		assertNotNull(user.getHousehold());
+		assertEquals(1, user.getHousehold().getId());
+	}
 }

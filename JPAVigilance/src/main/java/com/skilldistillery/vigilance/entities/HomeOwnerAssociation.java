@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +27,9 @@ public class HomeOwnerAssociation {
 	private double monthlyDues;
 	
 //	TODO -- add Foreign Key neighborhood_id
+	@OneToOne
+	@JoinColumn(name="neighborhood_id")
+	private Neighborhood neighborhood;
 
 	public HomeOwnerAssociation() {
 		super();
@@ -60,6 +65,14 @@ public class HomeOwnerAssociation {
 
 	public void setMonthlyDues(double monthlyDues) {
 		this.monthlyDues = monthlyDues;
+	}
+
+	public Neighborhood getNeighborhood() {
+		return neighborhood;
+	}
+
+	public void setNeighborhood(Neighborhood neighborhood) {
+		this.neighborhood = neighborhood;
 	}
 
 	@Override

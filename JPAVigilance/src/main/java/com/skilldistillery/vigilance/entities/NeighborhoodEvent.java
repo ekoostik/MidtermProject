@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.entities;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -46,8 +48,8 @@ public class NeighborhoodEvent {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	
-	
+	@OneToMany(mappedBy="neighborhoodEventId")
+	private List<EventComment> eventComments;
 	
 
 	public int getId() {
@@ -124,6 +126,14 @@ public class NeighborhoodEvent {
 
 	public void setNeighborhoodId(Neighborhood neighborhoodId) {
 		this.neighborhoodId = neighborhoodId;
+	}
+
+	public List<EventComment> getEventComments() {
+		return eventComments;
+	}
+
+	public void setEventComments(List<EventComment> eventComments) {
+		this.eventComments = eventComments;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -46,6 +47,27 @@ public class HouseHoldTest {
 	void test_HouseHold_mappings() {
 		assertNotNull(houseHold);
 		assertEquals(5, houseHold.getOccupants());
+	}
+	@Test
+	void test_pet_map() {
+		assertNotNull(houseHold);
+		assertFalse(houseHold.getPets().isEmpty());
+	}
+	@Test
+	void test_user_map() {
+		assertNotNull(houseHold.getUsers());
+		assertFalse(houseHold.getUsers().isEmpty());
+	}
+	@Test
+	void test_address_map() {
+		assertNotNull(houseHold.getAddress());
+		assertEquals("Lowell", houseHold.getAddress().getCity());
+	}
+	@Test
+	void test_vehicle_map(){
+		houseHold=em.find(HouseHold.class, 1);
+		assertNotNull(houseHold.getVehicles() );
+		assertFalse(houseHold.getVehicles().isEmpty());
 	}
 
 }

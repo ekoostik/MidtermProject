@@ -47,6 +47,11 @@ class PetTest {
 		assertEquals("Doberman", pet.getBreed());
 	}
 	
+	@Test
+	void test_household_map() {
+		assertNotNull(pet.getHouseHold());
+		assertEquals(1, pet.getHouseHold().getId());
+	}
 
 		
 

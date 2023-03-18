@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name = "event_comment")
@@ -20,16 +22,18 @@ public class EventComment {
 	
 	@Column(name ="create_date")
 	private Date createDate;
+
+	@ManyToOne
+	@JoinColumn(name ="user_id")
+	private User userId;
 	
-//	TODO -- add foreign keys user_id & neighborhood_event_id
-//	@Column(name ="user_id")
-//	private int userId;
-//	@Column(name ="neighborhood_event_id")
-//	private int neghborhoodEventId;
+	@ManyToOne
+	@JoinColumn(name ="neighborhood_event_id")
+	private NeighborhoodEvent neighborhoodEventId;
 
 	public EventComment() {
-	super();
-}
+		super();
+	}
 
 	public int getId() {
 		return id;
@@ -53,6 +57,24 @@ public class EventComment {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+
+
+	public NeighborhoodEvent getNeighborhoodEventId() {
+		return neighborhoodEventId;
+	}
+
+	public void setNeighborhoodEventId(NeighborhoodEvent neighborhoodEventId) {
+		this.neighborhoodEventId = neighborhoodEventId;
+	}
+
+	public User getUserId() {
+		return userId;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
 	}
 
 	@Override

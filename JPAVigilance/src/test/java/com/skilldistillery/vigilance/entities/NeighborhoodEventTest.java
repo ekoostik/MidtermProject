@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -64,5 +65,11 @@ public class NeighborhoodEventTest {
 	void test_nEvent_map() {
 		assertNotNull(nEvent.getNeighborhoodId());
 		assertEquals(1, nEvent.getNeighborhoodId().getId());
+	}
+	
+	@Test
+	void test_neighborhood_comments() {
+		assertNotNull(nEvent.getEventComments());
+		assertFalse(nEvent.getEventComments().isEmpty());
 	}
 }

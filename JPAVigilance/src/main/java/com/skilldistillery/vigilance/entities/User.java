@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -33,8 +35,9 @@ public class User {
 	
 	private String email;
 	
-	@Column(name="household_id")
-	private int householdId;
+	@ManyToOne
+	@JoinColumn(name="household_id")
+	private HouseHold household;
 	
 	@Column(name="profile_url")
 	private String profilePic;
@@ -54,7 +57,9 @@ public class User {
 	//TODO MAP Objects
 //	private HouseHold household;
 //	
-//	private EventComment eventComment;
+	@OneToMany(mappedBy="userId")
+	private List<EventComment> eventComments;
+	
 	@OneToMany(mappedBy="user")
 	private List<NeighborhoodEvent> neighborhoodEvent;
 //	
@@ -137,13 +142,7 @@ public class User {
 		this.email = email;
 	}
 
-	public int getHouseholdId() {
-		return householdId;
-	}
 
-	public void setHouseholdId(int householdId) {
-		this.householdId = householdId;
-	}
 
 	public String getProfilePic() {
 		return profilePic;
@@ -208,6 +207,22 @@ public class User {
 		this.reports = reports;
 	}
 
+	public List<EventComment> getEventComments() {
+		return eventComments;
+	}
+
+	public void setEventComments(List<EventComment> eventComments) {
+		this.eventComments = eventComments;
+	}
+
+	public HouseHold getHousehold() {
+		return household;
+	}
+
+	public void setHousehold(HouseHold household) {
+		this.household = household;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -224,7 +239,10 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
 				+ ", role=" + role + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", householdId=" + householdId + ", profilePic=" + profilePic + ", aboutme=" + aboutme
-				+ ", createDate=" + createDate + ", updateDate=" + updateDate + ", dateOfBirth=" + dateOfBirth + "]";
+				+ ", household=" + household + ", profilePic=" + profilePic + ", aboutme=" + aboutme + ", createDate="
+				+ createDate + ", updateDate=" + updateDate + ", dateOfBirth=" + dateOfBirth + ", eventComments="
+				+ eventComments + ", neighborhoodEvent=" + neighborhoodEvent + ", reports=" + reports + "]";
 	}
+
+	
 }

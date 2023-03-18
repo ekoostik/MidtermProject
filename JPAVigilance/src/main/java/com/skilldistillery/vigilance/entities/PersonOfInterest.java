@@ -59,14 +59,6 @@ public class PersonOfInterest {
 
 	
 
-//	public Report getReport() {
-//		return report;
-//	}
-//
-//	public void setReport(Report report) {
-//		this.report = report;
-//	}
-
 	public Report getReport() {
 		return report;
 	}
