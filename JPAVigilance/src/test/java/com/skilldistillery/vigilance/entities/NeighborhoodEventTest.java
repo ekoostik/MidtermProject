@@ -58,7 +58,7 @@ public class NeighborhoodEventTest {
 	@Test
 	void test_user_map() {
 		assertNotNull(nEvent);
-		assertEquals("Damien", nEvent.getUser().getFirstName());
+		assertEquals("Skill", nEvent.getUser().getFirstName());
 	}
 	
 	@Test

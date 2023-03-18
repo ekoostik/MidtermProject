@@ -1,6 +1,7 @@
-package com.skilldistillery.vigilance.entities;
+package com.skilldistillery.vigilance.data;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,11 +13,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class EventCommentTest {
+import com.skilldistillery.vigilance.entities.User;
+
+class UserDAOTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private EventComment eComment;
+	private UserDaoImpl userDao;
+	private User user;
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPAVigilance");
@@ -30,32 +35,21 @@ class EventCommentTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		eComment = em.find(EventComment.class, 1);
+		userDao = new UserDaoImpl();
+		userDao.setEntityManager(em);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		eComment = null;
+		user = null;
 	}
 
-	@Test
-	void test_HOA_mappings() {
-		assertNotNull(eComment);
-		assertEquals("I be there!!!", eComment.getComment());
-		assertEquals(1, eComment.getId());
-	}
-	 
-	@Test
 	
-	void test_neighborhood_event() {
-		assertNotNull(eComment.getNeighborhoodEventId());
-		assertEquals(1, eComment.getNeighborhoodEventId().getUser().getId());
-	}
 	@Test
-	void test_user_map() {
-		assertNotNull(eComment.getUserId());
-		assertEquals(1, eComment.getUserId().getId());
-	}
+	void test_validate_user() {
+		user = userDao.validateUserLogin("admin", "admin");
+		assertNotNull(user);
 
+	}
 }
