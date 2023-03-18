@@ -36,7 +36,7 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public User validateUserLogin(String username, String password) {
 		User user = new User();
-		String jpql = "SELECT u FROM User u WHERE u.username = :user AND u.password = :pass AND u.enabled = 1";
+		String jpql = "SELECT u FROM User u WHERE u.username = :user AND u.password = :pass";
 			user = em.createQuery(jpql, User.class)
 					.setParameter("user", username)
 					.setParameter("pass", password)
