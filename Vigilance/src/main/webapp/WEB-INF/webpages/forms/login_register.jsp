@@ -16,8 +16,8 @@
     </div>
     <div class="col-6">
       	<form action="userlogin.do" method="POST">
-		Username <input type="text" name="username" />
-		Password <input type="password" name="password"/>
+		Username <input type="text" name="username"  />
+		Password <input type="password" name="password" />
 		<button type="submit" class="btn btn-primary">Login</button>
 		</form>
     </div>

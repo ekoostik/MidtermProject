@@ -35,11 +35,10 @@ public class UserController {
 		}
 	
 	
-	@RequestMapping(path="userlogin.do", params = ("username, password"), method = RequestMethod.POST)
-	public String login(User user, Model model, HttpSession session, @RequestParam("username") String userName,  @RequestParam("password") String password) {
-		System.out.println(userName);
-		System.out.println(password);
-		user = userDao.validateUserLogin(userName, password);
+	@RequestMapping(path="userlogin.do", method = RequestMethod.POST)
+	public String login(User user, Model model, HttpSession session) {
+//	User user = userOne;
+		user = userDao.login(user);
 		if (user != null) {
 			session.setAttribute("loggedinuser", user);
 			return "/webpages/home";
