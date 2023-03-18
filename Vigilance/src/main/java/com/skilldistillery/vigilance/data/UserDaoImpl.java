@@ -34,24 +34,10 @@ public class UserDaoImpl implements UserDAO {
 	}
 
 	@Override
-	public User validateUserLogin(String username, String password) {
-		User user = new User();
-		String jpql = "SELECT u FROM User u WHERE u.username = :user AND u.password = :pass";
-			user = em.createQuery(jpql, User.class)
-					.setParameter("user", username)
-					.setParameter("pass", password)
-					.getSingleResult();
-			if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-				return user;
-			} else {
-				return null;
-			}
-	}
-
-	@Override
 	public User registerNewUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+			em.persist(user);
+			em.flush();
+			return user;
 	}
 
 	@Override

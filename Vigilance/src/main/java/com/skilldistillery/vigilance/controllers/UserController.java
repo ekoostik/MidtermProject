@@ -50,8 +50,9 @@ public class UserController {
 	
 		
 	@RequestMapping(path="register.do")
-	public String register(Model model) {
-		return "/webpages/forms/registrationForm";
+	public String register(User user, Model model) {
+		
+		return "";
 		
 	}
 }

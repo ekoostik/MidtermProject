@@ -12,18 +12,23 @@
 <body>
 <h1> Register A New Account</h1>
 <form action="register.do" method="POST">
-  First Name <input type="text" name="fname" /><br>
-  LastName Name <input type="text" name="lname" /><br>
+  First Name <input type="text" name="firstName" /><br>
+  LastName Name <input type="text" name="lastName" /><br>
   Email <input type="text" name="email" /><br>
-  Date of birth <input type="date" name="dob" /><br>
-  Username <input type="text" name="user" /><br>
-  Password <input type="text" name="pass" /><br>
+  Date of birth <input type="date" name="dateOfBirth" /><br>
+  Username <input type="text" name="username" /><br>
+  Password <input type="text" name="password" /><br>
   
+  City <input type="text" name="city" /><br>
+  State <input type="text" name="state" /><br>
+ <button type="submit" class="btn btn-primary">Submit</button>
+</form> 
   <!-- ADD LOGiC FOR DROP DOWN ONCE ALL FIELDS ARE FILLED TO PRESENT ANOTHER 
   SECTION FOR SELECTING A NEIGHBORHOOD-->
   
   <!--MAYBE ADD LOGIC FOR USER TO COMPARE EXISTING NEIGHBORHOODS (STRETCH)  -->
   Select your neighborhood
+  <form>
   <label>Neighborhood</label> 
 	<select name="nhood">
 		<option value=CHANGE>NEIGHBORHOOD1</option>
