@@ -29,4 +29,16 @@ public class UserDaoImpl implements UserDAO {
 		return user;
 	}
 
+	@Override
+	public User validateUserLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User registerNewUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
