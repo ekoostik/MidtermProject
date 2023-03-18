@@ -1,13 +1,12 @@
 package com.skilldistillery.vigilance.data;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.vigilance.entities.Address;
 import com.skilldistillery.vigilance.entities.User;
 
 @Transactional
@@ -38,6 +37,18 @@ public class UserDaoImpl implements UserDAO {
 			em.persist(user);
 			em.flush();
 			return user;
+	}
+	
+	public boolean verifyAddress(String city, String state) {
+		boolean isTrue = false;
+		return isTrue;
+	}
+	
+	public Address addnewAddress(Address address) {
+		Address addr = null;
+		
+		return addr;
+		
 	}
 
 	@Override

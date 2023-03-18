@@ -27,10 +27,10 @@
     </div>
     <div class="col-6">
     No Account? Register Here!
-	<form action="register.do" method="GET">
+	<form action="registration.do" method="GET">
 	<button name="register" type="submit" 
-	class="btn btn-success">Register</button>
-	</form>
+	class="btn btn-success">Register</button> 
+	</form> 
     </div>
   </div>
 </div>
