@@ -1,6 +1,9 @@
 package com.skilldistillery.vigilance.controllers;
 
 
+import java.time.LocalDate;
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +50,17 @@ public class UserController {
 			return "webpages/forms/login_register"; 
 		}
 	}
-	
+	@RequestMapping(path="registration.do") 
+	public String register(Model model) {		
+		return "/webpages/forms/registrationForm";
+	}	
 		
-	@RequestMapping(path="register.do")
-	public String register(User user, Model model) {
-		
+	@RequestMapping(path="register.do", params = {"dob", "city", "state",},method = RequestMethod.POST) 
+	public String register(User user, Model model, @RequestParam("city") String city, @RequestParam("state") String state, @RequestParam("dob") String dob ) {
+		LocalDate birthDate = LocalDate.parse(dob);
+		user.setDateOfBirth(birthDate);
+		user = userDao.registerNewUser(user);
+				
 		return "";
 		
 	}

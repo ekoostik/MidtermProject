@@ -1,5 +1,6 @@
 package com.skilldistillery.vigilance.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class User {
@@ -46,13 +49,14 @@ public class User {
 	private String aboutme;
 	
 	@Column(name="create_date")
+	@CreationTimestamp
 	private  Date createDate;
 	
 	@Column(name="update_date")
 	private Date updateDate;
 	
 	@Column(name="date_of_birth")
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	
 	//TODO MAP Objects
 //	private HouseHold household;
@@ -78,7 +82,7 @@ public class User {
 	}
 	
 	public User() {
-		super();
+		super(); 
 	}
 
 	public String getPassword() {
@@ -180,12 +184,12 @@ public class User {
 		this.updateDate = updateDate;
 	}
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setDateOfBirth(LocalDate birthDate) {
+		this.dateOfBirth = birthDate;
 	}
 
 	public List<NeighborhoodEvent> getNeighborhoodEvent() {
