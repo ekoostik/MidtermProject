@@ -15,16 +15,28 @@ public class UserController {
 	private UserDAO userDao;
 
 
-	@RequestMapping(path = {"/", "home.do"})
+	@RequestMapping(path = {"/", "login.do"})
 	public String home (Model model) {
 		
 		////////////////DEBUG
 		User u = new User();
-		u.setUsername("admin");
-		u.setPassword("admin");
+		u.setUsername("vigil");
+		u.setPassword("vigil");
 		u = userDao.login(u);
 		model.addAttribute("smoketest", u);
 		////////////////DEBUG
-		return "webpages/home";
+		return "/webpages/forms/login_register";
+		}
+	
+	@RequestMapping(path="login.do")
+	public String login(Model model) {
+		//add logic to call DAOImpl to verify user and apply to session manager
+		return "/webpages/forms/login_register";
+	}
+		
+	@RequestMapping(path="register.do")
+	public String register(Model model) {
+		return "/webpages/forms/registrationForm";
+		
 	}
 }
