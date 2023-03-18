@@ -434,8 +434,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `neighborhood` (`id`, `name`, `image_url`, `description`, `create_date`) VALUES (1, 'Rolling Meadows', NULL, NULL, NULL);
-INSERT INTO `neighborhood` (`id`, `name`, `image_url`, `description`, `create_date`) VALUES (2, 'Shady Acres', NULL, NULL, NULL);
+INSERT INTO `neighborhood` (`id`, `name`, `image_url`, `description`, `create_date`) VALUES (1, 'Rolling Meadows', NULL, NULL, '2002-03-27');
+INSERT INTO `neighborhood` (`id`, `name`, `image_url`, `description`, `create_date`) VALUES (2, 'Shady Acres', NULL, NULL, '2000-12-05');
+INSERT INTO `neighborhood` (`id`, `name`, `image_url`, `description`, `create_date`) VALUES (3, 'Desparado', NULL, NULL, '2009-06-30');
 
 COMMIT;
 
@@ -447,6 +448,11 @@ START TRANSACTION;
 USE `vigilancedb`;
 INSERT INTO `address` (`id`, `address1`, `address2`, `city`, `state`, `zip_code`, `neighborhood_id`) VALUES (1, '123 Seasme St', NULL, 'Lowell', 'HI', '39430', 1);
 INSERT INTO `address` (`id`, `address1`, `address2`, `city`, `state`, `zip_code`, `neighborhood_id`) VALUES (2, '590 Third St', NULL, 'Lowell', 'HI', '39430', 1);
+INSERT INTO `address` (`id`, `address1`, `address2`, `city`, `state`, `zip_code`, `neighborhood_id`) VALUES (3, '982 Holt Ave', NULL, 'Denver', 'CO', '80102', 3);
+INSERT INTO `address` (`id`, `address1`, `address2`, `city`, `state`, `zip_code`, `neighborhood_id`) VALUES (4, '209 Lefthand Drive', NULL, 'Silverton', 'CO', '80102', 2);
+INSERT INTO `address` (`id`, `address1`, `address2`, `city`, `state`, `zip_code`, `neighborhood_id`) VALUES (5, '3092 Cleveland Ave', NULL, 'Silverton', 'CO', '80102', 2);
+INSERT INTO `address` (`id`, `address1`, `address2`, `city`, `state`, `zip_code`, `neighborhood_id`) VALUES (6, '2309 Bordeaux Ct', NULL, 'Silverton', 'CO', '80102', 2);
+INSERT INTO `address` (`id`, `address1`, `address2`, `city`, `state`, `zip_code`, `neighborhood_id`) VALUES (7, '329 Third St', NULL, 'Denver', 'CO', '80102', 3);
 
 COMMIT;
 
@@ -458,6 +464,9 @@ START TRANSACTION;
 USE `vigilancedb`;
 INSERT INTO `household` (`id`, `occupants`, `address_id`) VALUES (1, 1, 1);
 INSERT INTO `household` (`id`, `occupants`, `address_id`) VALUES (2, 5, 2);
+INSERT INTO `household` (`id`, `occupants`, `address_id`) VALUES (3, 4, 3);
+INSERT INTO `household` (`id`, `occupants`, `address_id`) VALUES (4, 2, 4);
+INSERT INTO `household` (`id`, `occupants`, `address_id`) VALUES (5, 8, 5);
 
 COMMIT;
 
@@ -467,8 +476,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (1, 'admin', 'admin', 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (2, 'DRich', 'user', 1, NULL, 'Damien', NULL, 'Richards', 2, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (1, 'admin', 'admin', 1, NULL, 'Skill', 'Distillery', 'sd@distillery.edu', 1, NULL, NULL, '2008-03-27', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (2, 'DRich', 'user', 1, NULL, 'Damien', 'Richards', 'drich@distillery.edu', 2, NULL, NULL, '2022-12-10', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (3, 'RTisdale', 'flower', 1, NULL, 'Rob', 'Tisdale', 'rtisdale@distillery.edu', 3, NULL, NULL, '2023-04-20', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (4, 'Wheaties23', 'foofoo', 1, NULL, 'Collin', 'Wheat', 'cwheat@distillery.edu', 4, NULL, NULL, '2018-03-27', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (5, 'DunDun', 'dunnn', 1, NULL, 'David', 'Dunlevy', 'dunlevy@distillery.edu', 5, NULL, NULL, '2020-03-02', NULL, NULL);
 
 COMMIT;
 
@@ -478,7 +490,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `post` (`id`, `description`, `image`, `user_id`, `create_date`, `neighborhood_id`) VALUES (1, 'I have a bunch of plants I need to rehome, any takers?', NULL, 2, NULL, 1);
+INSERT INTO `post` (`id`, `description`, `image`, `user_id`, `create_date`, `neighborhood_id`) VALUES (1, 'I have a bunch of plants I need to rehome, any takers?', NULL, 2, '2023-03-27', 1);
+INSERT INTO `post` (`id`, `description`, `image`, `user_id`, `create_date`, `neighborhood_id`) VALUES (2, 'I thought I heard some gunshots outside... Dis anyone hear that?', NULL, 4, '2023-03-27', 1);
+INSERT INTO `post` (`id`, `description`, `image`, `user_id`, `create_date`, `neighborhood_id`) VALUES (3, 'LOST DOG: If anyone sees a small poodle mix dog, please let me know ASAP! Her name is Coco and she\'s a little skittish! I will offer a reward of $1000 if anyone can sees her and bring her home!', NULL, 2, '2023-03-27', 1);
 
 COMMIT;
 
@@ -499,7 +513,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `neighborhood_event` (`id`, `name`, `description`, `event_date`, `creation_date`, `active`, `user_id`, `neighborhood_id`, `address_id`) VALUES (1, 'Block Party in the cul-de-sac on 3rd!', 'BYOB', NULL, NULL, 1, 2, 1, 1);
+INSERT INTO `neighborhood_event` (`id`, `name`, `description`, `event_date`, `creation_date`, `active`, `user_id`, `neighborhood_id`, `address_id`) VALUES (1, 'Block Party in the cul-de-sac on 3rd!', 'BYOB', NULL, NULL, 1, 1, 1, 1);
+INSERT INTO `neighborhood_event` (`id`, `name`, `description`, `event_date`, `creation_date`, `active`, `user_id`, `neighborhood_id`, `address_id`) VALUES (2, 'Pampered Chef party!!', 'Pamela\'s annual pampered chef party is this thurday! Comment for details!', NULL, NULL, 1, 2, 1, 2);
+INSERT INTO `neighborhood_event` (`id`, `name`, `description`, `event_date`, `creation_date`, `active`, `user_id`, `neighborhood_id`, `address_id`) VALUES (3, 'Golf Outing Saturday!', 'Meet me at our local golf course to show down! Big your buddies!', NULL, NULL, 1, 3, 1, 3);
+INSERT INTO `neighborhood_event` (`id`, `name`, `description`, `event_date`, `creation_date`, `active`, `user_id`, `neighborhood_id`, `address_id`) VALUES (4, 'March Madness Watch Party!', 'Come on over to my place to watch some College basketball!', NULL, NULL, 1, 3, 1, 4);
+INSERT INTO `neighborhood_event` (`id`, `name`, `description`, `event_date`, `creation_date`, `active`, `user_id`, `neighborhood_id`, `address_id`) VALUES (5, 'Cooking Class', 'Trying out a new hobby of teaching others how to cook! ', NULL, NULL, 1, 2, 1, 2);
 
 COMMIT;
 
@@ -510,6 +528,10 @@ COMMIT;
 START TRANSACTION;
 USE `vigilancedb`;
 INSERT INTO `vehicle_type` (`id`, `name`) VALUES (1, 'Compact');
+INSERT INTO `vehicle_type` (`id`, `name`) VALUES (2, 'Truck');
+INSERT INTO `vehicle_type` (`id`, `name`) VALUES (3, 'SUV');
+INSERT INTO `vehicle_type` (`id`, `name`) VALUES (4, 'Sedan');
+INSERT INTO `vehicle_type` (`id`, `name`) VALUES (5, 'Truck');
 
 COMMIT;
 
@@ -519,7 +541,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `license_plate_id`, `household_id`, `state_plate`, `vehicle_type_id`) VALUES (1, 'Pontiac', 'Sunfire', 'Gray', 'Mirror is missing', 1, 1, NULL, 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `license_plate_id`, `household_id`, `state_plate`, `vehicle_type_id`) VALUES (1, 'Pontiac', 'Sunfire', 'Gray', 'Mirror is missing', 1, 1, 'SKF123', 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `license_plate_id`, `household_id`, `state_plate`, `vehicle_type_id`) VALUES (2, 'Ford', 'F150', 'Black', 'Lifted with tinted windows', 2, 2, 'FAD493', 5);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `license_plate_id`, `household_id`, `state_plate`, `vehicle_type_id`) VALUES (3, 'Toyota', 'Rav4', 'White', NULL, 3, 3, 'ITE982', 4);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `license_plate_id`, `household_id`, `state_plate`, `vehicle_type_id`) VALUES (4, 'Honda', 'CRV', 'Red', NULL, 3, 3, 'BIA024', 3);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `license_plate_id`, `household_id`, `state_plate`, `vehicle_type_id`) VALUES (5, 'Hyundai', 'Elantra', 'Blue', NULL, 5, 5, 'FAS013', 1);
 
 COMMIT;
 
@@ -529,8 +555,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (1, 'Moose found in driveway', NULL, NULL, 2);
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (2, 'Person looking to brake into cars.', NULL, NULL, 1);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (1, 'Moose found in driveway', '2023-02-22', 1, 2);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (2, 'Person looking to brake into cars.', '2023-01-13', 1, 1);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (3, 'Bobcat Family ', '2022-12-06', 0, 3);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (4, 'Missing Dog seen running near the pond', '2023-01-11', 0, 2);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (5, 'Moutain Lion roaming near the neighborhood', '2023-02-15', 0, 5);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (6, 'Gator spotted near the pond', '2023-01-18', 0, 3);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (7, 'Hit and Run', NULL, 1, 1);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (8, 'Package Theft', NULL, 1, 4);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (10, 'Wolves sighting', '2022-03-23', 0, 2);
 
 COMMIT;
 
@@ -552,6 +585,8 @@ COMMIT;
 START TRANSACTION;
 USE `vigilancedb`;
 INSERT INTO `home_owner_association` (`id`, `name`, `description`, `monthly_due`, `neighborhood_id`) VALUES (1, 'Sell-Your-Soul Home Owers Association', NULL, 135.00, 1);
+INSERT INTO `home_owner_association` (`id`, `name`, `description`, `monthly_due`, `neighborhood_id`) VALUES (2, 'Washington Township HOA', NULL, 258.00, 2);
+INSERT INTO `home_owner_association` (`id`, `name`, `description`, `monthly_due`, `neighborhood_id`) VALUES (3, 'Larime HOA', NULL, 306.00, 3);
 
 COMMIT;
 
@@ -561,7 +596,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `person_of_interest` (`id`, `incident_time`, `description`, `report_id`) VALUES (1, NULL, 'Person shooping around cars at night, have footage of them on my ringdoor bell camera.', 2);
+INSERT INTO `person_of_interest` (`id`, `incident_time`, `description`, `report_id`) VALUES (1, '2023-03-27', 'Person shooping around cars at night, have footage of them on my ringdoor bell camera.', 2);
+INSERT INTO `person_of_interest` (`id`, `incident_time`, `description`, `report_id`) VALUES (2, '2023-03-27', 'My ring camera picked up some footage of someone stealing my amazon package! The person looked like a short female wearing a grey hoodie, leggings, with ugg boots. I couldn\'t see the face of this person, since she had pulled the hood of her hoodie over her head. The police were notified!', 8);
+INSERT INTO `person_of_interest` (`id`, `incident_time`, `description`, `report_id`) VALUES (3, '2023-03-27', 'My car was damaged this morning but another car. It looks to be a hit ', 7);
 
 COMMIT;
 
@@ -571,7 +608,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `animal` (`id`, `species`, `spotting_time`, `description`, `report_id`) VALUES (1, 'Moose', NULL, 'A bull male moose rammed my car in the driveway this morning!', 1);
+INSERT INTO `animal` (`id`, `species`, `spotting_time`, `description`, `report_id`) VALUES (1, 'Moose', '2023-02-22', 'A bull male moose rammed my car in the driveway this morning!', 1);
+INSERT INTO `animal` (`id`, `species`, `spotting_time`, `description`, `report_id`) VALUES (2, 'Bobcat', '2022-12-05', 'Haven\'t seen one of these guys in years! A small family of bobcats were spotted in my yard yesterday!', 3);
+INSERT INTO `animal` (`id`, `species`, `spotting_time`, `description`, `report_id`) VALUES (3, 'Mountain Lion ', '2023-03-27', 'My tree camera caught a snapshot of a lone mountian lion lurking around the woods to the back of my house. Awfully close to where I keep my chicken house!', 5);
+INSERT INTO `animal` (`id`, `species`, `spotting_time`, `description`, `report_id`) VALUES (4, 'Dog', '2023-01-13', 'Small poodle. mixed dog running around the neighborhood. I tried to catch it, but it was very skittish. Hopefully it is caught soon!', 4);
+INSERT INTO `animal` (`id`, `species`, `spotting_time`, `description`, `report_id`) VALUES (5, 'Gator', '2023-04-18', 'Spotted an aligator in the neighborhood pond this afternoon. It was sitting in the grass surrounded by little white puff balls everywhere! I heard there was a toy poodle missing... I hope those puff balls weren\'t from the poodle!', 6);
+INSERT INTO `animal` (`id`, `species`, `spotting_time`, `description`, `report_id`) VALUES (6, 'Wolf', '2023-03-23', 'Saw a pack of wolves crossing the street outside the neighborhood, keep your small dogs inside!', 10);
 
 COMMIT;
 
