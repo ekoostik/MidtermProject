@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.entities;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -31,8 +35,9 @@ public class User {
 	
 	private String email;
 	
-	@Column(name="household_id")
-	private int householdId;
+	@ManyToOne
+	@JoinColumn(name="household_id")
+	private HouseHold household;
 	
 	@Column(name="profile_url")
 	private String profilePic;
@@ -52,15 +57,18 @@ public class User {
 	//TODO MAP Objects
 //	private HouseHold household;
 //	
-//	private EventComment eventComment;
-//	
-//	private NeighborhoodEvent neighborhoodEvent;
+	@OneToMany(mappedBy="userId")
+	private List<EventComment> eventComments;
+	
+	@OneToMany(mappedBy="user")
+	private List<NeighborhoodEvent> neighborhoodEvent;
 //	
 //	private Comment comment;
 //	
 //	private Post post;
 //	
-//	private Report report;
+	@OneToMany(mappedBy="user")
+	private List<Report> reports;
 	
 	
 	
@@ -134,13 +142,7 @@ public class User {
 		this.email = email;
 	}
 
-	public int getHouseholdId() {
-		return householdId;
-	}
 
-	public void setHouseholdId(int householdId) {
-		this.householdId = householdId;
-	}
 
 	public String getProfilePic() {
 		return profilePic;
@@ -182,12 +184,44 @@ public class User {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public List<NeighborhoodEvent> getNeighborhoodEvent() {
+		return neighborhoodEvent;
+	}
+
+	public void setNeighborhoodEvent(List<NeighborhoodEvent> neighborhoodEvent) {
+		this.neighborhoodEvent = neighborhoodEvent;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
 
 
+
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
+
+	public List<EventComment> getEventComments() {
+		return eventComments;
+	}
+
+	public void setEventComments(List<EventComment> eventComments) {
+		this.eventComments = eventComments;
+	}
+
+	public HouseHold getHousehold() {
+		return household;
+	}
+
+	public void setHousehold(HouseHold household) {
+		this.household = household;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -205,7 +239,10 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
 				+ ", role=" + role + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", householdId=" + householdId + ", profilePic=" + profilePic + ", aboutme=" + aboutme
-				+ ", createDate=" + createDate + ", updateDate=" + updateDate + ", dateOfBirth=" + dateOfBirth + "]";
+				+ ", household=" + household + ", profilePic=" + profilePic + ", aboutme=" + aboutme + ", createDate="
+				+ createDate + ", updateDate=" + updateDate + ", dateOfBirth=" + dateOfBirth + ", eventComments="
+				+ eventComments + ", neighborhoodEvent=" + neighborhoodEvent + ", reports=" + reports + "]";
 	}
+
+	
 }

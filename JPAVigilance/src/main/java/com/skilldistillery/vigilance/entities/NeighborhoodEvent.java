@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.entities;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -32,14 +36,21 @@ public class NeighborhoodEvent {
 	
 	private boolean active;
 	
-	@Column(name="user_id")
-	private int userId;
+	@ManyToOne
+	@JoinColumn(name="neighborhood_id")
+	private Neighborhood neighborhoodId;
+
+	@ManyToOne
+	@JoinColumn(name="address_id")
+	private Address address;
 	
-	@Column(name="neighborhood_id")
-	private int neighborhoodId;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
-	@Column(name="address_id")
-	private int addressId;
+	@OneToMany(mappedBy="neighborhoodEventId")
+	private List<EventComment> eventComments;
+	
 
 	public int getId() {
 		return id;
@@ -89,28 +100,40 @@ public class NeighborhoodEvent {
 		this.active = active;
 	}
 
-	public int getUserId() {
-		return userId;
+	
+
+
+
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
-	public int getNeighborhoodId() {
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Neighborhood getNeighborhoodId() {
 		return neighborhoodId;
 	}
 
-	public void setNeighborhoodId(int neighborhoodId) {
+	public void setNeighborhoodId(Neighborhood neighborhoodId) {
 		this.neighborhoodId = neighborhoodId;
 	}
 
-	public int getAddressId() {
-		return addressId;
+	public List<EventComment> getEventComments() {
+		return eventComments;
 	}
 
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
+	public void setEventComments(List<EventComment> eventComments) {
+		this.eventComments = eventComments;
 	}
 
 	@Override
@@ -133,8 +156,8 @@ public class NeighborhoodEvent {
 	@Override
 	public String toString() {
 		return "NeighborhoodEvent [id=" + id + ", name=" + name + ", description=" + description + ", eventDate="
-				+ eventDate + ", createDate=" + createDate + ", active=" + active + ", userId=" + userId
-				+ ", neighborhoodId=" + neighborhoodId + ", addressId=" + addressId + "]";
+				+ eventDate + ", createDate=" + createDate + ", active=" + active + ", userId=" + 
+			  ", addressId="  + "]";
 	}
 	
 	

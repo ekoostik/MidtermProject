@@ -46,12 +46,24 @@ class ReportTest {
 		assertEquals("Moose found in driveway", report.getDesription());;
 	}
 	
-//	@Test
-//	void test_userId_map() {
-//		
-//	assertNotNull(report.getUser());
-//	assertEquals(2, report.getUser());
-//		
-//	}
+	@Test
+	void test_userId_map() {
+		
+	assertNotNull(report.getUser());
+	assertEquals(2, report.getUser().getId());
+		
+	}
+	
+	@Test
+	void test_animal_map() {
+		assertNotNull(report.getAnimals());
+		assertFalse(report.getAnimals().isEmpty());
+	}
+	@Test
+	void test_personOI_map() {
+		report=em.find(Report.class, 2);
+		assertNotNull(report.getPersonOI());
+		assertFalse(report.getPersonOI().isEmpty());
+	}
 
 }

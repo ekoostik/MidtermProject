@@ -47,13 +47,13 @@ class PersonOfInterestTest {
 		
 	}
 	
-//	@Test
-//	
-//	void test_reportID_mapping() {
-//		assertNotNull(personOfInterest.getReport());
-//		assertEquals(2, personOfInterest.getReport());
-//	}
-//	
+	@Test
+	
+	void test_reportID_mapping() {
+		assertNotNull(personOfInterest.getReport());
+		assertEquals(1, personOfInterest.getReport().getUser().getId());
+	}
+	
 
 	
 

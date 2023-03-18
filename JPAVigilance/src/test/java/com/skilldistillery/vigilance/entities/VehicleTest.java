@@ -47,7 +47,16 @@ class VehicleTest {
 		assertNotNull(vehicle.getModel());
 		assertEquals("Sunfire", vehicle.getModel());
 	}
+	@Test
+	void test_household_map() {
+		assertNotNull(vehicle.getHouse());
+		assertEquals(1, vehicle.getHouse().getId());
+	}
 	
-
+	@Test
+	void test_vehicle_type_map() {
+		assertNotNull(vehicle.getVehicleDetail());
+		assertEquals("Pontiac", vehicle.getVehicleDetail().getMake());
+	}
 
 }

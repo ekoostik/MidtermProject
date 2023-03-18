@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Pet {
@@ -29,6 +31,10 @@ public class Pet {
 	
 	@Column(name = "name")
 	private String name;
+	
+	@ManyToOne
+	@JoinColumn(name="household_id")
+	private HouseHold houseHold;
 	
 	public Pet() {}
 
@@ -78,6 +84,14 @@ public class Pet {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public HouseHold getHouseHold() {
+		return houseHold;
+	}
+
+	public void setHouseHold(HouseHold houseHold) {
+		this.houseHold = houseHold;
 	}
 
 	@Override

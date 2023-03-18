@@ -1,39 +1,54 @@
 package com.skilldistillery.vigilance.entities;
 
+import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class HouseHold {
-	
-	public HouseHold() {}
-	
+
+	public HouseHold() {
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private int occupants;
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+	// TODO MAP Objects
+
+	@OneToMany(mappedBy = "household")
+	private List<User> users;
+
 	
-	@Column(name="address_id")
-	private int addressId;
+
+	@OneToMany(mappedBy = "houseHold")
+	private List<Pet> pets;
 	
-	
-	//TODO MAP Objects
-//	private Address address;
-//	
-//	private Pet pet;
-//	
-//	private Vehicle vehicle;
-	
-	
+	@OneToMany(mappedBy="house")
+	private List<Vehicle> vehicles;
 
 	public int getId() {
 		return id;
+	}
+
+	public List<Pet> getPets() {
+		return pets;
+	}
+
+	public void setPets(List<Pet> pets) {
+		this.pets = pets;
 	}
 
 	public void setId(int id) {
@@ -48,12 +63,30 @@ public class HouseHold {
 		this.occupants = occupants;
 	}
 
-	public int getAddressId() {
-		return addressId;
+	
+
+	public List<User> getUsers() {
+		return users;
 	}
 
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public List<Vehicle> getVehicles() {
+		return vehicles;
+	}
+
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 
 	@Override
@@ -75,10 +108,7 @@ public class HouseHold {
 
 	@Override
 	public String toString() {
-		return "HouseHold [id=" + id + ", occupants=" + occupants + ", addressId=" + addressId + "]";
+		return "HouseHold [id=" + id + ", occupants=" + occupants + ", addressId=" + address + "]";
 	}
-	
-	
-	
 
 }

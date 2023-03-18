@@ -1,5 +1,6 @@
 package com.skilldistillery.vigilance.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Address {
@@ -26,9 +30,14 @@ public class Address {
 	@Column(name = "zip_code")
 	private String zipCode;
 
-//	@ManyToOne
-//	 @Column(name="neighborhood_id")
-//	 private Neighborhood neighborhood;
+	 @ManyToOne
+	 @JoinColumn(name="neighborhood_id")
+	 private Neighborhood neighborhood;
+	 
+	 @OneToMany(mappedBy="address")
+	 private List<NeighborhoodEvent> nEvents;
+	 
+	 
 
 	public Address() {
 
@@ -85,13 +94,21 @@ public class Address {
 
 
 
-//	public Neighborhood getNeighborhood() {
-//		return neighborhood;
-//	}
-//
-//	public void setNeighborhood(Neighborhood neighborhood) {
-//		this.neighborhood = neighborhood;
-//	}
+	public Neighborhood getNeighborhood() {
+		return neighborhood;
+	}
+
+	public void setNeighborhood(Neighborhood neighborhood) {
+		this.neighborhood = neighborhood;
+	}
+
+	public List<NeighborhoodEvent> getnEvents() {
+		return nEvents;
+	}
+
+	public void setnEvent(List<NeighborhoodEvent> nEvents) {
+		this.nEvents = nEvents;
+	}
 
 	@Override
 	public int hashCode() {

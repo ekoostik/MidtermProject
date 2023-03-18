@@ -7,31 +7,41 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Vehicle {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id; 
-	
+	private int id;
+
 	@Column(name = "make")
 	private String make;
-	
+
 	@Column(name = "model")
 	private String model;
-	
+
 	@Column(name = "color")
 	private String color;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "license_plate_id")
 	private Integer licensePlate;
-	
+
 	@Column(name = "state_plate")
 	private String statePlate;
+
+	@ManyToOne
+	@JoinColumn(name = "household_id")
+	private HouseHold house;
+
+	@ManyToOne
+	@JoinColumn(name = "vehicle_type_id")
+	private Vehicle vehicleDetail;
 
 	public String getMake() {
 		return make;
@@ -79,6 +89,22 @@ public class Vehicle {
 
 	public void setStatePlate(String statePlate) {
 		this.statePlate = statePlate;
+	}
+
+	public HouseHold getHouse() {
+		return house;
+	}
+
+	public void setHouse(HouseHold house) {
+		this.house = house;
+	}
+
+	public Vehicle getVehicleDetail() {
+		return vehicleDetail;
+	}
+
+	public void setVehicleDetail(Vehicle vehicleDetail) {
+		this.vehicleDetail = vehicleDetail;
 	}
 
 	@Override

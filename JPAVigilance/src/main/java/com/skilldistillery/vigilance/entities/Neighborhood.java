@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.entities;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Neighborhood {
@@ -28,11 +30,12 @@ public class Neighborhood {
 	@Column(name="create_date")
 	private Date createDate;
 	
-	//TODO MAP Objects
-//	private Address address;
-//	
-//	private HomeOwnerAssociation hoa;
+	@OneToMany(mappedBy="neighborhood")
+	private List<Address> addresses;
 	
+
+	@OneToMany(mappedBy="neighborhoodId")
+	private List<NeighborhoodEvent> nEvents;
 
 	public int getId() {
 		return id;
@@ -72,6 +75,22 @@ public class Neighborhood {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
+
+	public List<NeighborhoodEvent> getnEvents() {
+		return nEvents;
+	}
+
+	public void setnEvents(List<NeighborhoodEvent> nEvents) {
+		this.nEvents = nEvents;
 	}
 
 	@Override

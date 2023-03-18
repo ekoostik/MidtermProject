@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,8 +25,9 @@ public class PersonOfInterest {
 
 	private String description;
 
-//	@Column(name="report_id")
-//	private Report report;
+	@ManyToOne
+	@JoinColumn(name="report_id")
+	private Report report;
 
 	public PersonOfInterest() {
 
@@ -56,13 +59,13 @@ public class PersonOfInterest {
 
 	
 
-//	public Report getReport() {
-//		return report;
-//	}
-//
-//	public void setReport(Report report) {
-//		this.report = report;
-//	}
+	public Report getReport() {
+		return report;
+	}
+
+	public void setReport(Report report) {
+		this.report = report;
+	}
 
 	@Override
 	public int hashCode() {
