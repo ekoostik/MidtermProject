@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
-  `household_id` INT NOT NULL,
+  `household_id` INT NULL,
   `profile_url` VARCHAR(2000) NULL,
   `about_me` TEXT NULL,
   `create_date` DATE NULL,
