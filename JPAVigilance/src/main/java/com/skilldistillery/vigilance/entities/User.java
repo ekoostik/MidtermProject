@@ -73,6 +73,10 @@ public class User {
 	
 	
 	
+	public User(int id, String username, String password, int active, String fname, String lname, String email) {
+		super();
+	}
+	
 	public User() {
 		super();
 	}

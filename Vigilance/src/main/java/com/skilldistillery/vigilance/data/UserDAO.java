@@ -7,6 +7,7 @@ public interface UserDAO {
 	User login(User user);
 	User validateUserLogin(String username, String password);
 	User registerNewUser(User user);
+	User findUserById(int userId);
 	
 
 }
