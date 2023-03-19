@@ -16,6 +16,10 @@
 
 <h2> Welcome ${loggedinuser.firstName}!</h2>
 
+
+<a href="viewAllEvents.do" class="btn btn-secondary" role="button">View all Neighborhood Events</a>
+
+
 <jsp:include page="../bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>
