@@ -2,9 +2,10 @@ package com.skilldistillery.vigilance.data;
 
 import java.util.List;
 
+import com.skilldistillery.vigilance.entities.Neighborhood;
 import com.skilldistillery.vigilance.entities.NeighborhoodEvent;
 
-public interface NeighborhoodEventDAO {
+public interface NeighborhoodDAO {
 
 	 
 		
@@ -13,5 +14,13 @@ public interface NeighborhoodEventDAO {
 	public NeighborhoodEvent updateEvent(int id, NeighborhoodEvent event);
 	public boolean deleteEvent(int id);
 	public List <NeighborhoodEvent> allEvents();
+	
+	public Neighborhood findHoodById(int id);
+	public Neighborhood createNeighborhood(Neighborhood nHood);
+	public Neighborhood updateNeighborhood(int id, Neighborhood nHood);
+	public boolean deleteNeighborhood(int id);
+	public List <Neighborhood> allNeighborhoods();
+	
+	
 
 }

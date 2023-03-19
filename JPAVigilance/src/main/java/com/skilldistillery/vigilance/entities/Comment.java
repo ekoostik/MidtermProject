@@ -80,7 +80,7 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", description=" + description + ", createDate=" + createDate + "]";
+		return "Comment " + description;
 	}
 
 	@Override
