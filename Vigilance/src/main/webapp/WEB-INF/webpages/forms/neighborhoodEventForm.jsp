@@ -20,12 +20,13 @@
 
 <c:forEach var="event" items="${event}">
 <ul>
-<li> <a href="getEventById.do?id=${event.id}"><strong>${event.id}</strong></a></li>
+<li> <a href="getEventById.do?id=${event.id}"><strong>${event.description}</strong></a></li>
 <li> <strong>${event.name}</strong></li>
-<li> <strong>${event.description}</strong></li>
+<li> <strong>${event.eventDate}</strong></li>
+<li> <strong>${event.address}</strong></li>
+
 </ul>
 </c:forEach>
-
 
 
 
@@ -57,7 +58,6 @@
 </form>
 
 </div>
-
 
 
 
