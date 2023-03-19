@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -46,6 +47,27 @@ class PostTest {
 		assertNotNull(post);
 		assertNotNull(post.getDescription());
 		assertEquals( "I have a bunch of plants I need to rehome, any takers?",post.getDescription());
+	}
+	
+	@Test
+	void test_Post_Comment_Mappings() {
+		assertNotNull(post);
+		assertNotNull(post.getComments());
+		assertFalse(post.getComments().isEmpty());
+	}
+	
+	@Test
+	void test_Post_User_Mappings() {
+		assertNotNull(post);
+		assertNotNull(post.getUser());
+		assertEquals("DRich", post.getUser().getUsername());
+	}
+	
+	@Test
+	void test_Post_Neighborhood_Mappings() {
+		assertNotNull(post);
+		assertNotNull(post.getNid());
+		assertEquals("Rolling Meadows", post.getNid().getName());
 	}
 	
 

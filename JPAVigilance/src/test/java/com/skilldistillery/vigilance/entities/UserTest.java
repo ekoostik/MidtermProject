@@ -68,7 +68,16 @@ class UserTest {
 	}
 	@Test
 	void test_houseHold_map() {
+		user = em.find(User.class, 2);
 		assertNotNull(user.getHousehold());
-		assertEquals(1, user.getHousehold().getId());
+		assertEquals(2, user.getHousehold().getId());
+	}
+	
+	@Test
+	void test_User_Post_Mappings() {
+		user = em.find(User.class, 2);
+		assertNotNull(user);
+		assertNotNull(user.getPosts());
+		assertFalse(user.getPosts().isEmpty());
 	}
 }
