@@ -18,6 +18,7 @@
 
 
 <a href="viewAllEvents.do" class="btn btn-secondary" role="button">View all Neighborhood Events</a>
+<a href="getPostById.do?id=1" class="btn btn-secondary" role="button">View all Post</a>
 
 
 <jsp:include page="../bootstrap/bootstrapFooter.jsp" />
