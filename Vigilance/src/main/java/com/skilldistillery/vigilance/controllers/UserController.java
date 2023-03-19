@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.vigilance.data.UserDAO;
 import com.skilldistillery.vigilance.entities.Address;
+import com.skilldistillery.vigilance.entities.HouseHold;
 import com.skilldistillery.vigilance.entities.User;
 
 @Controller
@@ -59,16 +60,20 @@ public class UserController {
 	
 	//added houseHoldId() method to add arbitrary # until db updated
 	//update to take in Address and set.
-	@RequestMapping(path="register.do", params = {"dob", "city", "state",},method = RequestMethod.POST) 
-	public String register(User user, Address address, Model model, @RequestParam("city") String city, @RequestParam("state") String state, @RequestParam("dob") String dob ) {
+	@RequestMapping(path="register.do", params = "dob", method = RequestMethod.POST) 
+	public String register(User user, HouseHold household, Model model, @RequestParam("dob") String dob ) {
 		LocalDate birthDate = LocalDate.parse(dob);
-//		user.getHousehold().setId(userDao.houseHoldId());
 		user.setEnabled(true);
 		user.setDateOfBirth(birthDate);
-		user = userDao.registerNewUser(user);
-//		address.getNeighborhood().setId(4);
-//		address = userDao.addnewAddress(address);
-				
+		user = userDao.registerNewUser(user);	
+		household = userDao.createNewHousehold(household);
+		model.addAttribute("user", user.getFirstName());
+		return "webpages/forms/addressForm";
+	}
+	
+	@RequestMapping(path="newaddr.do", method = RequestMethod.POST) 
+	public String register(Address address, Model model) {
+		address = userDao.addnewAddress(address);	
 		return "/webpages/registersuccess";
 	}
 		

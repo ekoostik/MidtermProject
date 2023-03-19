@@ -24,14 +24,16 @@ public class HouseHold {
 	private int id;
 
 	private int occupants;
+	
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
 
 	// TODO MAP Objects
 
-	@OneToMany(mappedBy = "household")
-	private List<User> users;
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
 
 	@OneToMany(mappedBy = "houseHold")
@@ -64,14 +66,12 @@ public class HouseHold {
 		this.occupants = occupants;
 	}
 
-	
-
-	public List<User> getUsers() {
-		return users;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUsers(User user) {
+		this.user = user;
 	}
 
 	public Address getAddress() {

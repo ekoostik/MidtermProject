@@ -36,6 +36,7 @@ public class Neighborhood {
 
 	@OneToMany(mappedBy="neighborhoodId")
 	private List<NeighborhoodEvent> nEvents;
+	
 
 	public int getId() {
 		return id;
@@ -92,7 +93,7 @@ public class Neighborhood {
 	public void setnEvents(List<NeighborhoodEvent> nEvents) {
 		this.nEvents = nEvents;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

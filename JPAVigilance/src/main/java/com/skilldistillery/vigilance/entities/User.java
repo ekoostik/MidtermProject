@@ -10,9 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -38,8 +37,7 @@ public class User {
 	
 	private String email;
 
-	@ManyToOne
-	@JoinColumn(name="household_id")
+	@OneToOne(mappedBy="user")
 	private HouseHold household;
 	
 	@Column(name="profile_url")
@@ -63,15 +61,9 @@ public class User {
 	
 	@OneToMany(mappedBy="user")
 	private List<NeighborhoodEvent> neighborhoodEvent;
-//	
-//	private Comment comment;
-//	
-//	private Post post;
-//	
+
 	@OneToMany(mappedBy="user")
 	private List<Report> reports;
-	
-	
 	
 	
 	public User(int id, String username, String password, int active, String fname, String lname, String email) {
@@ -224,6 +216,8 @@ public class User {
 	public void setHousehold(HouseHold household) {
 		this.household = household;
 	}
+	
+
 
 	@Override
 	public boolean equals(Object obj) {
