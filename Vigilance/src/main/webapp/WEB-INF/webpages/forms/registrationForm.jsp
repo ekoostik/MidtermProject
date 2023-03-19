@@ -21,7 +21,7 @@
   
   City <input type="text" name="city" /><br>
   State <input type="text" name="state" /><br>
-  
+  <!-- Add the rest of address -->
  <button type="submit" class="btn btn-primary">Submit</button>
 </form> 
   <!-- ADD LOGiC FOR DROP DOWN ONCE ALL FIELDS ARE FILLED TO PRESENT ANOTHER 

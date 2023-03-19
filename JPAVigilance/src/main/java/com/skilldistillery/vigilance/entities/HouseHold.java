@@ -33,7 +33,6 @@ public class HouseHold {
 	@OneToMany(mappedBy = "household")
 	private List<User> users;
 
-	
 
 	@OneToMany(mappedBy = "houseHold")
 	private List<Pet> pets;

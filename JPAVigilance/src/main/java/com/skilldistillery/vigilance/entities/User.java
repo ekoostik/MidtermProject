@@ -58,9 +58,6 @@ public class User {
 	@Column(name="date_of_birth")
 	private LocalDate dateOfBirth;
 	
-	//TODO MAP Objects
-//	private HouseHold household;
-//	
 	@OneToMany(mappedBy="userId")
 	private List<EventComment> eventComments;
 	
