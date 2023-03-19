@@ -44,8 +44,6 @@ public class NeighborhoodEventDoaImpl implements NeighborhoodEventDAO {
 		updated.setName(event.getName());
 		updated.setDescription(event.getDescription());
 		updated.setEventDate(event.getEventDate());
-		updated.setCreateDate(event.getCreateDate());
-		updated.setUser(event.getUser());
 		updated.setNeighborhoodId(event.getNeighborhoodId());
 		updated.setAddress(event.getAddress());
 		

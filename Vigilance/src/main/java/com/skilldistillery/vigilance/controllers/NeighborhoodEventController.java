@@ -21,7 +21,7 @@ public class NeighborhoodEventController {
 	public String viewAll(Model model) {
 		model.addAttribute("event", eventDao.allEvents());
 
-		return "/webpages/forms/NeighborhoodEventForm";
+		return "/webpages/forms/neighborhoodEventForm";
 	}
 
 	@RequestMapping(path = "addNEvent.do", method = RequestMethod.POST)
@@ -36,7 +36,7 @@ public class NeighborhoodEventController {
 		}
 		if (newEvent != null) {
 			redir.addFlashAttribute("event", event);
-			mv.setViewName("redirect:NeventAdded.do");
+			mv.setViewName("redirect:NEventAdded.do");
 			return mv;
 		} else {
 			mv.setViewName("error");
@@ -45,7 +45,7 @@ public class NeighborhoodEventController {
 
 	}
 	
-	@RequestMapping(path="NeventAdded.do", method = RequestMethod.GET)
+	@RequestMapping(path="NEventAdded.do", method = RequestMethod.GET)
 	public ModelAndView addedNevent() {
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName("event");
@@ -54,11 +54,42 @@ public class NeighborhoodEventController {
 	
 	
 	
+	@RequestMapping(path="getNEventById.do", method = RequestMethod.GET)
+	public String getnEvent(int id, Model model) {
+		NeighborhoodEvent event = eventDao.findEventById(id);
+		model.addAttribute("events", event);
+		
+		return "/webpages/forms/neighborhoodEventForm";
+}
+	
+	@RequestMapping(path="update.do", method = RequestMethod.GET)
+	public String updateEvent(int id, Model model) {
+	model.addAttribute("event", eventDao.findEventById(id));
+	
+	return "updateEvent";
+}
 	
 	
+	@RequestMapping(path="submitUpdate.do", method = RequestMethod.POST)
+	public ModelAndView update(int id, NeighborhoodEvent event, RedirectAttributes redir) {
 	
+	ModelAndView mv = new ModelAndView();
+	NeighborhoodEvent updated = eventDao.updateEvent(id, event);
+	if(updated!= null) {
+		redir.addFlashAttribute("event", event);
+		mv.setViewName("redirect:EventUpdated.do");
+		return mv;
+	}else {
+		mv.setViewName("error");
+		return mv;
+	}
+}
 	
+	@RequestMapping(path="EventUpdated.do", method = RequestMethod.GET)
+	public String updatedEvent() {
 	
+	return "viewEvent";
+}
 	
 	
 	
