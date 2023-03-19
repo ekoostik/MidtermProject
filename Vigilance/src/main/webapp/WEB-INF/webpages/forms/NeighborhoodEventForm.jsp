@@ -31,7 +31,32 @@
 
 
 
+<div>
 
+<h2> create a new event</h2>
+<form action="addNevent.do" method="POST">
+	<label for="name">Event Name</label>
+	<input type="text" name="name" value=""/>
+	<br>
+	<label for="description">Description</label>
+	<input type="text" name="name" value=""/>
+	<br>
+	<label for="eventDate">Event Date</label>
+	<input type="date" name="name" value=""/>
+	<br>
+	<label for="createDate">Create Date</label>
+	<input type="date" name="name" value=""/>
+	<br>
+	<label for="neighborhoodId">Neighborhood</label>
+	<input type="text" name="name" value=""/>
+	<br>
+	<label for="address">Address</label>
+	<input type="text" name="name" value=""/>
+	<br>
+	<input type="submit" class="btn btn-success"value="Add Event">
+</form>
+
+</div>
 
 
 
