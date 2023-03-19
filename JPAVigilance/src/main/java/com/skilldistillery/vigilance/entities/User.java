@@ -37,7 +37,7 @@ public class User {
 	private String lastName;
 	
 	private String email;
-	
+
 	@ManyToOne
 	@JoinColumn(name="household_id")
 	private HouseHold household;
@@ -50,10 +50,10 @@ public class User {
 	
 	@Column(name="create_date")
 	@CreationTimestamp
-	private  Date createDate;
+	private Date createDate;
 	
 	@Column(name="update_date")
-	private Date updateDate;
+	private LocalDate updateDate;
 	
 	@Column(name="date_of_birth")
 	private LocalDate dateOfBirth;
@@ -148,7 +148,6 @@ public class User {
 	}
 
 
-
 	public String getProfilePic() {
 		return profilePic;
 	}
@@ -173,12 +172,12 @@ public class User {
 		this.createDate = createDate;
 	}
 
-	public Date getUpdateDate() {
+	public LocalDate getUpdateDate() {
 		return updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
+	public void setUpdateDate(LocalDate localDate) {
+		this.updateDate = localDate;
 	}
 
 	public LocalDate getDateOfBirth() {
@@ -201,8 +200,6 @@ public class User {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
-
 
 	public List<Report> getReports() {
 		return reports;

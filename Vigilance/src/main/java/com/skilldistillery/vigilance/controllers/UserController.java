@@ -3,7 +3,6 @@ package com.skilldistillery.vigilance.controllers;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.vigilance.data.UserDAO;
+import com.skilldistillery.vigilance.entities.Address;
 import com.skilldistillery.vigilance.entities.User;
 
 @Controller
@@ -56,13 +56,18 @@ public class UserController {
 	public String register(Model model) {		
 		return "/webpages/forms/registrationForm";
 	}	
-		
+	
+	//added houseHoldId() method to add arbitrary # until db updated
+	//update to take in Address and set.
 	@RequestMapping(path="register.do", params = {"dob", "city", "state",},method = RequestMethod.POST) 
-	public String register(User user, Model model, @RequestParam("city") String city, @RequestParam("state") String state, @RequestParam("dob") String dob ) {
+	public String register(User user, Address address, Model model, @RequestParam("city") String city, @RequestParam("state") String state, @RequestParam("dob") String dob ) {
 		LocalDate birthDate = LocalDate.parse(dob);
+//		user.getHousehold().setId(userDao.houseHoldId());
 		user.setEnabled(true);
 		user.setDateOfBirth(birthDate);
 		user = userDao.registerNewUser(user);
+//		address.getNeighborhood().setId(4);
+//		address = userDao.addnewAddress(address);
 				
 		return "/webpages/registersuccess";
 	}

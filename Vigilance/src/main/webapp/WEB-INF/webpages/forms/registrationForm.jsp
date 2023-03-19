@@ -18,9 +18,13 @@
   Date of birth <input type="date" name="dob" /><br>
   Username <input type="text" name="username" /><br>
   Password <input type="text" name="password" /><br>
-  
+  <h3>Address Information</h3>
+
+  Street<input type="text" name="address1" /><br>
+  Street(Optional) <input type="text" name="address2" /><br>
   City <input type="text" name="city" /><br>
   State <input type="text" name="state" /><br>
+  ZipCode <input type="text" name="state" /><br>
   <!-- Add the rest of address -->
  <button type="submit" class="btn btn-primary">Submit</button>
 </form> 
