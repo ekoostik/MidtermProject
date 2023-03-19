@@ -27,7 +27,7 @@ public class UserController {
 
 
 	@RequestMapping(path = {"/", "login.do"})
-	public String home (Model model) {
+	public String main(Model model) {
 //		////////////////DEBUG
 //		User u = new User();
 //		u.setUsername("vigil");
@@ -38,6 +38,10 @@ public class UserController {
 		return "/webpages/forms/login_register";
 		}
 	
+	@RequestMapping(path="home.do") 
+	public String home(Model model) {		
+		return "/webpages/home";
+	}	
 	
 	@RequestMapping(path="userlogin.do", method = RequestMethod.POST)
 	public String login(User user, Model model, HttpSession session) {
@@ -76,6 +80,16 @@ public class UserController {
 		address = userDao.addnewAddress(address);	
 		return "/webpages/registersuccess";
 	}
+	
+	@RequestMapping(path="account.do") 
+	public String account(Model model) {		
+		return "/webpages/userAccount";
+	}	
+	
+	@RequestMapping(path="profile.do") 
+	public String Profile(Model model) {		
+		return "/webpages/userProfile";
+	}	
 		
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {
