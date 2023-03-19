@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Comment {
@@ -21,6 +26,17 @@ public class Comment {
 	
 	@Column(name = "create_date")
 	private LocalDateTime createDate;
+	
+	@ManyToMany
+	@JoinTable(name = "comment_like", 
+	joinColumns = @JoinColumn(name = "comment_id"),
+	inverseJoinColumns = @JoinColumn(name = "user_id")
+	)
+	private List<User> users;
+	
+	@ManyToOne
+	@JoinColumn(name = "post_id")
+	private Post post;
 
 	public int getId() {
 		return id;
@@ -44,6 +60,22 @@ public class Comment {
 
 	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
 	@Override

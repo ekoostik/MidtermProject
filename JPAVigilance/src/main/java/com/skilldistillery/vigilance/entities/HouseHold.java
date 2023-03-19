@@ -24,6 +24,7 @@ public class HouseHold {
 	private int id;
 
 	private int occupants;
+	
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
