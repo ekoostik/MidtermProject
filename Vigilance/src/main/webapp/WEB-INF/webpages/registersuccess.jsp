@@ -6,7 +6,7 @@
 <head>
 <jsp:include page="../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Registration successful</title>
 <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 

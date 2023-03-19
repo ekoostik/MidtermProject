@@ -2,6 +2,7 @@ package com.skilldistillery.vigilance.controllers;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -26,7 +27,6 @@ public class UserController {
 
 	@RequestMapping(path = {"/", "login.do"})
 	public String home (Model model) {
-		
 //		////////////////DEBUG
 //		User u = new User();
 //		u.setUsername("vigil");
@@ -44,6 +44,8 @@ public class UserController {
 		user = userDao.login(user);
 		if (user != null) {
 			session.setAttribute("loggedinuser", user);
+			LocalDateTime localTime = LocalDateTime.now();
+			session.setAttribute("loginTime", localTime);
 			return "/webpages/home";
 		} else {
 			
@@ -58,10 +60,18 @@ public class UserController {
 	@RequestMapping(path="register.do", params = {"dob", "city", "state",},method = RequestMethod.POST) 
 	public String register(User user, Model model, @RequestParam("city") String city, @RequestParam("state") String state, @RequestParam("dob") String dob ) {
 		LocalDate birthDate = LocalDate.parse(dob);
+		user.setEnabled(true);
 		user.setDateOfBirth(birthDate);
 		user = userDao.registerNewUser(user);
 				
-		return "";
+		return "/webpages/registersuccess";
+	}
 		
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session) {
+	  session.removeAttribute("loggedInUser");
+	  session.removeAttribute("loginTime");
+	  session.removeAttribute("timeOnSite");
+	  return "webpages/forms/login_register";
 	}
 }
