@@ -17,8 +17,8 @@
 <h2> Welcome ${loggedinuser.firstName}!</h2>
 
 
-<a href="viewAllEvents.do" class="btn btn-secondary" role="button">View all Neighborhood Events</a>
-<a href="getPostById.do?id=1" class="btn btn-secondary" role="button">View all Post</a>
+<a href="viewAllNeighborhoods.do" class="btn btn-secondary" role="button">View all Neighborhoods</a>
+<a href="viewAllposts.do" class="btn btn-secondary" role="button">Post</a>
 
 
 <jsp:include page="../bootstrap/bootstrapFooter.jsp" />

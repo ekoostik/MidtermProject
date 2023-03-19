@@ -24,7 +24,7 @@ public class PostDaoImpl implements PostDAO {
 		Post newpost = new Post();
 		newpost.setDescription(post.getDescription());
 		newpost.setImage(post.getDescription());
-		newpost.setId(post.getId());
+		newpost.getUser().getId();
 		newpost.setCreateDate(post.getCreateDate());
 //		newpost.setNeighborhoodId(post.getNeighborhoodId());
 	
