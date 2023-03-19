@@ -14,7 +14,7 @@
 <body>
 
 
-<h2> Welcome Dream Team!</h2>
+<h2> Welcome ${loggedinuser.firstName}!</h2>
 
 <jsp:include page="../bootstrap/bootstrapFooter.jsp" />
 </body>

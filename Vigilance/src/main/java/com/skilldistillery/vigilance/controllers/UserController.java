@@ -71,7 +71,7 @@ public class UserController {
 	public String logout(HttpSession session) {
 	  session.removeAttribute("loggedInUser");
 	  session.removeAttribute("loginTime");
-	  session.removeAttribute("timeOnSite");
+//	  session.removeAttribute("timeOnSite");
 	  return "webpages/forms/login_register";
 	}
 }
