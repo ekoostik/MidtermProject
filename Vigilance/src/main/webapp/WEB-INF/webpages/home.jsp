@@ -60,6 +60,7 @@
 
 <a href="viewAllNeighborhoods.do" class="btn btn-secondary" role="button">View all Neighborhoods</a>
 <a href="viewAllposts.do" class="btn btn-secondary" role="button">Post</a>
+<a href="viewAllreports.do" class="btn btn-secondary" role="button">View Reports</a>
 
 
 

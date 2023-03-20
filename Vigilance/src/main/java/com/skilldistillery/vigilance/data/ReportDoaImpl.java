@@ -19,13 +19,13 @@ public class ReportDoaImpl implements ReportDAO {
 	private EntityManager em;
 	
 	@Override
-	public Report findEventById(int id) {
+	public Report findReportById(int id) {
 
 		return em.find(Report.class, id);
 	}
 
 	@Override
-	public Report createEvent(Report report) {
+	public Report createReport(Report report) {
 		Report newReport = new Report();
 		
 		newReport.setReportDate(report.getReportDate());
@@ -41,13 +41,13 @@ public class ReportDoaImpl implements ReportDAO {
 	}
 
 	@Override
-	public Report updateEvent(int id, Report report) {
+	public Report updateReport(int id, Report report) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean deleteEvent(int id) {
+	public boolean deleteReport(int id) {
 		boolean deleted = false;
 		Report toDelete=em.find(Report.class, id);
 		if(em.contains(toDelete)) {
