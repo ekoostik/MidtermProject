@@ -418,6 +418,30 @@ CREATE TABLE IF NOT EXISTS `event_comment` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `report_has_neighborhood`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `report_has_neighborhood` ;
+
+CREATE TABLE IF NOT EXISTS `report_has_neighborhood` (
+  `report_id` INT NOT NULL,
+  `neighborhood_id` INT NOT NULL,
+  PRIMARY KEY (`report_id`, `neighborhood_id`),
+  INDEX `fk_report_has_neighborhood_neighborhood1_idx` (`neighborhood_id` ASC),
+  INDEX `fk_report_has_neighborhood_report1_idx` (`report_id` ASC),
+  CONSTRAINT `fk_report_has_neighborhood_report1`
+    FOREIGN KEY (`report_id`)
+    REFERENCES `report` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_report_has_neighborhood_neighborhood1`
+    FOREIGN KEY (`neighborhood_id`)
+    REFERENCES `neighborhood` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS vigil@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
