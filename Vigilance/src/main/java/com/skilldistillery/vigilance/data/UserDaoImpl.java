@@ -1,24 +1,29 @@
 package com.skilldistillery.vigilance.data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.vigilance.entities.Address;
 import com.skilldistillery.vigilance.entities.HouseHold;
+import com.skilldistillery.vigilance.entities.Neighborhood;
 import com.skilldistillery.vigilance.entities.User;
 
-import antlr.collections.List;
+//AUTHOR: ROB TISDALE
 
 @Transactional
 @Service
 public class UserDaoImpl implements UserDAO {
 	@PersistenceContext
 	private EntityManager em;
+	@Autowired
+	private NeighborhoodDAO nDao;
 
 	
 
@@ -73,6 +78,7 @@ public class UserDaoImpl implements UserDAO {
 		hh.setAddress(address);
 		em.persist(address);
 		em.flush();
+		//controllerVV
 		return address; 
 	}
 			
