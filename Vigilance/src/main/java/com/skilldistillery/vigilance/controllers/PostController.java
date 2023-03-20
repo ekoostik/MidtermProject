@@ -33,7 +33,7 @@ public class PostController {
 	}
 
 	@RequestMapping(path = "addPost.do", method = RequestMethod.POST)
-	public ModelAndView addNpost(String description, int userId, int hoodId, RedirectAttributes redir) {
+	public ModelAndView addNewpost(String description, int userId, int hoodId, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		Post newpost = null;
 		try {
@@ -127,6 +127,35 @@ public String createPost() {
 	return "/webpages/forms/postForm";
 }
 
+	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
+	public ModelAndView addNewCommentt(String description, int postId, int userId, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView();
+		Comment newComment = null;
+		try {
+			newComment = postDao.addComment(description, postId, userId);
+		} catch (RuntimeException e) {
+			mv.setViewName("error");
+			return mv;
+		}
+		if (newComment != null) {
+			redir.addFlashAttribute("comment", newComment);
+			mv.setViewName("redirect:commentAdded.do");
+			return mv;
+		} else {
+			mv.setViewName("error");
+			return mv;
+		}
+	
+	
+	
+
+}
+	@RequestMapping(path = "commentAdded.do", method = RequestMethod.GET)
+	public ModelAndView addedNewComment() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/webpages/forms/viewPost");
+		return mv;
+	}
 	
 
 }

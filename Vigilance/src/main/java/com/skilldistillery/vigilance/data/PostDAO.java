@@ -16,5 +16,7 @@ public interface PostDAO {
 	public List <Post> allposts();
 	
 	public List<Comment> viewComments(int postid);
+	public Comment addComment(String description, int postId, int userId);
+	
 
 }

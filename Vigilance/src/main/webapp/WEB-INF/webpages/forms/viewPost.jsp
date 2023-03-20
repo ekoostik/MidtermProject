@@ -171,7 +171,7 @@ body {
 						<img class="img-circle"
 							src="https://bootdey.com/img/Content/avatar/avatar1.png"
 							alt="User Image"> <span class="user"><a href="#">Link
-								to user profile</a></span> <span class="description">${post.createDate}</span>
+								to user profile</a></span> <span class="description">Posted:${post.createDate}</span>
 					</div>
 
 				</div>
@@ -206,13 +206,20 @@ body {
 					</div>
 
 					<div class="box-footer" style="display: block;">
-						<form action="#" method="post">
+						<form action="addComment.do" method="post">
 							<img class="img-responsive img-circle img-sm"
 								src="https://bootdey.com/img/Content/avatar/avatar1.png"
 								alt="Alt Text">
 							<div class="img-push">
-								<input type="text" class="form-control input-sm"
-									placeholder="Press enter to post comment">
+								
+									<label for="decription"></label> 
+									<input type="text" name="description" value="" /> 
+									<label for="postId">${post.id}</label> 
+									<input type="number" name="postId" value="" /> 
+									<label for="userId">${post.user.id}</label> 
+									<input type="number" name="userId" value="" /> 
+									
+									<input type="submit" class="btn btn-success"value="Comment">
 							</div>
 						</form>
 					</div>

@@ -90,6 +90,22 @@ public class PostDaoImpl implements PostDAO {
 		
 		return comments;
 	}
+
+	@Override
+	public Comment addComment(String description, int postId, int userId) {
+		
+		Post post = em.find(Post.class, postId);
+		User user =em.find(User.class, userId);
+		Comment newComment = new Comment();
+		
+		newComment.setPost(post);
+		newComment.setDescription(description);
+		newComment.setUser(user);
+		
+		em.persist(newComment);
+		
+		return newComment;
+	}
 	
 
 }
