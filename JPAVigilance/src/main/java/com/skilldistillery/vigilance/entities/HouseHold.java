@@ -31,10 +31,10 @@ public class HouseHold {
 
 	// TODO MAP Objects
 
-	@OneToMany(mappedBy = "household")
-	private List<User> users;
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
-	
 
 	@OneToMany(mappedBy = "houseHold")
 	private List<Pet> pets;
@@ -66,14 +66,12 @@ public class HouseHold {
 		this.occupants = occupants;
 	}
 
-	
-
-	public List<User> getUsers() {
-		return users;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Address getAddress() {

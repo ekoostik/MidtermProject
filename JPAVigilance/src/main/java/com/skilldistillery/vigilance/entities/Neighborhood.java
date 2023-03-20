@@ -37,6 +37,7 @@ public class Neighborhood {
 	@OneToMany(mappedBy="neighborhoodId")
 	private List<NeighborhoodEvent> nEvents;
 	
+
 	@OneToMany(mappedBy = "nid")
 	private List<Post> posts;
 

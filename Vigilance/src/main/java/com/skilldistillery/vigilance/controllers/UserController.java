@@ -3,7 +3,6 @@ package com.skilldistillery.vigilance.controllers;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.vigilance.data.UserDAO;
+import com.skilldistillery.vigilance.entities.Address;
+import com.skilldistillery.vigilance.entities.HouseHold;
 import com.skilldistillery.vigilance.entities.User;
 
 @Controller
@@ -26,7 +27,7 @@ public class UserController {
 
 
 	@RequestMapping(path = {"/", "login.do"})
-	public String home (Model model) {
+	public String main(Model model) {
 //		////////////////DEBUG
 //		User u = new User();
 //		u.setUsername("vigil");
@@ -37,6 +38,10 @@ public class UserController {
 		return "/webpages/forms/login_register";
 		}
 	
+	@RequestMapping(path="home.do") 
+	public String home(Model model) {		
+		return "/webpages/home";
+	}	
 	
 	@RequestMapping(path="userlogin.do", method = RequestMethod.POST)
 	public String login(User user, Model model, HttpSession session) {
@@ -56,16 +61,36 @@ public class UserController {
 	public String register(Model model) {		
 		return "/webpages/forms/registrationForm";
 	}	
-		
-	@RequestMapping(path="register.do", params = {"dob", "city", "state",},method = RequestMethod.POST) 
-	public String register(User user, Model model, @RequestParam("city") String city, @RequestParam("state") String state, @RequestParam("dob") String dob ) {
+	
+	//added houseHoldId() method to add arbitrary # until db updated
+	//update to take in Address and set.
+	@RequestMapping(path="register.do", params = "dob", method = RequestMethod.POST) 
+	public String register(User user, HouseHold household, Model model, @RequestParam("dob") String dob ) {
 		LocalDate birthDate = LocalDate.parse(dob);
 		user.setEnabled(true);
 		user.setDateOfBirth(birthDate);
-		user = userDao.registerNewUser(user);
-				
+		user = userDao.registerNewUser(user);	
+		household = userDao.createNewHousehold(household);
+		household.setUser(user);
+		model.addAttribute("user", user.getFirstName());
+		return "webpages/forms/addressForm";
+	}
+	
+	@RequestMapping(path="newaddr.do", method = RequestMethod.POST) 
+	public String register(Address address, Model model) {
+		address = userDao.addnewAddress(address);	
 		return "/webpages/registersuccess";
 	}
+	
+	@RequestMapping(path="account.do") 
+	public String account(Model model) {		
+		return "/webpages/userAccount";
+	}	
+	
+	@RequestMapping(path="profile.do") 
+	public String Profile(Model model) {		
+		return "/webpages/userProfile";
+	}	
 		
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {

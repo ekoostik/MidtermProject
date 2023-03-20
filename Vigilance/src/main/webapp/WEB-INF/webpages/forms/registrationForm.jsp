@@ -17,13 +17,11 @@
   Email <input type="text" name="email" /><br>
   Date of birth <input type="date" name="dob" /><br>
   Username <input type="text" name="username" /><br>
-  Password <input type="text" name="password" /><br>
-  
-  City <input type="text" name="city" /><br>
-  State <input type="text" name="state" /><br>
-  
+  Password <input type="password" name="password"/><br>
  <button type="submit" class="btn btn-primary">Submit</button>
 </form> 
+
+
   <!-- ADD LOGiC FOR DROP DOWN ONCE ALL FIELDS ARE FILLED TO PRESENT ANOTHER 
   SECTION FOR SELECTING A NEIGHBORHOOD-->
   

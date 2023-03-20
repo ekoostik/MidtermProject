@@ -10,10 +10,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -38,9 +41,8 @@ public class User {
 	private String lastName;
 	
 	private String email;
-	
-	@ManyToOne
-	@JoinColumn(name="household_id")
+
+	@OneToOne(mappedBy="user")
 	private HouseHold household;
 	
 	@Column(name="profile_url")
@@ -51,22 +53,20 @@ public class User {
 	
 	@Column(name="create_date")
 	@CreationTimestamp
-	private  Date createDate;
+	private Date createDate;
 	
 	@Column(name="update_date")
-	private Date updateDate;
+	private LocalDate updateDate;
 	
 	@Column(name="date_of_birth")
 	private LocalDate dateOfBirth;
 	
-	//TODO MAP Objects
-//	private HouseHold household;
-//	
 	@OneToMany(mappedBy="userId")
 	private List<EventComment> eventComments;
 	
 	@OneToMany(mappedBy="user")
 	private List<NeighborhoodEvent> neighborhoodEvent;
+
 //	
 	@ManyToMany(mappedBy = "users")
 	private List<Comment> comments;
@@ -74,10 +74,9 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Post> posts;
 //	
+
 	@OneToMany(mappedBy="user")
 	private List<Report> reports;
-	
-	
 	
 	
 	public User(int id, String username, String password, int active, String fname, String lname, String email) {
@@ -154,7 +153,6 @@ public class User {
 	}
 
 
-
 	public String getProfilePic() {
 		return profilePic;
 	}
@@ -179,12 +177,12 @@ public class User {
 		this.createDate = createDate;
 	}
 
-	public Date getUpdateDate() {
+	public LocalDate getUpdateDate() {
 		return updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
+	public void setUpdateDate(LocalDate localDate) {
+		this.updateDate = localDate;
 	}
 
 	public LocalDate getDateOfBirth() {
@@ -207,8 +205,6 @@ public class User {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
-
 
 	public List<Report> getReports() {
 		return reports;
@@ -233,6 +229,8 @@ public class User {
 	public void setHousehold(HouseHold household) {
 		this.household = household;
 	}
+	
+
 
 	public List<Comment> getComments() {
 		return comments;

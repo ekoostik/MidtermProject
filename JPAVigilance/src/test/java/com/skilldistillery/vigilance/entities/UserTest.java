@@ -3,8 +3,6 @@ package com.skilldistillery.vigilance.entities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -71,6 +69,7 @@ class UserTest {
 		user = em.find(User.class, 2);
 		assertNotNull(user.getHousehold());
 		assertEquals(2, user.getHousehold().getId());
+
 	}
 	
 	@Test
@@ -79,5 +78,9 @@ class UserTest {
 		assertNotNull(user);
 		assertNotNull(user.getPosts());
 		assertFalse(user.getPosts().isEmpty());
+
 	}
+	
+
+	
 }
