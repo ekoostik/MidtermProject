@@ -70,7 +70,7 @@ public class HouseHold {
 		return user;
 	}
 
-	public void setUsers(User user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

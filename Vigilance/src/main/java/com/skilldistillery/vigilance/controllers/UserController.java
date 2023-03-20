@@ -71,6 +71,7 @@ public class UserController {
 		user.setDateOfBirth(birthDate);
 		user = userDao.registerNewUser(user);	
 		household = userDao.createNewHousehold(household);
+		household.setUser(user);
 		model.addAttribute("user", user.getFirstName());
 		return "webpages/forms/addressForm";
 	}

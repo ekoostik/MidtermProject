@@ -16,63 +16,6 @@ CREATE SCHEMA IF NOT EXISTS `vigilancedb` DEFAULT CHARACTER SET utf8 ;
 USE `vigilancedb` ;
 
 -- -----------------------------------------------------
--- Table `neighborhood`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `neighborhood` ;
-
-CREATE TABLE IF NOT EXISTS `neighborhood` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `image_url` VARCHAR(2000) NULL,
-  `description` TEXT NULL,
-  `create_date` DATE NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `address`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `address` ;
-
-CREATE TABLE IF NOT EXISTS `address` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `address1` VARCHAR(45) NULL,
-  `address2` VARCHAR(45) NULL,
-  `city` VARCHAR(45) NULL,
-  `state` VARCHAR(45) NULL,
-  `zip_code` VARCHAR(45) NULL,
-  `neighborhood_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_address_neighborhood1_idx` (`neighborhood_id` ASC),
-  CONSTRAINT `fk_address_neighborhood1`
-    FOREIGN KEY (`neighborhood_id`)
-    REFERENCES `neighborhood` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `household`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `household` ;
-
-CREATE TABLE IF NOT EXISTS `household` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `occupants` INT NULL,
-  `address_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_household_address1_idx` (`address_id` ASC),
-  CONSTRAINT `fk_household_address1`
-    FOREIGN KEY (`address_id`)
-    REFERENCES `address` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `user` ;
@@ -86,20 +29,28 @@ CREATE TABLE IF NOT EXISTS `user` (
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
-  `household_id` INT NULL,
   `profile_url` VARCHAR(2000) NULL,
   `about_me` TEXT NULL,
   `create_date` DATE NULL,
   `update_date` DATE NULL,
   `date_of_birth` DATE NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
-  INDEX `fk_user_household1_idx` (`household_id` ASC),
-  CONSTRAINT `fk_user_household1`
-    FOREIGN KEY (`household_id`)
-    REFERENCES `household` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `neighborhood`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `neighborhood` ;
+
+CREATE TABLE IF NOT EXISTS `neighborhood` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `image_url` VARCHAR(2000) NULL,
+  `description` TEXT NULL,
+  `create_date` DATE NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -151,6 +102,55 @@ CREATE TABLE IF NOT EXISTS `comment` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_comment_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `address`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `address` ;
+
+CREATE TABLE IF NOT EXISTS `address` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `address1` VARCHAR(45) NULL,
+  `address2` VARCHAR(45) NULL,
+  `city` VARCHAR(45) NULL,
+  `state` VARCHAR(45) NULL,
+  `zip_code` VARCHAR(45) NULL,
+  `neighborhood_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_address_neighborhood1_idx` (`neighborhood_id` ASC),
+  CONSTRAINT `fk_address_neighborhood1`
+    FOREIGN KEY (`neighborhood_id`)
+    REFERENCES `neighborhood` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `household`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `household` ;
+
+CREATE TABLE IF NOT EXISTS `household` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `occupants` INT NULL,
+  `address_id` INT NULL,
+  `user_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_household_address1_idx` (`address_id` ASC),
+  INDEX `fk_household_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_household_address1`
+    FOREIGN KEY (`address_id`)
+    REFERENCES `address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_household_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
@@ -430,6 +430,20 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `user`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (1, 'admin', 'admin', 1, NULL, 'Skill', 'Distillery', 'sd@distillery.edu', NULL, NULL, '2008-03-27', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (2, 'DRich', 'user', 1, NULL, 'Damien', 'Richards', 'drich@distillery.edu', NULL, NULL, '2022-12-10', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (3, 'RTisdale', 'flower', 1, NULL, 'Rob', 'Tisdale', 'rtisdale@distillery.edu', NULL, NULL, '2023-04-20', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (4, 'Wheaties23', 'foofoo', 1, NULL, 'Collin', 'Wheat', 'cwheat@distillery.edu', NULL, NULL, '2018-03-27', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (5, 'DunDun', 'dunnn', 1, NULL, 'David', 'Dunlevy', 'dunlevy@distillery.edu', NULL, NULL, '2020-03-02', NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `neighborhood`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -437,6 +451,29 @@ USE `vigilancedb`;
 INSERT INTO `neighborhood` (`id`, `name`, `image_url`, `description`, `create_date`) VALUES (1, 'Rolling Meadows', NULL, NULL, '2002-03-27');
 INSERT INTO `neighborhood` (`id`, `name`, `image_url`, `description`, `create_date`) VALUES (2, 'Shady Acres', NULL, NULL, '2000-12-05');
 INSERT INTO `neighborhood` (`id`, `name`, `image_url`, `description`, `create_date`) VALUES (3, 'Desparado', NULL, NULL, '2009-06-30');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `post`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `post` (`id`, `description`, `image`, `user_id`, `create_date`, `neighborhood_id`) VALUES (1, 'I have a bunch of plants I need to rehome, any takers?', NULL, 2, '2023-03-27', 1);
+INSERT INTO `post` (`id`, `description`, `image`, `user_id`, `create_date`, `neighborhood_id`) VALUES (2, 'I thought I heard some gunshots outside... Dis anyone hear that?', NULL, 4, '2023-03-27', 1);
+INSERT INTO `post` (`id`, `description`, `image`, `user_id`, `create_date`, `neighborhood_id`) VALUES (3, 'LOST DOG: If anyone sees a small poodle mix dog, please let me know ASAP! Her name is Coco and she\'s a little skittish! I will offer a reward of $1000 if anyone can sees her and bring her home!', NULL, 2, '2023-03-27', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `vigilancedb`;
+INSERT INTO `comment` (`id`, `description`, `post_id`, `user_id`, `create_date`) VALUES (1, 'Yeah, I\'ll take a few for my garden!!!', 1, 1, NULL);
+INSERT INTO `comment` (`id`, `description`, `post_id`, `user_id`, `create_date`) VALUES (2, 'Me, too!!', 1, 2, NULL);
 
 COMMIT;
 
@@ -462,48 +499,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `household` (`id`, `occupants`, `address_id`) VALUES (1, 1, 1);
-INSERT INTO `household` (`id`, `occupants`, `address_id`) VALUES (2, 5, 2);
-INSERT INTO `household` (`id`, `occupants`, `address_id`) VALUES (3, 4, 3);
-INSERT INTO `household` (`id`, `occupants`, `address_id`) VALUES (4, 2, 4);
-INSERT INTO `household` (`id`, `occupants`, `address_id`) VALUES (5, 8, 5);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `user`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `vigilancedb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (1, 'admin', 'admin', 1, NULL, 'Skill', 'Distillery', 'sd@distillery.edu', 1, NULL, NULL, '2008-03-27', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (2, 'DRich', 'user', 1, NULL, 'Damien', 'Richards', 'drich@distillery.edu', 2, NULL, NULL, '2022-12-10', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (3, 'RTisdale', 'flower', 1, NULL, 'Rob', 'Tisdale', 'rtisdale@distillery.edu', 3, NULL, NULL, '2023-04-20', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (4, 'Wheaties23', 'foofoo', 1, NULL, 'Collin', 'Wheat', 'cwheat@distillery.edu', 4, NULL, NULL, '2018-03-27', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `household_id`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (5, 'DunDun', 'dunnn', 1, NULL, 'David', 'Dunlevy', 'dunlevy@distillery.edu', 5, NULL, NULL, '2020-03-02', NULL, NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `post`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `vigilancedb`;
-INSERT INTO `post` (`id`, `description`, `image`, `user_id`, `create_date`, `neighborhood_id`) VALUES (1, 'I have a bunch of plants I need to rehome, any takers?', NULL, 2, '2023-03-27', 1);
-INSERT INTO `post` (`id`, `description`, `image`, `user_id`, `create_date`, `neighborhood_id`) VALUES (2, 'I thought I heard some gunshots outside... Dis anyone hear that?', NULL, 4, '2023-03-27', 1);
-INSERT INTO `post` (`id`, `description`, `image`, `user_id`, `create_date`, `neighborhood_id`) VALUES (3, 'LOST DOG: If anyone sees a small poodle mix dog, please let me know ASAP! Her name is Coco and she\'s a little skittish! I will offer a reward of $1000 if anyone can sees her and bring her home!', NULL, 2, '2023-03-27', 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `comment`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `vigilancedb`;
-INSERT INTO `comment` (`id`, `description`, `post_id`, `user_id`, `create_date`) VALUES (1, 'Yeah, I\'ll take a few for my garden!!!', 1, 1, NULL);
-INSERT INTO `comment` (`id`, `description`, `post_id`, `user_id`, `create_date`) VALUES (2, 'Me, too!!', 1, 2, NULL);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (1, 1, 1, NULL);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (2, 5, 2, NULL);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (3, 4, 3, NULL);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (4, 2, 4, NULL);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (5, 8, 5, NULL);
 
 COMMIT;
 
