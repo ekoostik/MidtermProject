@@ -1,5 +1,7 @@
 package com.skilldistillery.vigilance.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +22,10 @@ private ReportDAO reportDao;
 	
 	@RequestMapping(path="viewAllreports.do", method =RequestMethod.GET)
 	public String viewAll(Model model) {
-		model.addAttribute("report", reportDao.reports());
-		
-		return "/webpages/forms/reportForm";
+		List<Report> reports = reportDao.reports();
+//		System.out.println(reports);
+		model.addAttribute("report", reports);
+		return "/webpages/forms/reportform";
 	}
 	@RequestMapping(path = "ReportAdded.do", method = RequestMethod.GET)
 	public ModelAndView ReportAdded() {

@@ -13,11 +13,12 @@
 <jsp:include page="../../bootstrap/navbar.jsp" />
 <body>
 
-<form action="getReportById.do" method="POST">
-  Enter an ID<input type="number" name="id" /><br>
-  
- <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<c:forEach var="report" items="${report}">
+<ul>
+<li> ${report.description} </li>
+
+</ul>
+</c:forEach>
 
 <jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
