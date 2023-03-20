@@ -16,6 +16,7 @@
 <form action="getReportById.do" method="POST">
   Enter an ID<input type="number" name="id" /><br>
   
+  
  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
