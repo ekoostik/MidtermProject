@@ -71,6 +71,14 @@ public class HouseHoldTest {
 		assertNotNull(houseHold.getVehicles() );
 		assertFalse(houseHold.getVehicles().isEmpty());
 	}
+	
+	@Test
+	void test_HouseHold_Address_Mappings() {
+		houseHold = em.find(HouseHold.class, 1);
+		assertNotNull(houseHold);
+		assertNotNull(houseHold.getAddress());
+		assertEquals("123 Seasme St",houseHold.getAddress().getAddress1());
+	}
 
 }
 

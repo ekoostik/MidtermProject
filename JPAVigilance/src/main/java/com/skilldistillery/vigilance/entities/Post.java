@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Post {
@@ -24,6 +28,17 @@ public class Post {
 	
 	@Column(name = "create_date")
 	private LocalDateTime createDate;
+	
+	@OneToMany(mappedBy = "post")
+	private List<Comment> comments;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "neighborhood_id")
+	private Neighborhood nid;
 
 	public int getId() {
 		return id;
@@ -55,6 +70,30 @@ public class Post {
 
 	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Neighborhood getNid() {
+		return nid;
+	}
+
+	public void setNid(Neighborhood nid) {
+		this.nid = nid;
 	}
 
 	@Override

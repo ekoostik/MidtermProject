@@ -49,7 +49,7 @@ public class PostController {
 	@RequestMapping(path = "PostAdded.do", method = RequestMethod.GET)
 	public ModelAndView addedNpost() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("post");
+		mv.setViewName("/webpages/forms/postForm");
 		return mv;
 	}
 
@@ -88,5 +88,31 @@ public class PostController {
 
 		return "viewpost";
 	}
+	
+	
+	
+	
+	@RequestMapping(path ="deletePost.do" , method = RequestMethod.POST)
+	public ModelAndView deletPost(int id, RedirectAttributes redir) {
+	ModelAndView mv = new ModelAndView();
+	boolean deleted =postDao.deletepost(id);
+	if(deleted) {
+		redir.addFlashAttribute("post", id);
+		mv.setViewName("redirect:postDeleted.do");
+		return mv;
+	}
+	else {
+		mv.setViewName("error");
+		return mv;
+	}
+	
+	}
+
+@RequestMapping(path="postDeleted.do", method = RequestMethod.GET)
+	public String deletedPostt() {
+	return "/webpages/forms/postForm";
+}
+
+	
 
 }

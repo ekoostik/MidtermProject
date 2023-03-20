@@ -10,6 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -61,6 +66,14 @@ public class User {
 	
 	@OneToMany(mappedBy="user")
 	private List<NeighborhoodEvent> neighborhoodEvent;
+
+//	
+	@ManyToMany(mappedBy = "users")
+	private List<Comment> comments;
+//	
+	@OneToMany(mappedBy = "user")
+	private List<Post> posts;
+//	
 
 	@OneToMany(mappedBy="user")
 	private List<Report> reports;
@@ -218,6 +231,22 @@ public class User {
 	}
 	
 
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

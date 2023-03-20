@@ -52,6 +52,13 @@ public class NeighborhoodTest {
 		assertNotNull(nHood);
 		assertFalse(nHood.getnEvents().isEmpty());
 	}
+	
+	@Test
+	void test_Neighborhood_Post_Mappings() {
+		assertNotNull(nHood);
+		assertNotNull(nHood.getPosts());
+		assertFalse(nHood.getPosts().isEmpty());
+	}
 
 }
 

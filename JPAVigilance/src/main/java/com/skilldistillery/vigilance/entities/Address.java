@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Address {
@@ -36,6 +37,9 @@ public class Address {
 	 
 	 @OneToMany(mappedBy="address")
 	 private List<NeighborhoodEvent> nEvents;
+	 
+	 @OneToOne(mappedBy = "address")
+	 private HouseHold houseHold;
 	 
 	 
 
@@ -107,6 +111,18 @@ public class Address {
 	}
 
 	public void setnEvent(List<NeighborhoodEvent> nEvents) {
+		this.nEvents = nEvents;
+	}
+
+	public HouseHold getHouseHold() {
+		return houseHold;
+	}
+
+	public void setHouseHold(HouseHold houseHold) {
+		this.houseHold = houseHold;
+	}
+
+	public void setnEvents(List<NeighborhoodEvent> nEvents) {
 		this.nEvents = nEvents;
 	}
 
