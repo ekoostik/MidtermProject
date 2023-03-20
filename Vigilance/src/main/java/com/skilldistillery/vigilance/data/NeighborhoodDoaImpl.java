@@ -18,12 +18,6 @@ public class NeighborhoodDoaImpl implements NeighborhoodDAO {
 
 	@PersistenceContext
 	private EntityManager em;
-	
-	//**********************For testing(created by RobT) ************************
-	
-	public EntityManager testQuery() {
-		return this.em;
-	}
 
 	// ****************** Neighborhood Event ********************
 	@Override
@@ -102,7 +96,7 @@ public class NeighborhoodDoaImpl implements NeighborhoodDAO {
 		return newHood;
 	}
 	
-	//**********************Added By Rob Tisdale*********************
+	//********************** Added By Rob Tisdale *********************
 	
 	@Override
 	public List<Neighborhood> findNeighborhoodsByCityStateZip(String city, String state, String zipCode) {
