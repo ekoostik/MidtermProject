@@ -65,20 +65,15 @@ public class UserController {
 	//added houseHoldId() method to add arbitrary # until db updated
 	//update to take in Address and set.
 	@RequestMapping(path="register.do", params = "dob", method = RequestMethod.POST) 
-	public String register(User user, HouseHold household, Model model, @RequestParam("dob") String dob ) {
-		LocalDate birthDate = LocalDate.parse(dob);
-		user.setEnabled(true);
-		user.setDateOfBirth(birthDate);
-		user = userDao.registerNewUser(user);	
-		household = userDao.createNewHousehold(household);
-		household.setUser(user);
-		model.addAttribute("user", user.getFirstName());
+	public String register(User user, Model model, @RequestParam("dob") String dob ) {
+		user = userDao.registerNewUser(dob,user);	
+		model.addAttribute("user", user);
 		return "webpages/forms/addressForm";
 	}
 	
 	@RequestMapping(path="newaddr.do", method = RequestMethod.POST) 
-	public String register(Address address, Model model) {
-		address = userDao.addnewAddress(address);	
+	public String register(Address address, int householdId, Model model) {
+		address = userDao.addnewAddress(householdId, address);	
 		return "/webpages/registersuccess";
 	}
 	

@@ -21,6 +21,7 @@
  <button type="submit" class="btn btn-primary">Submit</button>
 </form> 
 
+<jsp:include page="addressForm.jsp" />
 
   <!-- ADD LOGiC FOR DROP DOWN ONCE ALL FIELDS ARE FILLED TO PRESENT ANOTHER 
   SECTION FOR SELECTING A NEIGHBORHOOD-->
