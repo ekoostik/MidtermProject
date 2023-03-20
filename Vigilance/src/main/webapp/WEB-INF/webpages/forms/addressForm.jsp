@@ -11,8 +11,10 @@
 </head>
 <body>
   <h3>Address Information</h3>
- <p>Thanks ${user}  Please enter your address to locate any existing neighborhoods</p>
+ <p>Thanks ${user.firstName}  Please enter your address to locate any existing neighborhoods</p>
 <form action="newaddr.do" method="POST">
+
+  <input type="hidden" name="householdId" value="${user.household.id }" /><br>
   Street<input type="text" name="address1" /><br>
   Street(Optional) <input type="text" name="address2" /><br>
   City <input type="text" name="city" /><br>

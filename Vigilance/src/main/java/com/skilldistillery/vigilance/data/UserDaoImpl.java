@@ -36,9 +36,22 @@ public class UserDaoImpl implements UserDAO {
 	}
 
 	@Override
-	public User registerNewUser(User user) {
-			em.persist(user);
-			em.flush();
+	public User registerNewUser(String dob, User user) {
+		LocalDate birthDate = LocalDate.parse(dob);
+		user.setEnabled(true);
+		user.setDateOfBirth(birthDate);
+		em.persist(user);
+		em.flush();
+		HouseHold household = new HouseHold();
+		household.setOccupants(1);
+		household.setUser(user);
+		user.setHousehold(household);
+		em.persist(household);
+		em.flush();
+		System.out.println("***********************************************");
+		System.out.println(household.getUser());
+		System.out.println("***********************************************");
+
 			return user;
 	}
 	@Override 
@@ -55,7 +68,9 @@ public class UserDaoImpl implements UserDAO {
 		return household;
 	}
 	@Override
-	public Address addnewAddress(Address address) {
+	public Address addnewAddress(int householdId, Address address) {
+		HouseHold hh = em.find(HouseHold.class, householdId);
+		hh.setAddress(address);
 		em.persist(address);
 		em.flush();
 		return address; 
