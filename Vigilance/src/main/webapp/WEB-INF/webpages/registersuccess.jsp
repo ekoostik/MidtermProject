@@ -9,9 +9,8 @@
 <title>Registration successful</title>
 <link rel="stylesheet" href="css/stylesheet.css">
 </head>
-
-<jsp:include page="../bootstrap/navbar.jsp" />
 <body>
+<h1>SUCCESSFUL- VALUE IN CONTROLLER WAS TRUE</h1>
 <jsp:include page="../bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>
