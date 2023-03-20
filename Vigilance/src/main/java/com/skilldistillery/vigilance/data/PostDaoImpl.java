@@ -1,5 +1,7 @@
 package com.skilldistillery.vigilance.data;
 
+
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,7 +10,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.vigilance.entities.Comment;
+import com.skilldistillery.vigilance.entities.Neighborhood;
 import com.skilldistillery.vigilance.entities.Post;
+import com.skilldistillery.vigilance.entities.User;
 
 @Service
 @Transactional
@@ -19,14 +24,20 @@ public class PostDaoImpl implements PostDAO {
 	private EntityManager em;
 
 	@Override
-	public Post createpost(Post post) {
+	public Post createpost(String description, int userId, int hoodId) {
 		
+		User user=em.find(User.class, userId);
+		Neighborhood nh =em.find(Neighborhood.class, hoodId);
 		Post newpost = new Post();
-		newpost.setDescription(post.getDescription());
-		newpost.setImage(post.getDescription());
-		newpost.getUser().getId();
-		newpost.setCreateDate(post.getCreateDate());
-//		newpost.setNeighborhoodId(post.getNeighborhoodId());
+		
+		
+		
+		newpost.setUser(user);
+		newpost.setNid(nh);
+		newpost.setDescription(description);
+		
+//		newpost.setImage(img);
+	
 	
 		em.persist(newpost);
 		
@@ -69,6 +80,15 @@ public class PostDaoImpl implements PostDAO {
 		// TODO Auto-generated method stub
 		String jpql ="SELECT p FROM Post p";
 		return em.createQuery(jpql, Post.class).getResultList();
+	}
+
+	@Override
+	public List<Comment> viewComments(int postid) {
+		// TODO Auto-generated method stub
+		Post post =em.find(Post.class, postid);
+		List <Comment> comments =post.getComments();
+		
+		return comments;
 	}
 	
 

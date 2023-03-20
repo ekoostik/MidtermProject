@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Post {
@@ -26,8 +29,9 @@ public class Post {
 	@Column(name = "image")
 	private String image;
 	
+	@CreationTimestamp
 	@Column(name = "create_date")
-	private LocalDateTime createDate;
+	private LocalDate createDate;
 	
 	@OneToMany(mappedBy = "post")
 	private List<Comment> comments;
@@ -64,11 +68,11 @@ public class Post {
 		this.image = image;
 	}
 
-	public LocalDateTime getCreateDate() {
+	public LocalDate getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(LocalDate createDate) {
 		this.createDate = createDate;
 	}
 

@@ -1,5 +1,9 @@
 package com.skilldistillery.vigilance.controllers;
 
+
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.vigilance.data.PostDAO;
-
+import com.skilldistillery.vigilance.entities.Comment;
 import com.skilldistillery.vigilance.entities.Post;
 
 @Controller
@@ -17,26 +21,29 @@ public class PostController {
 
 	@Autowired
 	private PostDAO postDao;
+	
+	
 
 	@RequestMapping(path = "viewAllposts.do", method = RequestMethod.GET)
 	public String viewAll(Model model) {
 		model.addAttribute("post", postDao.allposts());
+		
 
-		return "/webpages/forms/postForm";
+		return "/webpages/forms/viewAllPost";
 	}
 
 	@RequestMapping(path = "addPost.do", method = RequestMethod.POST)
-	public ModelAndView addNpost(Post post, RedirectAttributes redir) {
+	public ModelAndView addNpost(String description, int userId, int hoodId, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		Post newpost = null;
 		try {
-			newpost = postDao.createpost(post);
+			newpost = postDao.createpost(description, userId, hoodId);
 		} catch (RuntimeException e) {
 			mv.setViewName("error");
 			return mv;
 		}
 		if (newpost != null) {
-			redir.addFlashAttribute("post", post);
+			redir.addFlashAttribute("post", newpost);
 			mv.setViewName("redirect:PostAdded.do");
 			return mv;
 		} else {
@@ -49,16 +56,18 @@ public class PostController {
 	@RequestMapping(path = "PostAdded.do", method = RequestMethod.GET)
 	public ModelAndView addedNpost() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/webpages/forms/postForm");
+		mv.setViewName("/webpages/forms/viewPost");
 		return mv;
 	}
 
 	@RequestMapping(path = "getPostById.do", method = RequestMethod.GET)
 	public String getnpost(int id, Model model) {
 		Post post = postDao.findpostById(id);
+		List<Comment>comments =postDao.viewComments(id);
+		model.addAttribute("comments", comments);
 		model.addAttribute("post", post);
-
-		return "/webpages/forms/postForm";
+	
+		return "/webpages/forms/viewPost";
 	}
 
 	@RequestMapping(path = "updatePost.do", method = RequestMethod.GET)
@@ -86,7 +95,7 @@ public class PostController {
 	@RequestMapping(path = "postUpdated.do", method = RequestMethod.GET)
 	public String updatedpost() {
 
-		return "viewpost";
+		return "/webpages/forms/viewPost";
 	}
 	
 	
@@ -110,6 +119,11 @@ public class PostController {
 
 @RequestMapping(path="postDeleted.do", method = RequestMethod.GET)
 	public String deletedPostt() {
+	return "/webpages/home";
+}
+
+@RequestMapping(path="createPost.do", method = RequestMethod.GET)
+public String createPost() {
 	return "/webpages/forms/postForm";
 }
 
