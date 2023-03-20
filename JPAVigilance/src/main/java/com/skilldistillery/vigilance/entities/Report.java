@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 public class Report {
 
@@ -21,7 +23,7 @@ public class Report {
 	private int id;
 
 	private String description;
-
+	@CreationTimestamp
 	@Column(name = "report_time")
 	private Date reportDate;
 
@@ -111,6 +113,26 @@ public class Report {
 	public String toString() {
 		return "Report [id=" + id + ", desription=" + description + ", reportDate=" + reportDate + ", contactAuthority="
 				+ contactAuthority + "]";
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Boolean getContactAuthority() {
+		return contactAuthority;
 	}
 
 }
