@@ -36,6 +36,9 @@ public class Neighborhood {
 
 	@OneToMany(mappedBy="neighborhoodId")
 	private List<NeighborhoodEvent> nEvents;
+	
+	@OneToMany(mappedBy = "nid")
+	private List<Post> posts;
 
 	public int getId() {
 		return id;
@@ -91,6 +94,14 @@ public class Neighborhood {
 
 	public void setnEvents(List<NeighborhoodEvent> nEvents) {
 		this.nEvents = nEvents;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.skilldistillery.vigilance.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -10,8 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class User {
@@ -46,13 +50,14 @@ public class User {
 	private String aboutme;
 	
 	@Column(name="create_date")
+	@CreationTimestamp
 	private  Date createDate;
 	
 	@Column(name="update_date")
 	private Date updateDate;
 	
 	@Column(name="date_of_birth")
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	
 	//TODO MAP Objects
 //	private HouseHold household;
@@ -63,9 +68,11 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<NeighborhoodEvent> neighborhoodEvent;
 //	
-//	private Comment comment;
+	@ManyToMany(mappedBy = "users")
+	private List<Comment> comments;
 //	
-//	private Post post;
+	@OneToMany(mappedBy = "user")
+	private List<Post> posts;
 //	
 	@OneToMany(mappedBy="user")
 	private List<Report> reports;
@@ -78,7 +85,7 @@ public class User {
 	}
 	
 	public User() {
-		super();
+		super(); 
 	}
 
 	public String getPassword() {
@@ -180,12 +187,12 @@ public class User {
 		this.updateDate = updateDate;
 	}
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setDateOfBirth(LocalDate birthDate) {
+		this.dateOfBirth = birthDate;
 	}
 
 	public List<NeighborhoodEvent> getNeighborhoodEvent() {
@@ -225,6 +232,22 @@ public class User {
 
 	public void setHousehold(HouseHold household) {
 		this.household = household;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 	@Override

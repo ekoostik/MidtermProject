@@ -24,18 +24,6 @@ public class InMemoryUserDAO implements UserDAO {
     users.put(2, new User(2, "user", "password", 1, "Kevin", "Bacon", "kbacon@gmail.com"));    
   }
   
-  @Override
-  public User validateUserLogin(String userName, String password) {
-	  	User user = new User();
-	    Set<Integer> keys = users.keySet();
-	    for (Integer key : keys) {
-	     user = users.get(key);
-	      if(user.getUsername().equals(userName) && user.getPassword().equals(password)) {
-	    	 return user;
-	      }
-	    }
-	    return null;
-	}
 
   @Override
   public User findUserById(int userId) {

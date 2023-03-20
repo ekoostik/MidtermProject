@@ -16,8 +16,8 @@
     </div>
     <div class="col-6">
       	<form action="userlogin.do" method="POST">
-		Username <input type="text" name="username" />
-		Password <input type="password" name="password"/>
+		Username <input type="text" name="username"  />
+		Password <input type="password" name="password" />
 		<button type="submit" class="btn btn-primary">Login</button>
 		</form>
     </div>
@@ -27,10 +27,10 @@
     </div>
     <div class="col-6">
     No Account? Register Here!
-	<form action="register.do" method="GET">
+	<form action="registration.do" method="GET">
 	<button name="register" type="submit" 
-	class="btn btn-success">Register</button>
-	</form>
+	class="btn btn-success">Register</button> 
+	</form> 
     </div>
   </div>
 </div>
