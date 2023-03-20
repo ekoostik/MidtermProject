@@ -1,5 +1,6 @@
 package com.skilldistillery.vigilance.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -17,6 +18,12 @@ public class NeighborhoodDoaImpl implements NeighborhoodDAO {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	//**********************For testing(created by RobT) ************************
+	
+	public EntityManager testQuery() {
+		return this.em;
+	}
 
 	// ****************** Neighborhood Event ********************
 	@Override
@@ -93,6 +100,23 @@ public class NeighborhoodDoaImpl implements NeighborhoodDAO {
 		em.persist(newHood);
 
 		return newHood;
+	}
+	
+	//**********************Added By Rob Tisdale*********************
+	
+	@Override
+	public List<Neighborhood> findNeighborhoodsByCityStateZip(String city, String state, String zipCode) {
+		List<Neighborhood> nhood = new ArrayList<>();
+		String jpql = "SELECT DISTINCT n FROM Neighborhood n JOIN FETCH"
+					+ " n.addresses a WHERE a.city = :city AND a.state = :state AND a.zipCode = :zipCode";
+		
+		nhood = em.createQuery(jpql, Neighborhood.class)
+				.setParameter("city", city)
+				.setParameter("state", state)
+				.setParameter("zipCode", zipCode)
+				.getResultList();
+		 return nhood;
+		
 	}
 
 	@Override

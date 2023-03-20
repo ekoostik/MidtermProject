@@ -1,8 +1,8 @@
 package com.skilldistillery.vigilance.controllers;
 
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,16 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skilldistillery.vigilance.data.NeighborhoodDAO;
 import com.skilldistillery.vigilance.data.UserDAO;
 import com.skilldistillery.vigilance.entities.Address;
-import com.skilldistillery.vigilance.entities.HouseHold;
+import com.skilldistillery.vigilance.entities.Neighborhood;
 import com.skilldistillery.vigilance.entities.User;
+
+//AUTHOR: ROB TISDALE 
 
 @Controller
 public class UserController {
 	
 	@Autowired
 	private UserDAO userDao;
+	@Autowired
+	private NeighborhoodDAO neighborhoodDAO;
 
 
 
@@ -74,12 +79,14 @@ public class UserController {
 	@RequestMapping(path="newaddr.do", method = RequestMethod.POST) 
 	public String register(Address address, int householdId, Model model) {
 		address = userDao.addnewAddress(householdId, address);	
-		return "/webpages/registersuccess";
+		List<Neighborhood> nhoods = neighborhoodDAO.findNeighborhoodsByCityStateZip(address.getCity(), address.getState(), address.getZipCode());
+		model.addAttribute("existingNeighborhoods",nhoods);
+		return "webpages/forms/addressForm";
 	}
 	
 	@RequestMapping(path="account.do") 
 	public String account(Model model) {		
-		return "/webpages/userAccount";
+		return "webpages/forms/login_register";
 	}	
 	
 	@RequestMapping(path="profile.do") 

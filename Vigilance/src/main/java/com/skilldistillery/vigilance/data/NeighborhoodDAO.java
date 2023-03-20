@@ -20,6 +20,7 @@ public interface NeighborhoodDAO {
 	public Neighborhood updateNeighborhood(int id, Neighborhood nHood);
 	public boolean deleteNeighborhood(int id);
 	public List <Neighborhood> allNeighborhoods();
+	List<Neighborhood> findNeighborhoodsByCityStateZip(String city, String State, String zipCode);
 	
 	
 
