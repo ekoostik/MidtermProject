@@ -70,19 +70,55 @@ public class UserController {
 	//added houseHoldId() method to add arbitrary # until db updated
 	//update to take in Address and set.
 	@RequestMapping(path="register.do", params = "dob", method = RequestMethod.POST) 
-	public String register(User user, Model model, @RequestParam("dob") String dob ) {
+	public String register(User user, Model model, @RequestParam("dob") String dob, HttpSession session ) {
 		user = userDao.registerNewUser(dob,user);	
-		model.addAttribute("user", user);
-		return "webpages/forms/addressForm";
+		if (user != null) {
+			session.setAttribute("loggedinuser", user);
+			LocalDateTime localTime = LocalDateTime.now();
+			session.setAttribute("loginTime", localTime);
+			return "webpages/forms/addressForm";
+		} else {
+			
+			return "webpages/forms/login_register"; 
+		}
+		
 	}
 	
 	@RequestMapping(path="newaddr.do", method = RequestMethod.POST) 
-	public String register(Address address, int householdId, Model model) {
+	public String newAddress(Address address, int householdId, Model model) {
 		address = userDao.addnewAddress(householdId, address);	
 		List<Neighborhood> nhoods = neighborhoodDAO.findNeighborhoodsByCityStateZip(address.getCity(), address.getState(), address.getZipCode());
+		if (nhoods != null) {
 		model.addAttribute("existingNeighborhoods",nhoods);
-		return "webpages/forms/addressForm";
+		return "webpages/forms/neighborhoodForm";
+		} else {
+		return "webpages/forms/neighborhoodForm";	
+		}
 	}
+	
+	@RequestMapping(path="newneighborhood.do", method = RequestMethod.POST) 
+	public String createNeighborhood(Neighborhood neighborhood, Model model) {
+		neighborhood = neighborhoodDAO.createNeighborhood(neighborhood);
+		if (neighborhood != null) {
+		return "webpages/registersuccess";
+		} else {
+			return "webpages/forms/login_register";
+		}
+	}
+	
+	@RequestMapping(path="assignUserToNeighborhood.do", params="neighborhoodId",method = RequestMethod.POST) 
+	public String assignUsertoNeighborhood(Model model, @RequestParam("neighborhoodId") int neighborhoodId, HttpSession session ) {
+		
+		User loggedInUser = (User) session.getAttribute("loggedinuser");
+		if(loggedInUser != null) {
+			neighborhoodDAO.assignNeighborhoodToAddress(loggedInUser.getId(), neighborhoodId);
+			return "webpages/registersuccess"; 
+				
+		}
+		return "webpages/failurePage"; 
+	}
+	
+	
 	
 	@RequestMapping(path="account.do") 
 	public String account(Model model) {		

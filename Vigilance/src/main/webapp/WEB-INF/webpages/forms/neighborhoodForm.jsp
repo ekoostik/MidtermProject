@@ -9,10 +9,15 @@
 <title>Neighborhood Event</title>
 <link rel="stylesheet" href="css/stylesheet.css">
 </head>
-
-<jsp:include page="../../bootstrap/navbar.jsp" />
 <body>
-
+ <p>Looks like we don't have a neighborhood for your address</p>
+ <p>Please fill out the following fields to continue.</p>
+<form action="newneighborhood.do" method="POST">
+  Name<input type="text" name="name" /><br>
+  Image(Optional)<input type="text" name="imageUrl" /><br>
+  Description <input type="text" name="description" /><br>
+ <button type="submit" class="btn btn-primary">Submit</button>
+</form> 
 
 
 

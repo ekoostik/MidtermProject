@@ -1,5 +1,6 @@
 package com.skilldistillery.vigilance.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -10,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Neighborhood {
@@ -27,8 +30,9 @@ public class Neighborhood {
 	
 	private String description;
 	
+	@CreationTimestamp
 	@Column(name="create_date")
-	private Date createDate;
+	private LocalDate createDate;
 	
 	@OneToMany(mappedBy="neighborhood")
 	private List<Address> addresses;
@@ -73,11 +77,11 @@ public class Neighborhood {
 		this.description = description;
 	}
 
-	public Date getCreateDate() {
+	public LocalDate getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(LocalDate createDate) {
 		this.createDate = createDate;
 	}
 

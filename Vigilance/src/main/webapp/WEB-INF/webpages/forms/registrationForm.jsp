@@ -22,29 +22,11 @@
  <button type="submit" class="btn btn-primary">Submit</button>
 </form> 
 
-<jsp:include page="addressForm.jsp" />
-
   <!-- ADD LOGiC FOR DROP DOWN ONCE ALL FIELDS ARE FILLED TO PRESENT ANOTHER 
   SECTION FOR SELECTING A NEIGHBORHOOD-->
   
   <!--MAYBE ADD LOGIC FOR USER TO COMPARE EXISTING NEIGHBORHOODS (STRETCH)  -->
-  Select your neighborhood
-  <form>
-  <label>Neighborhood</label> 
-	<select name="nhood">
-		<option value=CHANGE>NEIGHBORHOOD1</option>
-		<option value=CHANGE>NEIGHBORHOOD2</option>
-		<option value=CHANGE>NEIGHBORHOOD3</option>
-		<option value=ChANGE>NEIGHBORHOOD4</option>
-	</select> <br> 
-  <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  <br>
-  Not seeing your neighborhood?
-  	<form action="addneighborhood.do" method="GET">
-	<button name="register" type="submit" 
-	class="btn btn-success">Add Neighborhood</button>
-	</form>
+  
 <jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>
