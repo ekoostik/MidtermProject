@@ -6,7 +6,7 @@
 <head>
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
-<title>Neighborhood Event</title>
+<title>Report</title>
 <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 
@@ -14,34 +14,13 @@
 <body>
 
 
-
-
-
-
-<c:forEach var="event" items="${event}">
+<c:forEach var="event" items="${report}">
 <ul>
-<li> <a href="getEventById.do?id=${event.id}"><strong>${event.id}</strong></a></li>
-<li> <strong>${event.create_date}</strong></li>
-<li> <strong>${event.description}</strong></li>
+<li> <a href="getReprtById.do?id=${report.id}"><strong>${report.id}</strong></a></li>
+<li> <strong>${report.name}</strong></li>
+<li> <strong>${report.description}</strong></li>
 </ul>
 </c:forEach>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
