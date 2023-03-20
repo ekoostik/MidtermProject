@@ -53,11 +53,13 @@ public class HouseHoldTest {
 		assertNotNull(houseHold);
 		assertFalse(houseHold.getPets().isEmpty());
 	}
+	
 	@Test
 	void test_user_map() {
-		assertNotNull(houseHold.getUsers());
-		assertFalse(houseHold.getUsers().isEmpty());
+		assertNotNull(houseHold.getUser());
+		assertEquals("Skill", houseHold.getUser().getFirstName());
 	}
+	
 	@Test
 	void test_address_map() {
 		assertNotNull(houseHold.getAddress());
