@@ -13,7 +13,6 @@ public interface UserDAO {
 	public User updateUser(int id, User user); 
 	public Address addnewAddress(int householdId, Address address);
 	public Address updateAddress(int id, Address address);
-	public void neighborhoodLookup(String city, String state);
 	HouseHold createNewHousehold(HouseHold household);
 	HouseHold updateHousehold(HouseHold household, int id);
 	User registerNewUser(String dob, User user);
