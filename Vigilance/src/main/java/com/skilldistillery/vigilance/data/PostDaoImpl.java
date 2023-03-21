@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.vigilance.entities.Comment;
 import com.skilldistillery.vigilance.entities.Neighborhood;
 import com.skilldistillery.vigilance.entities.Post;
+import com.skilldistillery.vigilance.entities.Report;
 import com.skilldistillery.vigilance.entities.User;
 
 @Service
@@ -39,6 +40,7 @@ public class PostDaoImpl implements PostDAO {
 		return newpost;
 	}
 
+	
 	@Override
 	public Post updatepost(String description, int userId, int postId) {
 		// TODO Auto-generated method stub
@@ -69,7 +71,7 @@ public class PostDaoImpl implements PostDAO {
 	@Override
 	public Post findpostById(int id) {
 		// TODO Auto-generated method stub
-
+	
 		return em.find(Post.class, id);
 	}
 
