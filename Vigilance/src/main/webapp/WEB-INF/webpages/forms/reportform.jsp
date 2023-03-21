@@ -13,13 +13,16 @@
 <jsp:include page="../../bootstrap/navbar.jsp" />
 <body>
 
-<c:forEach var="report" items="${report}">
-<ul>
-<li> ${report.description} </li>
+	<c:forEach var="report" items="${report}">
+		<ul>
+			<li>${report.description}</li>
+			
+			<li>${report.animals}</li>
+			<li>${report.personOI}</li>
 
-</ul>
-</c:forEach>
+		</ul>
+	</c:forEach>
 
-<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
+	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>
