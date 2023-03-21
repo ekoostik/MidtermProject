@@ -7,68 +7,63 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-* {
-  box-sizing: border-box;
+body{
+background:#eee;
 }
-
-body {
-  margin: 0;
+.separator {
+    border-right: 1px solid #dfdfe0; 
 }
-
-/* Create three unequal columns that floats next to each other */
-.column {
-  float: left;
-  padding: 10px;
+.icon-btn-save {
+    padding-top: 0;
+    padding-bottom: 0;
 }
-
-/* Left and right column */
-.column.side {
-  width: 25%;
+.input-group {
+    margin-bottom:10px; 
 }
-
-/* Middle column */
-.column.middle {
-  width: 50%;
-  border-style: solid;
-  border-color: black;
-  
-}
-/* Clear floats after the columns */
-.row::after {
-  content: "";
-  display: table;
-  clear: both;
+.btn-save-label {
+    position: relative;
+    left: -12px;
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 3px 0 0 3px;
 }
 
 </style>
 </head>
 <body>
 
-<div class="row">
-  <div class="column side">
-    <h2>Make a Post</h2>
-    <form action="addPost.do" method="POST">
-		
-		<label for="description">Enter a Description:</label> 
-		<input type="text" name="description" value="" /> 
-		<br> 
-		<label for="hoodId">Neighborhood</label> 
-		<input type="number" name="hoodId" value="" /> 
-		<br> 
-		<input name="userId" type="number" value="${user.id}"></input>
-		<br> 
-		
-		
-		
-		
-		
-		<input type="submit" class="btn btn-success"value="Post">
-	</form>
-  </div>
-
-
-
-
+<div class="container bootstrap snippets bootdey">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-th"></span>
+                        New Post   
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 separator social-login-box"> <br>
+                           <img alt="" class="img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar1.png">  
+                                <form action="addPost.do?" method="post">
+                                <input name="description" class="form-control" type="text" placeholder="Description">
+                                <label for="decription"></label> 
+                                <input name="photo" class="form-control" type="text" placeholder="Upload a Photo">
+                                <label for="photo"></label> 
+								<input type="submit" class="btn btn-success" value="Post">                      
+                                </form>
+			
+                        </div>
+                     
+                    </div>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

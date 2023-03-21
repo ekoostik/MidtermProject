@@ -22,17 +22,17 @@ public class PostDaoImpl implements PostDAO {
 	private EntityManager em;
 
 	@Override
-	public Post createpost(String description, int userId, int hoodId) {
+	public Post createpost(String description, String photo, int userId, int neighborhood) {
 
 		User user = em.find(User.class, userId);
-		Neighborhood nh = em.find(Neighborhood.class, hoodId);
+		Neighborhood nh = em.find(Neighborhood.class, neighborhood);
 		Post newpost = new Post();
 
 		newpost.setUser(user);
 		newpost.setNid(nh);
 		newpost.setDescription(description);
 
-//		newpost.setImage(img);
+		newpost.setImage(photo);
 
 		em.persist(newpost);
 
@@ -40,12 +40,12 @@ public class PostDaoImpl implements PostDAO {
 	}
 
 	@Override
-	public Post updatepost(int id, Post post) {
+	public Post updatepost(String description, int userId, int postId) {
 		// TODO Auto-generated method stub
-		Post updated = em.find(Post.class, id);
-		updated.setDescription(post.getDescription());
-		updated.setImage(post.getDescription());
-		updated.setCreateDate(post.getCreateDate());
+		Post updated = em.find(Post.class, postId);
+		updated.setDescription(description);
+//		updated.setImage(post.getImage());
+		
 
 		return updated;
 	}
@@ -108,7 +108,7 @@ public class PostDaoImpl implements PostDAO {
 	@Override
 	public boolean likeComment(int postId, int userId) {
 		boolean like = false;
-		String jpql = "UPDATE  PostLike  SET post_id =:post, user_id=:user";
+		String jpql = "UPDATE  postlike  SET post_id =:post, user_id=:user";
 		int result = em.createQuery(jpql, String.class).setParameter
 				("post", postId).setParameter("user", userId).getFirstResult();
 		if (result == 1) {

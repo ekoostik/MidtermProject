@@ -4,6 +4,8 @@ package com.skilldistillery.vigilance.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.skilldistillery.vigilance.data.PostDAO;
 import com.skilldistillery.vigilance.entities.Comment;
 import com.skilldistillery.vigilance.entities.Post;
+import com.skilldistillery.vigilance.entities.User;
 
 @Controller
 public class PostController {
@@ -33,11 +36,15 @@ public class PostController {
 	}
 
 	@RequestMapping(path = "addPost.do", method = RequestMethod.POST)
-	public ModelAndView addNewpost(String description, int userId, int hoodId, RedirectAttributes redir) {
+	public ModelAndView addNewpost(String description, String photo,  HttpSession session, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		Post newpost = null;
+		User loggedInUser = (User) session.getAttribute("loggedinuser");
+		
 		try {
-			newpost = postDao.createpost(description, userId, hoodId);
+			int userId=loggedInUser.getId();
+			int neighborhood = loggedInUser.getHousehold().getAddress().getNeighborhood().getId();
+			newpost = postDao.createpost(description, photo, userId, neighborhood);
 		} catch (RuntimeException e) {
 			mv.setViewName("error");
 			return mv;
@@ -73,16 +80,16 @@ public class PostController {
 	@RequestMapping(path = "updatePost.do", method = RequestMethod.GET)
 	public String updatepost(int id, Model model) {
 		model.addAttribute("post", postDao.findpostById(id));
-
-		return "updatepost";
+		
+		return "/webpages/forms/TestLanding";
 	}
 
 	@RequestMapping(path = "submitPostUpdate.do", method = RequestMethod.POST)
-	public ModelAndView update(int id, Post post, RedirectAttributes redir) {
+	public ModelAndView update(String description, int userId, int postId, RedirectAttributes redir) {
 
 		ModelAndView mv = new ModelAndView();
-		Post updated = postDao.updatepost(id, post);
-		if (updated != null) {
+		Post post = postDao.updatepost(description, userId, postId);
+		if (post != null) {
 			redir.addFlashAttribute("post", post);
 			mv.setViewName("redirect:postUpdated.do");
 			return mv;
@@ -128,10 +135,12 @@ public String createPost() {
 }
 
 	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
-	public ModelAndView addNewCommentt(String description, int postId, int userId, RedirectAttributes redir) {
+	public ModelAndView addNewCommentt(String description, int postId, HttpSession session, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		Comment newComment = null;
+		User loggedInUser = (User) session.getAttribute("loggedinuser");
 		try {
+			int userId=loggedInUser.getId();
 			newComment = postDao.addComment(description, postId, userId);
 		} catch (RuntimeException e) {
 			mv.setViewName("error");

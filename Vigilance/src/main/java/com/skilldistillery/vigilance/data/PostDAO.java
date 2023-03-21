@@ -10,8 +10,8 @@ public interface PostDAO {
 	
 	
 	public Post findpostById(int id);
-	public Post createpost(String description, int userId, int hoodId);
-	public Post updatepost(int id, Post post);
+	public Post createpost(String description, String photo, int userId, int hoodId);
+	public Post updatepost(String description, int userId, int postI);
 	public boolean deletepost(int id);
 	public List <Post> allposts();
 	

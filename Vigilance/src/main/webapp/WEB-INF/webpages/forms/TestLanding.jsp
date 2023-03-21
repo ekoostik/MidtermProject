@@ -7,7 +7,7 @@
 <head>
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
-<title>Neighborhood Event</title>
+<title>update </title>
 <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 
@@ -17,42 +17,19 @@
 
 
 
+	<form action="submitPostUpdate.do" method="POST">
+	
 
-
-<c:forEach var="post" items="${post}">
-<ul>
-<li> <a href="getEventById.do?id=${event.id}"><strong>${event.id}</strong></a></li>
-<li> <strong>${event.create_date}</strong></li>
-<li> <strong>${event.description}</strong></li>
-
-<li> <strong>${post.description}</strong></a></li>
-
-
-
-</ul>
-</c:forEach>
+	
+	<input name="description" type="text" value=""></input>
+	<input name="postId" type="hidden" value="${post.id}"></input>
+	<input name="userId" type="hidden" value="${post.user.id}"></input>
 
 
 
-
-
-<c:forEach var="address" items="${address}">
-<ul>
-<li> <strong>${address.address1}</strong></a></li>
-
-
-
-</ul>
-</c:forEach>
-
-
-
-
-
-
-
-
-
+<input class="btn btn-warning" type="submit" value="Update post">
+		
+	</form>
 
 
 
