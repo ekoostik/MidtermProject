@@ -9,8 +9,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.vigilance.entities.Address;
 import com.skilldistillery.vigilance.entities.Neighborhood;
 import com.skilldistillery.vigilance.entities.NeighborhoodEvent;
+import com.skilldistillery.vigilance.entities.User;
 
 @Service
 @Transactional
@@ -112,11 +114,25 @@ public class NeighborhoodDoaImpl implements NeighborhoodDAO {
 		 return nhood;
 		
 	}
-
 	@Override
-	public Neighborhood updateNeighborhood(int id, Neighborhood nHood) {
-		// TODO Auto-generated method stub
-		return null;
+	public void assignNeighborhoodToAddress(int userId, int neighborhoodid) {
+		boolean updated = false;
+		User user = em.find(User.class, userId);
+		Neighborhood neighborhood = em.find(Neighborhood.class, neighborhoodid);
+		Address address = user.getHousehold().getAddress();
+		try {
+			address.setNeighborhood(neighborhood);
+			em.persist(address);
+			updated = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public boolean updateNeighborhood(int userId, int neighborhoodid) {
+		boolean updated = false;
+		//refactor
+		return updated;
 	}
 
 	@Override

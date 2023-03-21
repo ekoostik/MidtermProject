@@ -17,10 +17,11 @@ public interface NeighborhoodDAO {
 	
 	public Neighborhood findHoodById(int id);
 	public Neighborhood createNeighborhood(Neighborhood nHood);
-	public Neighborhood updateNeighborhood(int id, Neighborhood nHood);
 	public boolean deleteNeighborhood(int id);
 	public List <Neighborhood> allNeighborhoods();
 	List<Neighborhood> findNeighborhoodsByCityStateZip(String city, String State, String zipCode);
+	boolean updateNeighborhood(int userId, int neighborhoodid);
+	void assignNeighborhoodToAddress(int userId, int neighborhoodid);
 	
 	
 

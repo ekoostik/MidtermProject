@@ -53,9 +53,6 @@ public class UserDaoImpl implements UserDAO {
 		user.setHousehold(household);
 		em.persist(household);
 		em.flush();
-		System.out.println("***********************************************");
-		System.out.println(household.getUser());
-		System.out.println("***********************************************");
 
 			return user;
 	}
@@ -78,14 +75,8 @@ public class UserDaoImpl implements UserDAO {
 		hh.setAddress(address);
 		em.persist(address);
 		em.flush();
-		//controllerVV
 		return address; 
 	}
-			
-	public void neighborhoodLookup(String city, String state) {
-		Address addr = new Address();
-		HouseHold test = new HouseHold();
-		}
 	
 	
 	@Override

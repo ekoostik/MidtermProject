@@ -48,14 +48,15 @@ body {
   <div class="column side">
     <h2>Make a Post</h2>
     <form action="addPost.do" method="POST">
-		<label for="createDate">Event Date:</label> 
-		<input type="date" name="createDate" value="" /> 
-		<br> 
+		
 		<label for="description">Enter a Description:</label> 
 		<input type="text" name="description" value="" /> 
 		<br> 
-		<label for="nid">Neighborhood</label> 
-		<input type="number" name="nid" value="" /> 
+		<label for="hoodId">Neighborhood</label> 
+		<input type="number" name="hoodId" value="" /> 
+		<br> 
+		<label for="userId">User</label> 
+		<input type="number" name="userId" value="" /> 
 		<br> 
 		
 		
@@ -65,23 +66,6 @@ body {
 		<input type="submit" class="btn btn-success"value="Post">
 	</form>
   </div>
-
- <div class="column middle">
-<c:forEach var="post" items="${post}">
-<ul>
-<li> <a href="getPostById.do?id=${post.id}"><strong>${post.description}</strong></a></li>
-<li> <strong>${post.image}</strong></li>
-<li> <strong>${post.createDate}</strong></li>
-<li> <strong>${post.user.firstName}</strong></li>
-<li> <strong>${post.comments}</strong></li>
-
-				<form action="deletePost.do" method="POST">
-				<label for="id"></label> 
-				<input type="hidden" name="id" value="${post.id}" />
-				<input type="submit" class="btn btn-danger"value="Delete" />
-			</form>
-</ul>
-</c:forEach>
 
 
 
