@@ -168,10 +168,10 @@ body {
 			<div class="box box-widget">
 				<div class="box-header with-border">
 					<div class="user-block">
-						<img class="img-circle"
-							src="https://bootdey.com/img/Content/avatar/avatar1.png"
-							alt="User Image"> <span class="user"><a href="#">Link
-								to user profile</a></span> <span class="description">Posted:${post.createDate}</span>
+						<img class="img-circle" src="${post.user.profilePic}"
+							alt="User Image" class="user"> <a
+							href="profile.do?id=${post.user.id}">${post.user.firstName}</a> <span
+							class="description">Posted:${post.createDate}</span>
 					</div>
 
 				</div>
@@ -180,29 +180,29 @@ body {
 					<img class="img-responsive pad" src="${post.image}" alt="Photo">
 					<p>${post.description}</p>
 					<form action="commentLike.do" method="POST">
-					<input name="postId" type="hidden" value="${post.id}"></input>
-					<input name="userId" type="hidden" value="${post.user.id}"></input>
-					<input type="submit" class="btn btn-default" value="Like">
+						<input name="postId" type="hidden" value="${post.id}"></input> <input
+							name="userId" type="hidden" value="${post.user.id}"></input> <input
+							type="submit" class="btn btn-default" value="Like">
 					</form>
-						
+
 					<form action="deletePost.do" method="POST">
 						<label for="id"></label> <input type="hidden" name="id"
 							value="${post.id}" /> <input type="submit"
 							class="btn btn-danger" value="Delete" />
 					</form>
-
-					<span class="pull-right text-muted"> # likes</span>
+					<a class="btn btn-warning" href="updatePost.do?id=${post.id}"
+						role="button">Edit Post</a> <span class="pull-right text-muted">
+						# likes</span>
 				</div>
 				<div class="box-footer box-comments" style="display: block;">
 					<div class="box-comment">
 						<c:forEach var="comments" items="${comments}">
-							<img class="img-circle img-sm"
-								src="https://bootdey.com/img/Content/avatar/avatar2.png"
+							<img class="img-circle img-sm" src="${comments.user.profilePic}"
 								alt="User Image">
 							<div class="comment-text">
 								<span class="username"> <span
 									class="text-muted pull-right">${comments.createDate}</span>
-								</span>
+								</span> <a href="profile.do?id=${comments.user.id}">${comments.user.firstName}</a>
 								<p>${comments}</p>
 							</div>
 						</c:forEach>
@@ -211,15 +211,13 @@ body {
 					<div class="box-footer" style="display: block;">
 						<form action="addComment.do?" method="post">
 							<img class="img-responsive img-circle img-sm"
-								src="https://bootdey.com/img/Content/avatar/avatar1.png"
-								alt="Alt Text">
+								src="${post.user.profilePic}" alt="Alt Text">
 							<div class="img-push">
 
-								<label for="decription"></label> 
-								<input type="text" name="description" value="" /> 
-								<input name="postId" type="hidden" value="${post.id}"></input>
-								<input name="userId" type="hidden" value="${post.user.id}"></input>
-									<input type="submit" class="btn btn-success" value="Comment">
+								<label for="decription"></label> <input type="text"
+									name="description" value="" /> <input name="postId"
+									type="hidden" value="${post.id}"></input> <input type="submit"
+									class="btn btn-success" value="Comment">
 							</div>
 						</form>
 					</div>
