@@ -55,8 +55,7 @@ body {
 		<label for="hoodId">Neighborhood</label> 
 		<input type="number" name="hoodId" value="" /> 
 		<br> 
-		<label for="userId">User</label> 
-		<input type="number" name="userId" value="" /> 
+		<input name="userId" type="number" value="${user.id}"></input>
 		<br> 
 		
 		

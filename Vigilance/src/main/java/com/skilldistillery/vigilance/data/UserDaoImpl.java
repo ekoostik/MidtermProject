@@ -54,21 +54,9 @@ public class UserDaoImpl implements UserDAO {
 		em.persist(household);
 		em.flush();
 
-			return user;
+		return user;
 	}
-	@Override 
-	public HouseHold createNewHousehold(HouseHold household) {
-		em.persist(household);
-		em.flush();
-		return household;
-	}
-	
-	@Override
-	public HouseHold updateHousehold(HouseHold household, int userid) {
-		household = em.find(HouseHold.class, household.getId());
-//		household.setUsers.setId;
-		return household;
-	}
+
 	@Override
 	public Address addnewAddress(int householdId, Address address) {
 		HouseHold hh = em.find(HouseHold.class, householdId);
@@ -78,10 +66,20 @@ public class UserDaoImpl implements UserDAO {
 		return address; 
 	}
 	
+	@Override
+	public Address updateAddress(int householdId, Address address) {
+		Address updateAddress = em.find(Address.class, address.getId());
+		updateAddress.setAddress1(address.getAddress1());
+		updateAddress.setAddress2(address.getAddress2());
+		updateAddress.setCity(address.getCity());
+		updateAddress.setState(address.getState());
+		updateAddress.setZipCode(address.getZipCode());
+		return updateAddress;
+	}
 	
 	@Override
-	public User updateUser(int id, User user) {
-		User updateUser =em.find(User.class, id);
+	public User updateUser(int userId, User user) {
+		User updateUser =em.find(User.class, userId);
 		updateUser.setUsername(user.getUsername());
 		updateUser.setPassword(user.getPassword());
 		updateUser.setEnabled(true);
@@ -96,19 +94,14 @@ public class UserDaoImpl implements UserDAO {
 		
 	} 
 	
-	
-	@Override
-	public Address updateAddress(int id, Address address) {
-		Address addr = null;
-		
-		return addr;
-		
-	} 
 
 	@Override
 	public User findUserById(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = em.find(User.class, userId);
+		return user;
 	}
+
+
+
 
 }

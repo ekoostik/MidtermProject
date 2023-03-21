@@ -116,23 +116,15 @@ public class NeighborhoodDoaImpl implements NeighborhoodDAO {
 	}
 	@Override
 	public void assignNeighborhoodToAddress(int userId, int neighborhoodid) {
-		boolean updated = false;
 		User user = em.find(User.class, userId);
 		Neighborhood neighborhood = em.find(Neighborhood.class, neighborhoodid);
 		Address address = user.getHousehold().getAddress();
 		try {
 			address.setNeighborhood(neighborhood);
 			em.persist(address);
-			updated = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	@Override
-	public boolean updateNeighborhood(int userId, int neighborhoodid) {
-		boolean updated = false;
-		//refactor
-		return updated;
 	}
 
 	@Override
