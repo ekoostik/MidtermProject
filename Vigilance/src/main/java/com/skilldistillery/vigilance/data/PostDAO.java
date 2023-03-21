@@ -17,6 +17,6 @@ public interface PostDAO {
 	
 	public List<Comment> viewComments(int postid);
 	public Comment addComment(String description, int postId, int userId);
-	
+	public boolean likeComment(int postId, int userId);
 
 }
