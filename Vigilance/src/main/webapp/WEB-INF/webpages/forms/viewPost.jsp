@@ -179,9 +179,12 @@ body {
 				<div class="box-body" style="display: block;">
 					<img class="img-responsive pad" src="${post.image}" alt="Photo">
 					<p>${post.description}</p>
-					<button type="button" class="btn btn-default btn-xs">
-						<i class="fa fa-thumbs-o-up"></i> Like
-					</button>
+					<form action="commentLike.do" method="POST">
+					<input name="postId" type="hidden" value="${post.id}"></input>
+					<input name="userId" type="hidden" value="${post.user.id}"></input>
+					<input type="submit" class="btn btn-default" value="Like">
+					</form>
+						
 					<form action="deletePost.do" method="POST">
 						<label for="id"></label> <input type="hidden" name="id"
 							value="${post.id}" /> <input type="submit"
@@ -192,34 +195,31 @@ body {
 				</div>
 				<div class="box-footer box-comments" style="display: block;">
 					<div class="box-comment">
-							<c:forEach var="comments" items="${comments}">
-						<img class="img-circle img-sm"
-							src="https://bootdey.com/img/Content/avatar/avatar2.png"
-							alt="User Image">
-						<div class="comment-text">
-							<span class="username"> <span
-								class="text-muted pull-right">${comments.createDate}</span>
-							</span>
+						<c:forEach var="comments" items="${comments}">
+							<img class="img-circle img-sm"
+								src="https://bootdey.com/img/Content/avatar/avatar2.png"
+								alt="User Image">
+							<div class="comment-text">
+								<span class="username"> <span
+									class="text-muted pull-right">${comments.createDate}</span>
+								</span>
 								<p>${comments}</p>
-						</div>
-							</c:forEach>
+							</div>
+						</c:forEach>
 					</div>
 
 					<div class="box-footer" style="display: block;">
-						<form action="addComment.do" method="post">
+						<form action="addComment.do?" method="post">
 							<img class="img-responsive img-circle img-sm"
 								src="https://bootdey.com/img/Content/avatar/avatar1.png"
 								alt="Alt Text">
 							<div class="img-push">
-								
-									<label for="decription"></label> 
-									<input type="text" name="description" value="" /> 
-									<label for="postId">${post.id}</label> 
-									<input type="number" name="postId" value="" /> 
-									<label for="userId">${post.user.id}</label> 
-									<input type="number" name="userId" value="" /> 
-									
-									<input type="submit" class="btn btn-success"value="Comment">
+
+								<label for="decription"></label> 
+								<input type="text" name="description" value="" /> 
+								<input name="postId" type="hidden" value="${post.id}"></input>
+								<input name="userId" type="hidden" value="${post.user.id}"></input>
+									<input type="submit" class="btn btn-success" value="Comment">
 							</div>
 						</form>
 					</div>

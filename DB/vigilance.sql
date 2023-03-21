@@ -283,26 +283,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `person_of_interest`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `person_of_interest` ;
-
-CREATE TABLE IF NOT EXISTS `person_of_interest` (
-  `id` INT NOT NULL,
-  `incident_time` DATE NULL,
-  `description` TEXT NULL,
-  `report_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_person_of_interest_report1_idx` (`report_id` ASC),
-  CONSTRAINT `fk_person_of_interest_report1`
-    FOREIGN KEY (`report_id`)
-    REFERENCES `report` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `animal`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `animal` ;
@@ -312,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `animal` (
   `species` VARCHAR(45) NULL,
   `spotting_time` DATE NULL,
   `description` TEXT NULL,
-  `report_id` INT NOT NULL,
+  `report_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_animal_report1_idx` (`report_id` ASC),
   CONSTRAINT `fk_animal_report1`
@@ -324,11 +304,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `post_like`
+-- Table `postlike`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `post_like` ;
+DROP TABLE IF EXISTS `postlike` ;
 
-CREATE TABLE IF NOT EXISTS `post_like` (
+CREATE TABLE IF NOT EXISTS `postlike` (
   `post_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`post_id`, `user_id`),
@@ -348,11 +328,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `comment_like`
+-- Table `commentlike`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `comment_like` ;
+DROP TABLE IF EXISTS `commentlike` ;
 
-CREATE TABLE IF NOT EXISTS `comment_like` (
+CREATE TABLE IF NOT EXISTS `commentlike` (
   `user_id` INT NOT NULL,
   `comment_id` INT NOT NULL,
   PRIMARY KEY (`user_id`, `comment_id`),
@@ -502,11 +482,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (1, 1, 1, NULL);
-INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (2, 5, 2, NULL);
-INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (3, 4, 3, NULL);
-INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (4, 2, 4, NULL);
-INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (5, 8, 5, NULL);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (1, 1, 1, 5);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (2, 5, 2, 4);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (3, 4, 3, 3);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (4, 2, 4, 2);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (5, 8, 5, 1);
 
 COMMIT;
 
@@ -576,18 +556,6 @@ USE `vigilancedb`;
 INSERT INTO `home_owner_association` (`id`, `name`, `description`, `monthly_due`, `neighborhood_id`) VALUES (1, 'Sell-Your-Soul Home Owers Association', NULL, 135.00, 1);
 INSERT INTO `home_owner_association` (`id`, `name`, `description`, `monthly_due`, `neighborhood_id`) VALUES (2, 'Washington Township HOA', NULL, 258.00, 2);
 INSERT INTO `home_owner_association` (`id`, `name`, `description`, `monthly_due`, `neighborhood_id`) VALUES (3, 'Larime HOA', NULL, 306.00, 3);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `person_of_interest`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `vigilancedb`;
-INSERT INTO `person_of_interest` (`id`, `incident_time`, `description`, `report_id`) VALUES (1, '2023-03-27', 'Person shooping around cars at night, have footage of them on my ringdoor bell camera.', 2);
-INSERT INTO `person_of_interest` (`id`, `incident_time`, `description`, `report_id`) VALUES (2, '2023-03-27', 'My ring camera picked up some footage of someone stealing my amazon package! The person looked like a short female wearing a grey hoodie, leggings, with ugg boots. I couldn\'t see the face of this person, since she had pulled the hood of her hoodie over her head. The police were notified!', 8);
-INSERT INTO `person_of_interest` (`id`, `incident_time`, `description`, `report_id`) VALUES (3, '2023-03-27', 'My car was damaged this morning but another car. It looks to be a hit ', 7);
 
 COMMIT;
 
