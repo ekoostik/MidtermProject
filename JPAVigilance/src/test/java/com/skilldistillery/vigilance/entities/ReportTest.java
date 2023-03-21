@@ -62,8 +62,8 @@ class ReportTest {
 	@Test
 	void test_personOI_map() {
 		report=em.find(Report.class, 2);
-		assertNotNull(report.getPersonOI());
-		assertFalse(report.getPersonOI().isEmpty());
+		assertNotNull(report.getAnimals());
+		assertFalse(report.getAnimals().isEmpty());
 	}
 
 }

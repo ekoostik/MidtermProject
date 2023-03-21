@@ -6,22 +6,30 @@
 <head>
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
-<title>Report</title>
+<title>View Reports</title>
 <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 
 <jsp:include page="../../bootstrap/navbar.jsp" />
 <body>
-
-	<c:forEach var="report" items="${report}">
-		<ul>
-			<li>${report.description}</li>
+	
+	<table class="table table-striped table-hover">
+			<c:forEach var="report" items="${report}">
+		<thead>
+			<th>${report.description}</th>
+			<!-- header -->
 			
-			<li>${report.animals}</li>
-			<li>${report.personOI}</li>
-
-		</ul>
-	</c:forEach>
+			<!--header  -->
+		</thead>
+		<tbody>
+				<c:if test="${not empty report.animals}">
+				<tr>
+					<td>${report.animals.description}</td>
+				</tr>
+			</c:if>
+			</c:forEach>
+		</tbody>
+	</table>
 
 	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
