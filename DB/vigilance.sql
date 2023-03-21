@@ -196,18 +196,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `vehicle_type`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `vehicle_type` ;
-
-CREATE TABLE IF NOT EXISTS `vehicle_type` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `vehicle`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `vehicle` ;
@@ -218,21 +206,12 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   `model` VARCHAR(45) NULL,
   `color` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
-  `license_plate_id` INT NOT NULL,
   `household_id` INT NOT NULL,
-  `state_plate` VARCHAR(45) NULL,
-  `vehicle_type_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_vehicle_household1_idx` (`household_id` ASC),
-  INDEX `fk_vehicle_vehicle_type1_idx` (`vehicle_type_id` ASC),
   CONSTRAINT `fk_vehicle_household1`
     FOREIGN KEY (`household_id`)
     REFERENCES `household` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_vehicle_vehicle_type1`
-    FOREIGN KEY (`vehicle_type_id`)
-    REFERENCES `vehicle_type` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -547,29 +526,15 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `vehicle_type`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `vigilancedb`;
-INSERT INTO `vehicle_type` (`id`, `name`) VALUES (1, 'Compact');
-INSERT INTO `vehicle_type` (`id`, `name`) VALUES (2, 'Truck');
-INSERT INTO `vehicle_type` (`id`, `name`) VALUES (3, 'SUV');
-INSERT INTO `vehicle_type` (`id`, `name`) VALUES (4, 'Sedan');
-INSERT INTO `vehicle_type` (`id`, `name`) VALUES (5, 'Truck');
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `vehicle`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `license_plate_id`, `household_id`, `state_plate`, `vehicle_type_id`) VALUES (1, 'Pontiac', 'Sunfire', 'Gray', 'Mirror is missing', 1, 1, 'SKF123', 1);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `license_plate_id`, `household_id`, `state_plate`, `vehicle_type_id`) VALUES (2, 'Ford', 'F150', 'Black', 'Lifted with tinted windows', 2, 2, 'FAD493', 5);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `license_plate_id`, `household_id`, `state_plate`, `vehicle_type_id`) VALUES (3, 'Toyota', 'Rav4', 'White', NULL, 3, 3, 'ITE982', 4);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `license_plate_id`, `household_id`, `state_plate`, `vehicle_type_id`) VALUES (4, 'Honda', 'CRV', 'Red', NULL, 3, 3, 'BIA024', 3);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `license_plate_id`, `household_id`, `state_plate`, `vehicle_type_id`) VALUES (5, 'Hyundai', 'Elantra', 'Blue', NULL, 5, 5, 'FAS013', 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `household_id`) VALUES (1, 'Pontiac', 'Sunfire', 'Gray', 'Mirror is missing', 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `household_id`) VALUES (2, 'Ford', 'F150', 'Black', 'Lifted with tinted windows', 2);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `household_id`) VALUES (3, 'Toyota', 'Rav4', 'White', NULL, 3);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `household_id`) VALUES (4, 'Honda', 'CRV', 'Red', NULL, 3);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `color`, `description`, `household_id`) VALUES (5, 'Hyundai', 'Elantra', 'Blue', NULL, 5);
 
 COMMIT;
 
