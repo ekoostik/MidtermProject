@@ -33,6 +33,9 @@ public class UserDaoImpl implements UserDAO {
 		try {
 			user = em.createQuery(jpql, User.class).setParameter("name", user.getUsername())
 					.setParameter("pass", user.getPassword()).getSingleResult();
+			user.getHousehold().getPets().size();
+			user.getHousehold().getVehicles().size();
+			user.getEventComments().size();
 		} catch (Exception e) {
 			e.printStackTrace();
 			user = null;
@@ -98,6 +101,9 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public User findUserById(int userId) {
 		User user = em.find(User.class, userId);
+		user.getHousehold().getPets().size();
+		user.getHousehold().getVehicles().size();
+		user.getEventComments().size();
 		return user;
 	}
 
