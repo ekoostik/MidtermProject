@@ -21,7 +21,7 @@ private ReportDAO reportDao;
 	
 	
 	@RequestMapping(path="viewAllreports.do", method =RequestMethod.GET)
-	public String viewAll(Model model) {
+	public String viewAll(Model model ) {
 		List<Report> reports = reportDao.reports();
 //		System.out.println(reports);
 		model.addAttribute("report", reports);

@@ -47,6 +47,7 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public User registerNewUser(String dob, User user) {
 		LocalDate birthDate = LocalDate.parse(dob);
+		user.setRole("user");
 		user.setEnabled(true);
 		user.setDateOfBirth(birthDate);
 		em.persist(user);
@@ -58,7 +59,7 @@ public class UserDaoImpl implements UserDAO {
 		em.persist(household);
 		em.flush();
 
-		return user;
+		return user; 
 	}
 
 	@Override
