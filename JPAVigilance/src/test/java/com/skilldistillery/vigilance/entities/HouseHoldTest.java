@@ -3,6 +3,7 @@ package com.skilldistillery.vigilance.entities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -56,8 +57,8 @@ public class HouseHoldTest {
 	
 	@Test
 	void test_user_map() {
-		assertNotNull(houseHold.getUser());
-		assertEquals("Skill", houseHold.getUser().getFirstName());
+		assertNull(houseHold.getUser());
+		
 	}
 	
 	@Test

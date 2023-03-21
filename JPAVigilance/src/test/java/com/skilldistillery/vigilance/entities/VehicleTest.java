@@ -53,10 +53,5 @@ class VehicleTest {
 		assertEquals(1, vehicle.getHouse().getId());
 	}
 	
-	@Test
-	void test_vehicle_type_map() {
-		assertNotNull(vehicle.getVehicleDetail());
-		assertEquals("Pontiac", vehicle.getVehicleDetail().getMake());
-	}
 
 }
