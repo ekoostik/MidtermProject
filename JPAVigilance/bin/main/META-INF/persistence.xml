@@ -17,7 +17,6 @@
 	<class>com.skilldistillery.vigilance.entities.Animal</class>
 	<class>com.skilldistillery.vigilance.entities.Pet</class>
 	<class>com.skilldistillery.vigilance.entities.Vehicle</class>
-	<class>com.skilldistillery.vigilance.entities.VehicleType</class>
 	<class>com.skilldistillery.vigilance.entities.Post</class>
 	<class>com.skilldistillery.vigilance.entities.Comment</class> 
 	<class>com.skilldistillery.vigilance.entities.EventComment</class> 

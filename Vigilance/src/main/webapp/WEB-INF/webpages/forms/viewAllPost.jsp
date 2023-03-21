@@ -665,8 +665,8 @@ blockquote {
 					<div class="row">
 						<div class="col-xs col-sm-5 col-md-5 col-lg-4">
 							<div>
-								<a href="#"><img
-									src="https://bootdey.com/img/Content/avatar/avatar1.png"
+								<a href="profile.do?id=${post.user.id}"><img
+									src="${post.user.profilePic}"
 									height="200" alt="image post" /></a>
 							</div>
 							<div class="author-info author-info-2">

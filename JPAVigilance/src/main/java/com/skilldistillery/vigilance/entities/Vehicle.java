@@ -29,19 +29,9 @@ public class Vehicle {
 	@Column(name = "description")
 	private String description;
 
-	@Column(name = "license_plate_id")
-	private Integer licensePlate;
-
-	@Column(name = "state_plate")
-	private String statePlate;
-
 	@ManyToOne
 	@JoinColumn(name = "household_id")
 	private HouseHold house;
-
-	@ManyToOne
-	@JoinColumn(name = "vehicle_type_id")
-	private Vehicle vehicleDetail;
 
 	public int getId() {
 		return id;
@@ -83,21 +73,6 @@ public class Vehicle {
 		this.description = description;
 	}
 
-	public int getLicensePlate() {
-		return licensePlate;
-	}
-
-	public void setLicensePlate(int licensePlate) {
-		this.licensePlate = licensePlate;
-	}
-
-	public String getStatePlate() {
-		return statePlate;
-	}
-
-	public void setStatePlate(String statePlate) {
-		this.statePlate = statePlate;
-	}
 
 	public HouseHold getHouse() {
 		return house;
@@ -107,17 +82,10 @@ public class Vehicle {
 		this.house = house;
 	}
 
-	public Vehicle getVehicleDetail() {
-		return vehicleDetail;
-	}
-
-	public void setVehicleDetail(Vehicle vehicleDetail) {
-		this.vehicleDetail = vehicleDetail;
-	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(color, description, id, licensePlate, make, model, statePlate);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -129,15 +97,16 @@ public class Vehicle {
 		if (getClass() != obj.getClass())
 			return false;
 		Vehicle other = (Vehicle) obj;
-		return Objects.equals(color, other.color) && Objects.equals(description, other.description) && id == other.id
-				&& Objects.equals(licensePlate, other.licensePlate) && Objects.equals(make, other.make)
-				&& Objects.equals(model, other.model) && Objects.equals(statePlate, other.statePlate);
+		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
 		return "Vehicle [id=" + id + ", make=" + make + ", model=" + model + ", color=" + color + ", description="
-				+ description + ", licensePlate=" + licensePlate + ", statePlate=" + statePlate + "]";
+				+ description + ", house=" + house + "]";
 	}
+	
+	
 
 }
+	
