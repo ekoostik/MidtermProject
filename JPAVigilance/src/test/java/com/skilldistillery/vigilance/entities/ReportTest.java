@@ -59,11 +59,6 @@ class ReportTest {
 		assertNotNull(report.getAnimals());
 		assertFalse(report.getAnimals().isEmpty());
 	}
-	@Test
-	void test_personOI_map() {
-		report=em.find(Report.class, 2);
-		assertNotNull(report.getAnimals());
-		assertFalse(report.getAnimals().isEmpty());
-	}
+	
 
 }

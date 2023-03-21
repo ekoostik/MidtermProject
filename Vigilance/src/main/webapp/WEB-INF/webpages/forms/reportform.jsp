@@ -14,19 +14,21 @@
 <body>
 	
 	<table class="table table-striped table-hover">
-			<c:forEach var="report" items="${report}">
 		<thead>
-			<th>${report.description}</th>
+			<th>Description</th>
+			<th>Report</th>
 			<!-- header -->
-			
 			<!--header  -->
 		</thead>
 		<tbody>
-				<c:if test="${not empty report.animals}">
+			<c:forEach var="report" items="${report}">
 				<tr>
-					<td>${report.animals.description}</td>
+					<td>${report.description}</td>
+
+					<c:if test="${not empty report.animals}">
+						<td>${report.animals}</td>
+					</c:if>
 				</tr>
-			</c:if>
 			</c:forEach>
 		</tbody>
 	</table>

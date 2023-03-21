@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.vigilance.entities.Animal;
-import com.skilldistillery.vigilance.entities.Comment;
 import com.skilldistillery.vigilance.entities.Report;
 import com.skilldistillery.vigilance.entities.User;
 
@@ -66,9 +65,11 @@ public class ReportDoaImpl implements ReportDAO {
 	}
 
 	@Override
-	public List<Report> reports() {
-		String jpql ="SELECT r FROM Report r";
-		return em.createQuery(jpql, Report.class).getResultList();		
+	public List<Report> reportsByNeighborhood(int nId) {
+		String jpql ="SELECT r FROM Report r WHERE r.user.household.address.neighborhood.id = :nId";
+		return em.createQuery(jpql, Report.class)
+				.setParameter("nId",nId)
+				.getResultList();		
 		
 	}
 

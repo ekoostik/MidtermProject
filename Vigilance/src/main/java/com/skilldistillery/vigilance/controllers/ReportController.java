@@ -2,6 +2,8 @@ package com.skilldistillery.vigilance.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.vigilance.data.ReportDAO;
 import com.skilldistillery.vigilance.entities.Report;
+import com.skilldistillery.vigilance.entities.User;
 
 @Controller
 public class ReportController {
@@ -21,18 +24,21 @@ private ReportDAO reportDao;
 	
 	
 	@RequestMapping(path="viewAllreports.do", method =RequestMethod.GET)
-	public String viewAll(Model model) {
-		List<Report> reports = reportDao.reports();
-//		System.out.println(reports);
+	public String viewAll(Model model, HttpSession session) {
+		User loggedInUser = (User)session.getAttribute("loggedinuser");
+		int nId = loggedInUser.getHousehold().getAddress().getNeighborhood().getId();
+		List<Report> reports = reportDao.reportsByNeighborhood(nId);
 		model.addAttribute("report", reports);
 		return "/webpages/forms/reportform";
 	}
-	@RequestMapping(path = "ReportAdded.do", method = RequestMethod.GET)
+	@RequestMapping(path = "reportAdded.do", method = RequestMethod.GET)
 	public ModelAndView ReportAdded() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("report");
 		return mv;
 	}
+	
+	
 
 	@RequestMapping(path = "getReportById.do", method = RequestMethod.GET)
 	public String getReportById(int id, Model model) {
