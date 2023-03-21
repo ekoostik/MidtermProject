@@ -1,6 +1,5 @@
 package com.skilldistillery.vigilance.data;
 
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -19,49 +18,48 @@ import com.skilldistillery.vigilance.entities.User;
 @Transactional
 public class PostDaoImpl implements PostDAO {
 
-	
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
 	public Post createpost(String description, int userId, int hoodId) {
-		
-		User user=em.find(User.class, userId);
-		Neighborhood nh =em.find(Neighborhood.class, hoodId);
+
+		User user = em.find(User.class, userId);
+		Neighborhood nh = em.find(Neighborhood.class, hoodId);
 		Post newpost = new Post();
-		
-		
-		
+
 		newpost.setUser(user);
 		newpost.setNid(nh);
 		newpost.setDescription(description);
-		
+
 //		newpost.setImage(img);
-	
-	
+
 		em.persist(newpost);
-		
+
 		return newpost;
 	}
 
 	@Override
 	public Post updatepost(int id, Post post) {
 		// TODO Auto-generated method stub
-		Post updated =em.find(Post.class, id);
+		Post updated = em.find(Post.class, id);
 		updated.setDescription(post.getDescription());
 		updated.setImage(post.getDescription());
 		updated.setCreateDate(post.getCreateDate());
 
-		
 		return updated;
 	}
 
 	@Override
 	public boolean deletepost(int id) {
-		// TODO Auto-generated method stub
 		boolean deleted = false;
-		Post toDelete=em.find(Post.class, id);
-		if(em.contains(toDelete)) {
+		Post toDelete = em.find(Post.class, id);
+		if (em.contains(toDelete)) {
+			List<Comment> comments = toDelete.getComments();
+			for (Comment comment : comments) {
+				em.remove(comment);
+			}
+
 			em.remove(toDelete);
 			deleted = true;
 		}
@@ -71,41 +69,54 @@ public class PostDaoImpl implements PostDAO {
 	@Override
 	public Post findpostById(int id) {
 		// TODO Auto-generated method stub
-		
+
 		return em.find(Post.class, id);
 	}
 
 	@Override
 	public List<Post> allposts() {
 		// TODO Auto-generated method stub
-		String jpql ="SELECT p FROM Post p";
+		String jpql = "SELECT p FROM Post p";
 		return em.createQuery(jpql, Post.class).getResultList();
 	}
 
 	@Override
 	public List<Comment> viewComments(int postid) {
 		// TODO Auto-generated method stub
-		Post post =em.find(Post.class, postid);
-		List <Comment> comments =post.getComments();
-		
+		Post post = em.find(Post.class, postid);
+		List<Comment> comments = post.getComments();
+
 		return comments;
 	}
 
 	@Override
 	public Comment addComment(String description, int postId, int userId) {
-		
+
 		Post post = em.find(Post.class, postId);
-		User user =em.find(User.class, userId);
+		User user = em.find(User.class, userId);
 		Comment newComment = new Comment();
-		
+
 		newComment.setPost(post);
 		newComment.setDescription(description);
 		newComment.setUser(user);
-		
+
 		em.persist(newComment);
-		
+
 		return newComment;
 	}
-	
+
+	@Override
+	public boolean likeComment(int postId, int userId) {
+		boolean like = false;
+		String jpql = "UPDATE  PostLike  SET post_id =:post, user_id=:user";
+		int result = em.createQuery(jpql, String.class).setParameter
+				("post", postId).setParameter("user", userId).getFirstResult();
+		if (result == 1) {
+			
+			like = true;
+		}
+
+		return like;
+	}
 
 }

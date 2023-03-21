@@ -156,6 +156,16 @@ public String createPost() {
 		mv.setViewName("/webpages/forms/viewPost");
 		return mv;
 	}
+	@RequestMapping(path = "commentLike.do", method = RequestMethod.POST)
+	public ModelAndView likeComment(int userId, int postId) {
+		ModelAndView mv = new ModelAndView();
+		boolean liked = postDao.likeComment(userId, postId);
+		if(liked) {
+			mv.setViewName("/webpages/forms/viewPost");
+		}
+		return mv;
+	}
+	
 	
 
 }
