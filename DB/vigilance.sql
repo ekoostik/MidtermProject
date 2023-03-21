@@ -377,30 +377,6 @@ CREATE TABLE IF NOT EXISTS `event_comment` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `report_has_neighborhood`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `report_has_neighborhood` ;
-
-CREATE TABLE IF NOT EXISTS `report_has_neighborhood` (
-  `report_id` INT NOT NULL,
-  `neighborhood_id` INT NOT NULL,
-  PRIMARY KEY (`report_id`, `neighborhood_id`),
-  INDEX `fk_report_has_neighborhood_neighborhood1_idx` (`neighborhood_id` ASC),
-  INDEX `fk_report_has_neighborhood_report1_idx` (`report_id` ASC),
-  CONSTRAINT `fk_report_has_neighborhood_report1`
-    FOREIGN KEY (`report_id`)
-    REFERENCES `report` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_report_has_neighborhood_neighborhood1`
-    FOREIGN KEY (`neighborhood_id`)
-    REFERENCES `neighborhood` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 SET SQL_MODE = '';
 DROP USER IF EXISTS vigil@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -417,7 +393,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (1, 'admin', 'admin', 1, NULL, 'Skill', 'Distillery', 'sd@distillery.edu', NULL, NULL, '2008-03-27', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (1, 'admin', 'admin', 1, 'admin', 'Skill', 'Distillery', 'sd@distillery.edu', NULL, NULL, '2008-03-27', NULL, NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (2, 'DRich', 'user', 1, NULL, 'Damien', 'Richards', 'drich@distillery.edu', NULL, NULL, '2022-12-10', NULL, NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (3, 'RTisdale', 'flower', 1, NULL, 'Rob', 'Tisdale', 'rtisdale@distillery.edu', NULL, NULL, '2023-04-20', NULL, NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (4, 'Wheaties23', 'foofoo', 1, NULL, 'Collin', 'Wheat', 'cwheat@distillery.edu', NULL, NULL, '2018-03-27', NULL, NULL);
