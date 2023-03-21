@@ -4,16 +4,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="../stylesheet.css">
 <jsp:include page="../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Account</title>
+<!-- <style>
+
+.profile {
+  border-radius: 50%;
+}
+</style> -->
+<link rel="stylesheet" href="../stylesheet.css">
 </head>
 <jsp:include page="../bootstrap/navbar.jsp" />
 <body>
 	<div class="container-fluid">
-		<img src="${loggedinuser.profilePic}" width="200" height="200"><br>
-		<h1>${loggedinuser.firstName}'sAccount</h1>
+		<c:choose>
+		<c:when test="${empty loggedinuser.profilePic}">
+		<img class="profile" src="images/defaultPic.png" width="200" height="200"><br>
+		</c:when>
+		<c:otherwise>
+		<img class="profile" src="${loggedinuser.profilePic}" width="200" height="200"><br>
+		</c:otherwise>
+		</c:choose>
+		<h1>${loggedinuser.firstName}'s Account</h1>
 		<br>
 		<h2>User Information</h2>
 		<ul style="list-style-type: none;">

@@ -46,7 +46,7 @@ background:#eee;
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6 separator social-login-box"> <br>
-                           <img alt="" class="img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar1.png">  
+                           <img alt="" class="img-thumbnail" src="${loggedinuser.profilePic}">  
                                 <form action="addPost.do?" method="post">
                                 <input name="description" class="form-control" type="text" placeholder="Description">
                                 <label for="decription"></label> 

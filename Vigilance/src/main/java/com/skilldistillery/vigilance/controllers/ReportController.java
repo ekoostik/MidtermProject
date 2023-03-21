@@ -31,6 +31,8 @@ private ReportDAO reportDao;
 		model.addAttribute("report", reports);
 		return "/webpages/forms/reportform";
 	}
+	
+	
 	@RequestMapping(path = "reportAdded.do", method = RequestMethod.GET)
 	public ModelAndView ReportAdded() {
 		ModelAndView mv = new ModelAndView();
