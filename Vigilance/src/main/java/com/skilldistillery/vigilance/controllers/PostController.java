@@ -1,7 +1,5 @@
 package com.skilldistillery.vigilance.controllers;
 
-
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -24,25 +22,22 @@ public class PostController {
 
 	@Autowired
 	private PostDAO postDao;
-	
-	
 
 	@RequestMapping(path = "viewAllposts.do", method = RequestMethod.GET)
 	public String viewAll(Model model) {
 		model.addAttribute("post", postDao.allposts());
 		
-
 		return "/webpages/forms/viewAllPost";
 	}
 
 	@RequestMapping(path = "addPost.do", method = RequestMethod.POST)
-	public ModelAndView addNewpost(String description, String photo,  HttpSession session, RedirectAttributes redir) {
+	public ModelAndView addNewpost(String description, String photo, HttpSession session, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		Post newpost = null;
 		User loggedInUser = (User) session.getAttribute("loggedinuser");
-		
+
 		try {
-			int userId=loggedInUser.getId();
+			int userId = loggedInUser.getId();
 			int neighborhood = loggedInUser.getHousehold().getAddress().getNeighborhood().getId();
 			newpost = postDao.createpost(description, photo, userId, neighborhood);
 		} catch (RuntimeException e) {
@@ -70,17 +65,17 @@ public class PostController {
 	@RequestMapping(path = "getPostById.do", method = RequestMethod.GET)
 	public String getnpost(int id, Model model) {
 		Post post = postDao.findpostById(id);
-		List<Comment>comments =postDao.viewComments(id);
+		List<Comment> comments = postDao.viewComments(id);
 		model.addAttribute("comments", comments);
 		model.addAttribute("post", post);
-	
+
 		return "/webpages/forms/viewPost";
 	}
 
 	@RequestMapping(path = "updatePost.do", method = RequestMethod.GET)
 	public String updatepost(int id, Model model) {
 		model.addAttribute("post", postDao.findpostById(id));
-		
+
 		return "/webpages/forms/TestLanding";
 	}
 
@@ -100,39 +95,40 @@ public class PostController {
 	}
 
 	@RequestMapping(path = "postUpdated.do", method = RequestMethod.GET)
-	public String updatedpost() {
+	public String updatedpost(Post post, Model model) {
 
+		List<Comment> comments = postDao.viewComments(post.getId());
+		model.addAttribute("comments", comments);
+
+		model.addAttribute("post", post);
 		return "/webpages/forms/viewPost";
+
 	}
-	
-	
-	
-	
-	@RequestMapping(path ="deletePost.do" , method = RequestMethod.POST)
+
+	@RequestMapping(path = "deletePost.do", method = RequestMethod.POST)
 	public ModelAndView deletPost(int id, RedirectAttributes redir) {
-	ModelAndView mv = new ModelAndView();
-	boolean deleted =postDao.deletepost(id);
-	if(deleted) {
-		redir.addFlashAttribute("post", id);
-		mv.setViewName("redirect:postDeleted.do");
-		return mv;
-	}
-	else {
-		mv.setViewName("error");
-		return mv;
-	}
-	
+		ModelAndView mv = new ModelAndView();
+		boolean deleted = postDao.deletepost(id);
+		if (deleted) {
+			redir.addFlashAttribute("post", id);
+			mv.setViewName("redirect:postDeleted.do");
+			return mv;
+		} else {
+			mv.setViewName("error");
+			return mv;
+		}
+
 	}
 
-@RequestMapping(path="postDeleted.do", method = RequestMethod.GET)
+	@RequestMapping(path = "postDeleted.do", method = RequestMethod.GET)
 	public String deletedPostt() {
-	return "/webpages/home";
-}
+		return "/webpages/home";
+	}
 
-@RequestMapping(path="createPost.do", method = RequestMethod.GET)
-public String createPost() {
-	return "/webpages/forms/postForm";
-}
+	@RequestMapping(path = "createPost.do", method = RequestMethod.GET)
+	public String createPost() {
+		return "/webpages/forms/postForm";
+	}
 
 	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
 	public ModelAndView addNewCommentt(String description, int postId, HttpSession session, RedirectAttributes redir) {
@@ -140,7 +136,7 @@ public String createPost() {
 		Comment newComment = null;
 		User loggedInUser = (User) session.getAttribute("loggedinuser");
 		try {
-			int userId=loggedInUser.getId();
+			int userId = loggedInUser.getId();
 			newComment = postDao.addComment(description, postId, userId);
 		} catch (RuntimeException e) {
 			mv.setViewName("error");
@@ -154,27 +150,27 @@ public String createPost() {
 			mv.setViewName("error");
 			return mv;
 		}
-	
-	
-	
 
-}
-	@RequestMapping(path = "commentAdded.do", method = RequestMethod.GET)
-	public ModelAndView addedNewComment() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/webpages/forms/viewPost");
-		return mv;
 	}
+
+	@RequestMapping(path = "commentAdded.do", method = RequestMethod.GET)
+	public String addedNewComment(Comment comment, Model model) {
+		Post post = postDao.findpostById(comment.getPost().getId());
+		List<Comment> comments = postDao.viewComments(post.getId());
+		model.addAttribute("comments", comments);
+
+		model.addAttribute("post", post);
+		return "/webpages/forms/viewPost";
+	}
+
 	@RequestMapping(path = "commentLike.do", method = RequestMethod.POST)
 	public ModelAndView likeComment(int userId, int postId) {
 		ModelAndView mv = new ModelAndView();
 		boolean liked = postDao.likeComment(userId, postId);
-		if(liked) {
+		if (liked) {
 			mv.setViewName("/webpages/forms/viewPost");
 		}
 		return mv;
 	}
-	
-	
 
 }
