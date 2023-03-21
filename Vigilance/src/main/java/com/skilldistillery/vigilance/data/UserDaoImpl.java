@@ -36,6 +36,7 @@ public class UserDaoImpl implements UserDAO {
 			user.getHousehold().getPets().size();
 			user.getHousehold().getVehicles().size();
 			user.getEventComments().size();
+			user.getNeighborhoodEvent().size();
 		} catch (Exception e) {
 			e.printStackTrace();
 			user = null;
@@ -90,6 +91,7 @@ public class UserDaoImpl implements UserDAO {
 		updateUser.setLastName(user.getLastName());
 		updateUser.setEmail(user.getEmail());
 		updateUser.setProfilePic(user.getProfilePic());
+		updateUser.setDateOfBirth(user.getDateOfBirth());
 		updateUser.setAboutme(user.getAboutme());
 		updateUser.setUpdateDate(LocalDate.now());
 		
