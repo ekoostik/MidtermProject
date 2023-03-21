@@ -51,9 +51,10 @@ class CommentTest {
 	
 	@Test 
 	void test_Comment_User_Mappings() {
+		comment = em.find(Comment.class, 2);
 		assertNotNull(comment);
-		assertNotNull(comment.getUsers());
-		assertTrue(comment.getUsers().isEmpty());
+		assertNotNull(comment.getUser());
+		assertEquals(2, comment.getUser().getId());
 	}
 	
 	@Test

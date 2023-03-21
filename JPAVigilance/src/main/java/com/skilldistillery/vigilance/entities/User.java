@@ -68,7 +68,7 @@ public class User {
 	private List<NeighborhoodEvent> neighborhoodEvent;
 
 //	
-	@ManyToMany(mappedBy = "users")
+	@OneToMany(mappedBy = "user")
 	private List<Comment> comments;
 //	
 	@OneToMany(mappedBy = "user")
