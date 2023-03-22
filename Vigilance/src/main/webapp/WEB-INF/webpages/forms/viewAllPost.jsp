@@ -698,7 +698,7 @@ blockquote {
 
 			</div>
 		</c:forEach>
-
+		</div>
 		<button onclick="window.location.href='createPost.do';">New
 			Post</button>
 
