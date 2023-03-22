@@ -35,7 +35,7 @@ ZipCode: <input type="number" name="zipCode" value="${loggedinuser.household.add
 								<li>Color: ${v.color}</li>
 								<li>Description: ${v.description}</li>
 							</ul>
-					<%-- 	</c:forEach></td> --%>
+					 	
 <h2>Pets</h2>
 
 

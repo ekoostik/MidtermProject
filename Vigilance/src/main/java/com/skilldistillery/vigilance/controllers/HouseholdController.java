@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.skilldistillery.vigilance.data.HouseholdDAO;
 import com.skilldistillery.vigilance.data.NeighborhoodDAO;
 import com.skilldistillery.vigilance.data.UserDAO;
+import com.skilldistillery.vigilance.entities.HouseHold;
 import com.skilldistillery.vigilance.entities.User;
 
 @Controller
@@ -55,8 +56,25 @@ public class HouseholdController {
 		return "webpages/userAccount";
 	}
 	
-	@RequestMapping(path = "updateHousehold.do", method = RequestMethod.GET)
-	public String updateHousehold(Model model, HttpSession session) {
-		return "webpages/forms/updateHouseholdForm";
+	
+	
+	@RequestMapping(path = "updateOccupants.do",method = RequestMethod.GET)
+	public String updateOccupants( Model model, HttpSession session) {
+		return "webpages/forms/updateOccupantsForm";
+	}
+	
+	
+	@RequestMapping(path = "occupantsUpdated.do", params = "hId",method = RequestMethod.POST)
+	public String occupantsUpdated(HouseHold household, Model model, HttpSession session, @RequestParam("hId") String hId) {
+		int householdId = Integer.parseInt(hId);
+		System.out.println(household);
+		householdDao.updateHousehold(householdId, household);
+
+		return "webpages/userAccount";
+	}
+	
+	@RequestMapping(path = "redirect.do",method = RequestMethod.GET)
+	public String redirectUpdate( Model model, HttpSession session) {
+		return "webpages/forms/updateOccupantsForm";
 	}
 }
