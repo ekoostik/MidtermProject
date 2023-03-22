@@ -14,7 +14,7 @@
 <body>
 
 <h3>Report Information</h3>
- <p>Thanks ${user.firstName}, Enter the following information to make your report</p>
+ <p> ${user.firstName}, Enter the following information to make your report</p>
 <form action="reportAdded.do" method="POST">
 
   <input type="hidden" name="householdId" value="${user.household.id }" /><br>
