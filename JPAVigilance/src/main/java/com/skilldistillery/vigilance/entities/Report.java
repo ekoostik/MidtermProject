@@ -1,5 +1,6 @@
 package com.skilldistillery.vigilance.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -10,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -24,9 +24,10 @@ public class Report {
 	private int id;
 
 	private String description;
+	
 	@CreationTimestamp
 	@Column(name = "report_time")
-	private Date reportDate;
+	private LocalDate reportDate;
 
 	@Column(name = "contact_authority")
 	private Boolean contactAuthority;
@@ -51,11 +52,11 @@ public class Report {
 		this.description = description;
 	}
 
-	public Date getReportDate() {
+	public LocalDate getReportDate() {
 		return reportDate;
 	}
 
-	public void setReportDate(Date reportDate) {
+	public void setReportDate(LocalDate reportDate) {
 		this.reportDate = reportDate;
 	}
 
