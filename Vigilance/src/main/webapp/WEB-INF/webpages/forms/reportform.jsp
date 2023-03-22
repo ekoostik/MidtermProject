@@ -15,24 +15,29 @@
 
 	<table class="table table-striped table-hover">
 		<thead>
-			<th>Description</th>
+			
 			<th>Report</th>
+			<th>Date Reported</th>
 			<!-- header -->
 			<!--header  -->
 		</thead>
 		<tbody>
 			<c:forEach var="report" items="${report}">
 				<tr>
-					<td>${report.description}</td>
-
-					<c:if test="${not empty report.animals}">
-						<td>${report.animals}</td>
+					<c:if test="${not empty report.description}">
+						
+						<td>
+						<a href="#">${report.description}</a>
+						</td>
+						<td>${report.reportDate}</td>
+						<td></td>
 					</c:if>
+					
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-
+<div>
 	<form action="reportAdded.do" method="POST">
 		<fieldset>
 			<legend>Enter information to make a report:</legend>
@@ -49,6 +54,7 @@
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</fieldset>
 	</form>
+</div>
 
 	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
