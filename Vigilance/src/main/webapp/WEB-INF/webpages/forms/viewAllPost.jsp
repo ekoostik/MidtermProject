@@ -11,7 +11,12 @@
 <style>
 body {
 	margin-top: 20px;
-	background: #DCDCDC;
+ background-image: url('https://media.timeout.com/images/105489784/image.jpg'), url('https://wallpapercosmos.com/w/full/c/c/e/1163036-3840x2160-desktop-4k-town-background.jpg');
+	-webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
 }
 
 .content {
@@ -665,7 +670,7 @@ blockquote {
 					<div class="row">
 						<div class="col-xs col-sm-5 col-md-5 col-lg-4">
 							<div>
-								<a href="profile.do?id=${post.user.id}"><img
+								<a href="GoToProfile.do?id=${post.user.id}"><img
 									src="${post.user.profilePic}"
 									height="200" alt="image post" /></a>
 							</div>
@@ -684,13 +689,13 @@ blockquote {
 						<div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
 							<div class="caption">
 								<h3 class="md-heading">
-									<a href="#">${post.user.firstName}</a>
+									<a href="GoToProfile.do?id=${post.user.id}">${post.user.firstName} ${post.user.lastName}</a>
 								</h3>
-								<p>${post.description}</p>
+								<img class="" src="${post.image}" alt="Photo">
+								<p><a href="getPostById.do?id=${post.id}">${post.description}</a></p>
 							</div>
 						</div>
-						<a class="btn btn-default" href="getPostById.do?id=${post.id}"
-							role="button">Read Post</a>
+					
 					</div>
 				</article>
 

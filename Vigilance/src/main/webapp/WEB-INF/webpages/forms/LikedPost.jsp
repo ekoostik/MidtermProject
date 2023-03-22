@@ -184,7 +184,7 @@ body {
 					<form action="commentLike.do" method="POST">
 						<input name="postId" type="hidden" value="${post.id}"></input> <input
 							name="userId" type="hidden" value="${loggedinuser.id}"></input>
-							<input type="submit" class="btn btn-default" value="Like">
+							<input type="submit" class="btn btn-default" value="Unlike">
 							<span class="pull-right text-muted">${likes}
 								likes</span>
 					</form>
