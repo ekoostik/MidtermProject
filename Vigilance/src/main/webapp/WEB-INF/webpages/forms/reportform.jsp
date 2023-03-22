@@ -12,26 +12,32 @@
 
 <jsp:include page="../../bootstrap/navbar.jsp" />
 <body>
-	
+
 	<table class="table table-striped table-hover">
 		<thead>
-			<th>Description</th>
+			
 			<th>Report</th>
+			<th>Date Reported</th>
 			<!-- header -->
 			<!--header  -->
 		</thead>
 		<tbody>
 			<c:forEach var="report" items="${report}">
 				<tr>
-					<td>${report.description}</td>
-
-					<c:if test="${not empty report.animals}">
-						<td>${report.animals}</td>
+					<c:if test="${not empty report.description}">
+						
+						<td>
+						<a href="getReportById.do?id=${report.id}">${report.description}</a>
+						</td>
+						<td>${report.reportDate}</td>
+						<td></td>
 					</c:if>
+					
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+<button onclick="window.location.href='addReport.do';">Make A Report</button>
 
 	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>

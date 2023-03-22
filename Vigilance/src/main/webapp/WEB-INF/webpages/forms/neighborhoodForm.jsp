@@ -20,44 +20,6 @@
 </form> 
 
 
-
-
-
-<c:forEach var="hood" items="${hood}">
-<ul>
-
-<li> <strong>${hood.id}</strong></li>
-<li> <strong>${hood.description}</strong></li>
-<li> <strong>${hood.name}</strong></li>
-<a href="viewAllAddress.do?id=${hood.id}"> View all address</a>
-<a href="viewPostByNeighborhood.do?id=${hood.id}"> View all post</a>
-
-
-
-
-</ul>
-</c:forEach>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

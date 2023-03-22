@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.vigilance.data.ReportDAO;
+import com.skilldistillery.vigilance.entities.Animal;
 import com.skilldistillery.vigilance.entities.Report;
 import com.skilldistillery.vigilance.entities.User;
 
@@ -32,8 +33,12 @@ private ReportDAO reportDao;
 		return "/webpages/forms/reportform";
 	}
 	
-	
-	@RequestMapping(path = "reportAdded.do", method = RequestMethod.GET)
+	@RequestMapping(path = "addReport.do")
+	public String addReport() {
+		return "/webpages/forms/addReport";
+	}
+//	TODO- logic to grab the report filled out by user to add to the database
+	@RequestMapping(path = "reportAdded.do", method = RequestMethod.POST)
 	public ModelAndView ReportAdded() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("report");
@@ -45,15 +50,18 @@ private ReportDAO reportDao;
 	@RequestMapping(path = "getReportById.do", method = RequestMethod.GET)
 	public String getReportById(int id, Model model) {
 		Report report = reportDao.findReportById(id);
+//		Animal animal = reportDao
+		List<Animal> animals = reportDao.viewAnimalReports(id);
 		model.addAttribute("report", report);
-
-		return "/webpages/forms/reportForm";
+		model.addAttribute("animals", animals);
+		
+		return "/webpages/forms/viewSingleReport";
 	}
 
 	@RequestMapping(path = "updatereport.do", method = RequestMethod.GET)
 	public String updateEvent(int id, Model model) {
 		model.addAttribute("report", reportDao.findReportById(id));
 
-		return "updatereport";
+		return "updateReport";
 	}
 }

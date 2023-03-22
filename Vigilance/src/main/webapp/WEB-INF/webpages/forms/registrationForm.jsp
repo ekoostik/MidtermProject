@@ -8,19 +8,43 @@
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Account Registration</title>
-<link rel="stylesheet" href="css/stylesheet.css">
+<link rel="stylesheet" href="../../../../registrationStylesheet.css">
 </head>
 <body>
-<h1> Register A New Account</h1>
+<div class="container">
+<div class="title">Register A New Account</div>
 <form action="register.do" method="POST">
-  First Name <input type="text" name="firstName" /><br>
-  LastName Name <input type="text" name="lastName" /><br>
-  Email <input type="text" name="email" /><br>
-  Date of birth <input type="date" name="dob" /><br>
-  Username <input type="text" name="username" /><br>
-  Password <input type="password" name="password"/><br>
- <button type="submit" class="btn btn-primary">Submit</button>
+<div class ="user-details">
+<div class ="input-box">
+  <span class="details">First Name</span>
+  <input type="text" name="firstName" required/><br>
+ </div>
+<div class ="input-box">
+  <span class="details">Last Name</span>
+  <input type="text" name="lastName" required/><br>
+ </div>
+<div class ="input-box">
+  <span class="details">Email</span>
+  <input type="text" name="email" required /><br>
+ </div>
+<div class ="input-box">
+  <span class="details">Date of Birth</span>
+  <input type="date" name="dob" required/><br>
+ </div>
+<div class ="input-box">
+  <span class="details">Username</span>
+  <input type="text" name="username" required/><br>
+ </div>
+<div class ="input-box">
+  <span class="details">Password</span>
+  <input type="text" name="password" required/><br>
+ </div>
+ <div class="button">
+ <input type="submit" value="Register">
+  </div>
+ </div>
 </form> 
+</div>
 
   <!-- ADD LOGiC FOR DROP DOWN ONCE ALL FIELDS ARE FILLED TO PRESENT ANOTHER 
   SECTION FOR SELECTING A NEIGHBORHOOD-->

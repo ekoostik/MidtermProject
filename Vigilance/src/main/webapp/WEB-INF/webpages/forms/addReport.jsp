@@ -14,24 +14,21 @@
 <body>
 
 <h3>Report Information</h3>
- <p>Thanks ${user.firstName}, Enter the following information to make your report</p>
-<form action="reportAdded.do" method="POST">
 
-  <input type="hidden" name="householdId" value="${user.household.id }" /><br>
-  Description<input type="text" name="address1" /><br>
-  Date of Incident:<input type="date" name="address2" /><br>
-  <div>
-	<label for="contactAuthority">Were the police contacted?</label>
-	<select id="contactAuthority" name="contactAuthority" required>
-				<option value="Yes">Yes</option>
-				<option value="No">No</option>
-			</select><br>
-		</div>
- <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+ <form action="reportAdded.do" method="POST">
+		<fieldset>
+			<legend>Enter information to make a report:</legend>
+				
+				<label for="contactAuthority">Were the police contacted?</label> <select
+					id="contactAuthority" name="contactAuthority" required>
+					<option value="True">Yes</option>
+					<option value="False">No</option>
+				</select><br>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</fieldset>
+	</form>
 
-
+	
 
 <jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
-</html>
