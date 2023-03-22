@@ -49,14 +49,15 @@ public class UserController {
 	public String login(User user, Model model, HttpSession session) {
 //	User user = userOne;
 		user = userDao.login(user);
-		if (user != null) {
+		if (user != null && user.getRole().equals("user")) {
 			session.setAttribute("loggedinuser", user);
 			LocalDateTime localTime = LocalDateTime.now();
 			session.setAttribute("loginTime", localTime);
 			return "/webpages/home";
+		} else if (user != null && user.getRole().equals("admin")){
+			return "webpages/adminHome";
 		} else {
-
-			return "webpages/forms/login_register";
+			return "/webpages/forms/login_register";
 		}
 	}
 
@@ -72,6 +73,7 @@ public class UserController {
 		user = userDao.registerNewUser(dob, user);
 		if (user != null) {
 			session.setAttribute("loggedinuser", user);
+			session.setAttribute("householdid", user.getHousehold().getId());
 			LocalDateTime localTime = LocalDateTime.now();
 			session.setAttribute("loginTime", localTime);
 			return "webpages/forms/addressForm";
@@ -84,26 +86,36 @@ public class UserController {
 
 	@RequestMapping(path = "newaddr.do", method = RequestMethod.POST)
 	public String newAddress(Address address, int householdId, Model model) {
+		System.out.println(householdId);
+		System.out.println("***********************************");
 		address = userDao.addnewAddress(householdId, address);
 		List<Neighborhood> nhoods = neighborhoodDAO.findNeighborhoodsByCityStateZip(address.getCity(),
 				address.getState(), address.getZipCode());
-		if (nhoods != null) {
+		System.out.println(nhoods);
+		if (nhoods.size() > 0) {
 			model.addAttribute("existingNeighborhoods", nhoods);
-			return "webpages/forms/neighborhoodForm";
+			return "webpages/existingNeighborhoods";
 		} else {
 			return "webpages/forms/neighborhoodForm";
 		}
 	}
+//	@RequestMapping(path = "newneighborhood.do")
+//	public String newNeighborhood( Model model) {
+//			return "webpages/forms/neighborhoodForm";
+//		
+//	}
+	
 
 	@RequestMapping(path = "newneighborhood.do", method = RequestMethod.POST)
 	public String createNeighborhood(Neighborhood neighborhood, Model model, HttpSession session) {
 		User loggedInUser = (User) session.getAttribute("loggedinuser");
 		model.addAttribute("loggedinuser", loggedInUser);
 		neighborhood = neighborhoodDAO.createNeighborhood(neighborhood);
+		neighborhoodDAO.assignNeighborhoodToAddress(loggedInUser.getId(), neighborhood.getId());
 		if (neighborhood != null) {
-			return "webpages/registersuccess";
-		} else {
 			return "webpages/forms/login_register";
+		} else {
+			return "webpages/failurePage/login_register";
 		}
 	}
 
@@ -115,7 +127,7 @@ public class UserController {
 		model.addAttribute("loggedinuser", loggedInUser);
 		if (loggedInUser != null) {
 			neighborhoodDAO.assignNeighborhoodToAddress(loggedInUser.getId(), neighborhoodId);
-			return "webpages/registersuccess";
+			return "webpages/forms/login_register";
 
 		}
 		return "webpages/failurePage";
