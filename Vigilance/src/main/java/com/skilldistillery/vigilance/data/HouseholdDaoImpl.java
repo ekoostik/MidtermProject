@@ -27,8 +27,8 @@ public class HouseholdDaoImpl implements HouseholdDAO {
 	}
 	
 	@Override
-	public HouseHold updateHousehold(HouseHold household) {
-		HouseHold updateHousehold = em.find(HouseHold.class, household.getId());
+	public HouseHold updateHousehold(int householdId, HouseHold household) {
+		HouseHold updateHousehold = em.find(HouseHold.class, householdId);
 		updateHousehold.setOccupants(household.getOccupants());
 		return updateHousehold;
 	}
