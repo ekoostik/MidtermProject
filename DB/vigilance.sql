@@ -201,7 +201,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `vehicle` ;
 
 CREATE TABLE IF NOT EXISTS `vehicle` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `make` VARCHAR(45) NULL,
   `model` VARCHAR(45) NULL,
   `color` VARCHAR(45) NULL,
@@ -304,11 +304,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `postlike`
+-- Table `postlikeß`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `postlike` ;
+DROP TABLE IF EXISTS `postlikeß` ;
 
-CREATE TABLE IF NOT EXISTS `postlike` (
+CREATE TABLE IF NOT EXISTS `postlikeß` (
   `post_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`post_id`, `user_id`),
@@ -328,11 +328,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `commentlike`
+-- Table `comment_like`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `commentlike` ;
+DROP TABLE IF EXISTS `comment_like` ;
 
-CREATE TABLE IF NOT EXISTS `commentlike` (
+CREATE TABLE IF NOT EXISTS `comment_like` (
   `user_id` INT NOT NULL,
   `comment_id` INT NOT NULL,
   PRIMARY KEY (`user_id`, `comment_id`),
@@ -373,6 +373,30 @@ CREATE TABLE IF NOT EXISTS `event_comment` (
   CONSTRAINT `fk_event_comment_neighborhood_event1`
     FOREIGN KEY (`neighborhood_event_id`)
     REFERENCES `neighborhood_event` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `report_has_neighborhood`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `report_has_neighborhood` ;
+
+CREATE TABLE IF NOT EXISTS `report_has_neighborhood` (
+  `report_id` INT NOT NULL,
+  `neighborhood_id` INT NOT NULL,
+  PRIMARY KEY (`report_id`, `neighborhood_id`),
+  INDEX `fk_report_has_neighborhood_neighborhood1_idx` (`neighborhood_id` ASC),
+  INDEX `fk_report_has_neighborhood_report1_idx` (`report_id` ASC),
+  CONSTRAINT `fk_report_has_neighborhood_report1`
+    FOREIGN KEY (`report_id`)
+    REFERENCES `report` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_report_has_neighborhood_neighborhood1`
+    FOREIGN KEY (`neighborhood_id`)
+    REFERENCES `neighborhood` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -501,13 +525,13 @@ COMMIT;
 START TRANSACTION;
 USE `vigilancedb`;
 INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (1, 'Moose found in driveway', '2023-02-22', 1, 2);
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (2, 'Person looking to brake into cars.', '2023-01-13', 1, 1);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (2, 'I drove into the neighborhood and saw a tall man in a black shirt and jeans walking along the street. As he passed by each car he would stop and look to see what was inside of each car. I don\'t know if he was looking to break into one of them or not.', '2023-01-13', 1, 1);
 INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (3, 'Bobcat Family ', '2022-12-06', 0, 3);
 INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (4, 'Missing Dog seen running near the pond', '2023-01-11', 0, 2);
 INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (5, 'Moutain Lion roaming near the neighborhood', '2023-02-15', 0, 5);
 INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (6, 'Gator spotted near the pond', '2023-01-18', 0, 3);
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (7, 'Hit and Run', NULL, 1, 1);
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (8, 'Package Theft', NULL, 1, 4);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (7, 'I came out to my car this morning. It was parked on the street in front of my house and found that there was a huge dent with blue scuff marks on it. I contacted my insurance already but no sight of a note left behind of the car that hit mine.', NULL, 1, 1);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (8, 'I was expecting a package today and was alerted by amazon that it had delivered. However, it was nowhere to be seen so i checked my doorbell camera and saw a female in a red hoodie come up to the porch, take my package, and drive off!', NULL, 1, 4);
 INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`) VALUES (10, 'Wolves sighting', '2022-03-23', 0, 2);
 
 COMMIT;
