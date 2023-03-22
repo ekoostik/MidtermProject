@@ -93,6 +93,11 @@ public class ReportDoaImpl implements ReportDAO {
 		return null;
 	}
 	
-	
+	@Override
+	public Animal findAnimalByReportId(int id) {
+		Report report = em.find(Report.class, id );
+//		int reportId
+		return null;
+	}
 	
 }

@@ -20,6 +20,7 @@
 </form> 
 
 
+<<<<<<< HEAD
 
 
 
@@ -58,6 +59,8 @@
 
 
 
+=======
+>>>>>>> 1a0e55d4ceeaede40fc4372e54957afca7319c8b
 <jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>
