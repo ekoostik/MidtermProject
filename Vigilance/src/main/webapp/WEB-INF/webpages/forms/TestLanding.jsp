@@ -13,22 +13,19 @@
 
 <jsp:include page="../../bootstrap/navbar.jsp" />
 <body>
+<c:forEach var="post" items="${post}">
+<ul>
 
-
+<li>${post.description}</li>
+</ul>
+</c:forEach>
 
 
 	<form action="submitPostUpdate.do" method="POST">
 	
 
 	
-	<input name="description" type="text" value=""></input>
-	<input name="postId" type="hidden" value="${post.id}"></input>
-	<input name="userId" type="hidden" value="${post.user.id}"></input>
 
-
-
-<input class="btn btn-warning" type="submit" value="Update post">
-		
 	</form>
 
 

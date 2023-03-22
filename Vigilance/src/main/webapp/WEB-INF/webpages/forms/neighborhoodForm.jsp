@@ -30,7 +30,7 @@
 <li> <strong>${hood.description}</strong></li>
 <li> <strong>${hood.name}</strong></li>
 <a href="viewAllAddress.do?id=${hood.id}"> View all address</a>
-<a href="viewAllPost.do?id=${hood.id}"> View all post</a>
+<a href="viewPostByNeighborhood.do?id=${hood.id}"> View all post</a>
 
 
 

@@ -170,7 +170,7 @@ body {
 					<div class="user-block">
 						<img class="img-circle" src="${post.user.profilePic}"
 							alt="User Image" class="user"> <a
-							href="profile.do?id=${post.user.id}">${post.user.firstName}</a> <span
+							href="GoToProfile.do?id=${post.user.id}">${post.user.firstName}</a> <span
 							class="description">Posted:${post.createDate}</span>
 					</div>
 
@@ -179,9 +179,11 @@ body {
 				<div class="box-body" style="display: block;">
 					<img class="img-responsive pad" src="${post.image}" alt="Photo">
 					<p>${post.description}</p>
+				
 					<form action="commentLike.do" method="POST">
 						<input name="postId" type="hidden" value="${post.id}"></input> <input
 							name="userId" type="hidden" value="${loggedinuser.id}"></input>
+				
 						
 							<input type="submit" class="btn btn-default" value="Like">
 							<span class="pull-right text-muted">${likes}
@@ -224,8 +226,8 @@ body {
 									class="text-muted pull-right">${comments.createDate}
 									
 									</span>
-									 
-								 <a href="profile.do?id=${comments.user.id}">${comments.user.firstName}</a>
+									<a href="GoToProfile.do?id=${comments.user.id}">${comments.user.firstName} ${comments.user.lastName}</a> 
+								 
 								<p>${comments}</p>
 							</div>
 						</c:forEach>

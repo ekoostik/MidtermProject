@@ -1,6 +1,5 @@
 package com.skilldistillery.vigilance.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -105,16 +104,36 @@ public class PostDaoImpl implements PostDAO {
 
 	@Override
 	public boolean likeComment(int userId, int postId) {
-//		boolean like = false;
+
 		Post post = em.find(Post.class, postId);
 		User user = em.find(User.class, userId);
 
-		post.getLikes().add(user);
+		if (!post.getLikes().contains(user)) {
+			post.getLikes().add(user);
 
-		em.persist(post);
+			em.persist(post);
+		} else {
+			post.getLikes().remove(user);
 
-	
+		}
+
 		return true;
+	}
+
+	@Override
+	public List<Post> viewAllPostByNeighborhoodById(int id) {
+		String jpql ="SELECT p FROM Post p WHERE p.nid.id=:id";
+		
+		
+		return em.createQuery(jpql, Post.class).setParameter("id", id).getResultList();
+	}
+
+	@Override
+	public List<Post> viewAllPostByUser(int id) {
+		// TODO Auto-generated method stub
+		User user = em.find(User.class, id);
+		List<Post> posts=user.getPosts();
+		return posts;
 	}
 
 }
