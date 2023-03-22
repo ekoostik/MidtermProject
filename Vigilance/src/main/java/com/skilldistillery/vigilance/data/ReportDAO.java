@@ -15,4 +15,5 @@ public interface ReportDAO {
 	public List <Report> reportsByNeighborhood(int nId);
 	public List<Animal> viewAnimalReports(int id);
 	public Animal addAnimalReport(String description, int id, int userId);
+	public Animal findAnimalByReportId(int id);
 }
