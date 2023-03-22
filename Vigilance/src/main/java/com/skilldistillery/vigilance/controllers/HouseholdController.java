@@ -27,7 +27,7 @@ public class HouseholdController {
 	private NeighborhoodDAO neighborhoodDAO;
 
 	@RequestMapping(path = "updateUserInfo.do", method = RequestMethod.GET)
-	public String newAddress(Model model, HttpSession session) {
+	public String updateUserInfo(Model model, HttpSession session) {
 		User loggedInUser = (User)session.getAttribute("loggedinuser");
 		if (loggedInUser != null) {
 			loggedInUser = userDao.findUserById(loggedInUser.getId());
@@ -41,7 +41,7 @@ public class HouseholdController {
 	}
 	
 	@RequestMapping(path = "updateUserForm.do", params = "dob",  method = RequestMethod.POST)
-	public String newAddress(User user, Model model, HttpSession session, @RequestParam("dob") String dob) {
+	public String updateForm(User user, Model model, HttpSession session, @RequestParam("dob") String dob) {
 		User loggedInUser = (User)session.getAttribute("loggedinuser");
 		if (loggedInUser != null) {
 			loggedInUser = userDao.findUserById(loggedInUser.getId());
@@ -53,5 +53,10 @@ public class HouseholdController {
 		User updatedUser = userDao.updateUser(loggedInUser.getId(), user);
 		model.addAttribute("updateduser", updatedUser);
 		return "webpages/userAccount";
+	}
+	
+	@RequestMapping(path = "updateHousehold.do", method = RequestMethod.GET)
+	public String updateHousehold(Model model, HttpSession session) {
+		return "webpages/forms/updateHouseholdForm";
 	}
 }
