@@ -38,8 +38,7 @@
 						<option value="${n.id}">${n.name}</option>
 					</c:forEach>
 				</select>
-				<button name="submit" type="submit" 
-					class="btn btn-primary">Select</button>
+				<button name="submit" type="submit" class="btn btn-primary">Select</button>
 			</form>
 		</c:otherwise>
 	</c:choose>

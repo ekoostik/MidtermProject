@@ -19,14 +19,18 @@
 <body>
 	<div class="container-fluid">
 		<c:choose>
-		<c:when test="${empty loggedinuser.profilePic}">
-		<img class="profile" src="images/defaultPic.png" width="200" height="200"><br>
-		</c:when>
-		<c:otherwise>
-		<img class="profile" src="${loggedinuser.profilePic}" width="200" height="200"><br>
-		</c:otherwise>
+			<c:when test="${empty loggedinuser.profilePic}">
+				<img class="profile" src="images/defaultPic.png" width="200"
+					height="200">
+				<br>
+			</c:when>
+			<c:otherwise>
+				<img class="profile" src="${loggedinuser.profilePic}" width="200"
+					height="200">
+				<br>
+			</c:otherwise>
 		</c:choose>
-		<h1>${loggedinuser.firstName}'s Account</h1>
+		<h1>${loggedinuser.firstName}'sAccount</h1>
 		<br>
 		<h2>User Information</h2>
 		<ul style="list-style-type: none;">
@@ -66,8 +70,16 @@
 							<li>${loggedinuser.household.address.zipCode}</li>
 						</ul>
 					</td>
-					<td>${loggedinuser.household.occupants}</td>
-					<td><c:forEach var="v"
+					<td>${loggedinuser.household.occupants}<br>
+					<a href="updateOccupants.do" class="btn btn-secondary" role="button">Update</a>
+					</td>
+					<td>
+					<c:choose>
+					<c:when test="${empty loggedinuser.household.vehicles}">No Vehicles Listed<br>
+					<a href="addPet.do" class="btn btn-secondary" role="button">Add Vehicle</a>
+					</c:when>
+					<c:otherwise>
+					<c:forEach var="v"
 							items="${loggedinuser.household.vehicles}">
 							<ul style="list-style-type: none;">
 								<li>Make: ${v.make}</li>
@@ -75,8 +87,19 @@
 								<li>Color: ${v.color}</li>
 								<li>Description: ${v.description}</li>
 							</ul>
-						</c:forEach></td>
-					<td><c:forEach var="p" items="${loggedinuser.household.pets}">
+							<a href="updateVehicle.do" class="btn btn-secondary" role="button">Update</a>
+							<a href="removeVehicle.do" class="btn btn-secondary" role="button">Remove</a>
+						</c:forEach>
+					</c:otherwise>
+					</c:choose>	
+					</td>
+				<td>
+				<c:choose>
+					<c:when test="${empty loggedinuser.household.pets}">No Pets Listed<br>
+					<a href="addPet.do" class="btn btn-secondary" role="button">Add Pet</a>
+					</c:when>
+					<c:otherwise>
+					<c:forEach var="p" items="${loggedinuser.household.pets}">
 							<ul style="list-style-type: none;">
 								<li>Name: ${p.name}</li>
 								<li>Species: ${p.species}</li>
@@ -84,7 +107,12 @@
 								<li>Color: ${p.color}</li>
 								<%-- <li>Tagged: ${p.tagged}</li> --%>
 							</ul>
-						</c:forEach></td>
+							<a href="updateVehicle.do" class="btn btn-secondary" role="button">Update</a>
+							<a href="removeVehicle.do" class="btn btn-secondary" role="button">Remove</a>
+						</c:forEach>
+					</c:otherwise>
+					</c:choose>	
+						</td>
 				</tr>
 			</tbody>
 		</table>
