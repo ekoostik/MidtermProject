@@ -26,7 +26,7 @@ public class PostController {
 	@RequestMapping(path = "viewAllposts.do", method = RequestMethod.GET)
 	public String viewAll(Model model) {
 		model.addAttribute("post", postDao.allposts());
-		
+
 		return "/webpages/forms/viewAllPost";
 	}
 
@@ -66,6 +66,8 @@ public class PostController {
 	public String getnpost(int id, Model model) {
 		Post post = postDao.findpostById(id);
 		List<Comment> comments = postDao.viewComments(id);
+		int likes = post.getLikes().size();
+		model.addAttribute("likes", likes);
 		model.addAttribute("comments", comments);
 		model.addAttribute("post", post);
 
@@ -131,12 +133,10 @@ public class PostController {
 	}
 
 	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
-	public ModelAndView addNewCommentt(String description, int postId, HttpSession session, RedirectAttributes redir) {
+	public ModelAndView addNewCommentt(String description, int postId, int userId, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		Comment newComment = null;
-		User loggedInUser = (User) session.getAttribute("loggedinuser");
 		try {
-			int userId = loggedInUser.getId();
 			newComment = postDao.addComment(description, postId, userId);
 		} catch (RuntimeException e) {
 			mv.setViewName("error");
@@ -157,8 +157,9 @@ public class PostController {
 	public String addedNewComment(Comment comment, Model model) {
 		Post post = postDao.findpostById(comment.getPost().getId());
 		List<Comment> comments = postDao.viewComments(post.getId());
+		int likes = post.getLikes().size();
 		model.addAttribute("comments", comments);
-
+		model.addAttribute("likes", likes);
 		model.addAttribute("post", post);
 		return "/webpages/forms/viewPost";
 	}

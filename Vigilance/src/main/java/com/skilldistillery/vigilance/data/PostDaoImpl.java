@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.data;
 
-import java.time.LocalDate;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.vigilance.entities.Comment;
 import com.skilldistillery.vigilance.entities.Neighborhood;
 import com.skilldistillery.vigilance.entities.Post;
-import com.skilldistillery.vigilance.entities.Report;
 import com.skilldistillery.vigilance.entities.User;
 
 @Service
@@ -40,14 +40,12 @@ public class PostDaoImpl implements PostDAO {
 		return newpost;
 	}
 
-	
 	@Override
 	public Post updatepost(String description, int userId, int postId) {
 		// TODO Auto-generated method stub
 		Post updated = em.find(Post.class, postId);
 		updated.setDescription(description);
 //		updated.setImage(post.getImage());
-		
 
 		return updated;
 	}
@@ -70,8 +68,7 @@ public class PostDaoImpl implements PostDAO {
 
 	@Override
 	public Post findpostById(int id) {
-		// TODO Auto-generated method stub
-	
+
 		return em.find(Post.class, id);
 	}
 
@@ -108,17 +105,28 @@ public class PostDaoImpl implements PostDAO {
 	}
 
 	@Override
-	public boolean likeComment(int postId, int userId) {
-		boolean like = false;
-		String jpql = "UPDATE  postlike  SET post_id =:post, user_id=:user";
-		int result = em.createQuery(jpql, String.class).setParameter
-				("post", postId).setParameter("user", userId).getFirstResult();
-		if (result == 1) {
-			
-			like = true;
-		}
-
-		return like;
+	public boolean likeComment(int userId, int postId) {
+//		boolean like = false;
+		Post post = em.find(Post.class, postId);
+		User user =em.find(User.class, userId);
+		
+		
+		
+		
+		List<User>likeUser = new ArrayList<>();
+		List<Post>likePost = new ArrayList<>();
+		likeUser.add(user);
+		likePost.add(post);
+	
+		
+		
+		user.setPostLikes(likePost);
+		post.setLikes(likeUser);
+//		em.persist(user);
+		em.persist(post);
+		
+		
+		return true;
 	}
 
 }

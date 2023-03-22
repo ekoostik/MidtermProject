@@ -181,8 +181,11 @@ body {
 					<p>${post.description}</p>
 					<form action="commentLike.do" method="POST">
 						<input name="postId" type="hidden" value="${post.id}"></input> <input
-							name="userId" type="hidden" value="${post.user.id}"></input> <input
-							type="submit" class="btn btn-default" value="Like">
+							name="userId" type="hidden" value="${loggedinuser.id}"></input>
+						
+							<input type="submit" class="btn btn-default" value="Like">
+							<span class="pull-right text-muted">${likes}
+								likes</span>
 					</form>
 
 
@@ -191,15 +194,15 @@ body {
 					<c:if test="${loggedinuser.id == post.user.id}">
 
 
+						<form action="deletePost.do" method="POST">
 						<label for="id"></label>
 						<input type="hidden" name="id" value="${post.id}" />
 						<input type="submit" class="btn btn-danger" value="Delete" />
-						<form action="deletePost.do" method="POST">
 
 
 							<a class="btn btn-warning" href="updatePost.do?id=${post.id}"
-								role="button">Edit Post</a> <span class="pull-right text-muted">#
-								likes</span>
+								role="button">Edit Post</a> 
+								
 						</form>
 					</c:if>
 
@@ -216,18 +219,13 @@ body {
 							<img class="img-circle img-sm" src="${comments.user.profilePic}"
 								alt="User Image">
 							<div class="comment-text">
-								<span class="username"> <span
+								<span class="username"></span>
+								 <span
 									class="text-muted pull-right">${comments.createDate}
 									
-									
-									<c:if test="${loggedinuser.firstName == comment.user.firstName}">
-									
-									<a class="btn btn-warning" href="deleteComment.do?id=${comment.id}" role="button">Delete</a>
-									
-									</c:if>
-									 
 									</span>
-								</span> <a href="profile.do?id=${comments.user.id}">${comments.user.firstName}</a>
+									 
+								 <a href="profile.do?id=${comments.user.id}">${comments.user.firstName}</a>
 								<p>${comments}</p>
 							</div>
 						</c:forEach>
@@ -240,8 +238,11 @@ body {
 							<div class="img-push">
 
 								<label for="decription"></label> <input type="text"
-									name="description" value="" /> <input name="postId"
-									type="hidden" value="${post.id}"></input> <input type="submit"
+									name="description" value="" /> 
+									<input name="postId" type="hidden" value="${post.id}"></input> 
+									<input name="userId" type="hidden" value="${loggedinuser.id}"></input> 
+									
+									<input type="submit"
 									class="btn btn-success" value="Comment">
 							</div>
 						</form>

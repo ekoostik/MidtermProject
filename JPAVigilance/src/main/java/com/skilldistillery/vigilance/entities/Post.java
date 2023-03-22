@@ -1,7 +1,6 @@
 package com.skilldistillery.vigilance.entities;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -43,6 +44,21 @@ public class Post {
 	@ManyToOne
 	@JoinColumn(name = "neighborhood_id")
 	private Neighborhood nid;
+	
+	@ManyToMany
+	@JoinTable(name="postlike", 
+	joinColumns=@JoinColumn(name="post_id"),
+	inverseJoinColumns=@JoinColumn(name="user_id"))
+	private List<User> likes;
+
+	
+	public List<User> getLikes() {
+		return likes;
+	}
+
+	public void setLikes(List<User> likes) {
+		this.likes = likes;
+	}
 
 	public int getId() {
 		return id;
@@ -100,6 +116,9 @@ public class Post {
 		this.nid = nid;
 	}
 
+	
+
+	
 	@Override
 	public String toString() {
 		return "Post [id=" + id + ", description=" + description + ", image=" + image + ", createDate=" + createDate
