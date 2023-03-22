@@ -68,8 +68,7 @@
 					</td>
 					<td>
 					<c:choose>
-					<c:when test="${empty loggedinuser.household.vehicles}">No Vehicles Listed<br>
-					<a href="addPet.do" class="btn btn-secondary" role="button">Add Vehicle</a>
+					<c:when test="${empty loggedinuser.household.vehicles}">No Vehicles Listed
 					</c:when>
 					<c:otherwise>
 					<c:forEach var="v"
@@ -95,6 +94,7 @@
 								<li>Species: ${p.species}</li>
 								<li>Breed: ${p.breed}</li>
 								<li>Color: ${p.color}</li>
+								<li>Tagged: ${p.tagged}</li>
 								<%-- <li>Tagged: ${p.tagged}</li> --%>
 							</ul>
 						</c:forEach>
@@ -113,7 +113,8 @@
 					<a href="addVehicle.do" class="btn btn-secondary" role="button">Add Vehicle</a>
 					</c:when>
 					<c:otherwise>
-				<a href="updateVehicle.do" class="btn btn-secondary" role="button">Update Vehicle</a>
+				<a href="addVehicle.do" class="btn btn-secondary" role="button">Add Vehicle</a>
+				<a href="updateVehicle.do" class="btn btn-secondary"  role="button">Update Vehicle</a>
 				<a href="removeVehicle.do" class="btn btn-secondary" role="button">Remove Vehicle</a>
 					</c:otherwise>
 					</c:choose>
@@ -132,10 +133,6 @@
 			</tbody>
 		</table>
 		<br>
-		<form action="updateHousehold.do" method="GET">
-			<button name="update" type="submit" class="btn btn-dark">Update
-				Household</button>
-		</form>
 
 		<p>This page will hold their respective information. Such as
 			address/contact information, neighborhood, time online, etc</p>

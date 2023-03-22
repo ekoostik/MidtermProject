@@ -7,45 +7,37 @@
 <head>
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
-<title>Account Registration</title>
+<title>Add Vehicle</title>
 <link rel="stylesheet" href="../../../../registrationStylesheet.css">
 </head>
 <body>
 <div class="container">
-<div class="title">Register A New Account</div>
-<form action="register.do" method="POST">
+<div class="title">Add A New Vehicle</div>
+<form action="vehicleAdded.do" method="POST">
 <div class ="user-details">
 <div class ="input-box">
-  <span class="details">First Name</span>
+  <span class="details">Make</span>
   <input type="text" name="firstName" required/><br>
  </div>
 <div class ="input-box">
-  <span class="details">Last Name</span>
+  <span class="details">Model</span>
   <input type="text" name="lastName" required/><br>
  </div>
 <div class ="input-box">
-  <span class="details">Email</span>
+  <span class="details">Color</span>
   <input type="text" name="email" required /><br>
  </div>
 <div class ="input-box">
-  <span class="details">Date of Birth</span>
-  <input type="date" name="dob" required/><br>
- </div>
-<div class ="input-box">
-  <span class="details">Username</span>
-  <input type="text" name="username" required/><br>
- </div>
-<div class ="input-box">
-  <span class="details">Password</span>
-  <input type="text" name="password" required/><br>
+  <span class="details">Description</span>
+  <input type="text" name="dob" /><br>
  </div>
  <div class="button">
- <input type="submit" value="Register">
+ <input type="submit" value="Add Vehicle">
   </div>
  </div>
 </form> 
 <div class="cancel">
- <a href="login.do" class="btn btn-danger" role="button">Cancel</a>
+ <a href="cancelUpdate.do" class="btn btn-danger" role="button">Cancel</a>
   </div>
 </div>
 
