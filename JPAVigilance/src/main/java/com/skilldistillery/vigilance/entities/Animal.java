@@ -1,5 +1,6 @@
 package com.skilldistillery.vigilance.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -21,7 +22,7 @@ public class Animal {
 	private String species;
 
 	@Column(name = "spotting_time")
-	private Date spottingTime;
+	private LocalDate spottingTime;
 
 	private String description;
 	
@@ -53,11 +54,11 @@ public class Animal {
 		this.species = species;
 	}
 
-	public Date getSpottingTime() {
+	public LocalDate getSpottingTime() {
 		return spottingTime;
 	}
 
-	public void setSpottingTime(Date spottingTime) {
+	public void setSpottingTime(LocalDate spottingTime) {
 		this.spottingTime = spottingTime;
 	}
 
