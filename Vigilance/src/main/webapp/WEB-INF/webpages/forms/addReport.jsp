@@ -13,22 +13,32 @@
 <jsp:include page="../../bootstrap/navbar.jsp" />
 <body>
 
-<h3>Report Information</h3>
+	<h3>Report Information</h3>
 
- <form action="reportAdded.do" method="POST">
+	<form action="reportAdded.do" method="POST">
 		<fieldset>
-			<legend>Enter information to make a report:</legend>
+			<!-- input for date -->
+			<label for="name">Name:</label> <br> <input id="name"
+				name="name" type="text" required> <br>
+			      <input type="text" id="description" name="description" />
+			
+				<!-- input for description -->
+				<!-- input for authority contacted -->
+				<!-- ==START OF ANIMAL REPORT== -->
+				<!-- input for species involved -->
+				<!-- input for spottting date -->
+				<!-- input for description -->
 				
-				<label for="contactAuthority">Were the police contacted?</label> <select
-					id="contactAuthority" name="contactAuthority" required>
-					<option value="True">Yes</option>
-					<option value="False">No</option>
-				</select><br>
-			<button type="submit" class="btn btn-primary">Submit</button>
+					<label for="contactAuthority">Were the police contacted?</label> <select
+						id="contactAuthority" name="contactAuthority" required>
+						<option value="True">Yes</option>
+						<option value="False">No</option>
+					</select><br>
+					<button type="submit" class="btn btn-primary">Submit</button>
 		</fieldset>
 	</form>
 
-	
 
-<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
+
+	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>

@@ -30,7 +30,7 @@ private ReportDAO reportDao;
 		int nId = loggedInUser.getHousehold().getAddress().getNeighborhood().getId();
 		List<Report> reports = reportDao.reportsByNeighborhood(nId);
 		model.addAttribute("report", reports);
-		return "/webpages/forms/reportform";
+		return "/webpages/forms/reportForm";
 	}
 	
 	@RequestMapping(path = "addReport.do")
