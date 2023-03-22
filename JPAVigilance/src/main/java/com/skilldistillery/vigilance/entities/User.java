@@ -10,11 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -78,7 +74,21 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Report> reports;
 	
+	@ManyToMany(mappedBy="likes")
+	private List<Post> postLikes;
 	
+	
+
+
+
+	public List<Post> getPostLikes() {
+		return postLikes;
+	}
+
+	public void setPostLikes(List<Post> postLikes) {
+		this.postLikes = postLikes;
+	}
+
 	public User(int id, String username, String password, int active, String fname, String lname, String email) {
 		super();
 	}
