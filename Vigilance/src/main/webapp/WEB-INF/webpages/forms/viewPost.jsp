@@ -185,14 +185,30 @@ body {
 							type="submit" class="btn btn-default" value="Like">
 					</form>
 
-					<form action="deletePost.do" method="POST">
-						<label for="id"></label> <input type="hidden" name="id"
-							value="${post.id}" /> <input type="submit"
-							class="btn btn-danger" value="Delete" />
-					</form>
-					<a class="btn btn-warning" href="updatePost.do?id=${post.id}"
-						role="button">Edit Post</a> <span class="pull-right text-muted">
-						# likes</span>
+
+
+
+					<c:if test="${loggedinuser.id == post.user.id}">
+
+
+						<label for="id"></label>
+						<input type="hidden" name="id" value="${post.id}" />
+						<input type="submit" class="btn btn-danger" value="Delete" />
+						<form action="deletePost.do" method="POST">
+
+
+							<a class="btn btn-warning" href="updatePost.do?id=${post.id}"
+								role="button">Edit Post</a> <span class="pull-right text-muted">#
+								likes</span>
+						</form>
+					</c:if>
+
+
+
+
+
+
+
 				</div>
 				<div class="box-footer box-comments" style="display: block;">
 					<div class="box-comment">
@@ -201,7 +217,16 @@ body {
 								alt="User Image">
 							<div class="comment-text">
 								<span class="username"> <span
-									class="text-muted pull-right">${comments.createDate}</span>
+									class="text-muted pull-right">${comments.createDate}
+									
+									
+									<c:if test="${loggedinuser.firstName == comment.user.firstName}">
+									
+									<a class="btn btn-warning" href="deleteComment.do?id=${comment.id}" role="button">Delete</a>
+									
+									</c:if>
+									 
+									</span>
 								</span> <a href="profile.do?id=${comments.user.id}">${comments.user.firstName}</a>
 								<p>${comments}</p>
 							</div>
@@ -211,7 +236,7 @@ body {
 					<div class="box-footer" style="display: block;">
 						<form action="addComment.do?" method="post">
 							<img class="img-responsive img-circle img-sm"
-								src="${post.user.profilePic}" alt="Alt Text">
+								src="${loggedinuser.profilePic}" alt="Alt Text">
 							<div class="img-push">
 
 								<label for="decription"></label> <input type="text"

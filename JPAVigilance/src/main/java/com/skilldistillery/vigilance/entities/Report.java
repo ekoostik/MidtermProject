@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -37,8 +38,6 @@ public class Report {
 	@OneToMany(mappedBy = "report")
 	private List<Animal> animals;
 	
-	@OneToMany(mappedBy="report")
-	private List<PersonOfInterest> personOI;
 
 	public Report() {
 
@@ -84,13 +83,7 @@ public class Report {
 		this.animals = animals;
 	}
 
-	public List<PersonOfInterest> getPersonOI() {
-		return personOI;
-	}
-
-	public void setPersonOI(List<PersonOfInterest> personOI) {
-		this.personOI = personOI;
-	}
+	
 
 	@Override
 	public int hashCode() {

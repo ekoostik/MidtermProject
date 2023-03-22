@@ -107,4 +107,6 @@ public class Animal {
 		return spottingTime + " | " + description ;
 	}
 
+	
+
 }

@@ -8,8 +8,9 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.vigilance.entities.NeighborhoodEvent;
+import com.skilldistillery.vigilance.entities.Animal;
 import com.skilldistillery.vigilance.entities.Report;
+import com.skilldistillery.vigilance.entities.User;
 
 @Service
 @Transactional
@@ -31,7 +32,6 @@ public class ReportDoaImpl implements ReportDAO {
 		newReport.setReportDate(report.getReportDate());
 		newReport.setDesription(report.getDesription());
 		newReport.setContactAuthority(report.isContactAuthority());
-		newReport.setPersonOI(report.getPersonOI());
 		newReport.setAnimals(report.getAnimals());
 	
 		
@@ -42,8 +42,14 @@ public class ReportDoaImpl implements ReportDAO {
 
 	@Override
 	public Report updateReport(int id, Report report) {
-		// TODO Auto-generated method stub
-		return null;
+		Report updatedReport = new Report();
+		
+		updatedReport.setReportDate(report.getReportDate());
+		updatedReport.setDesription(report.getDesription());
+		updatedReport.setContactAuthority(report.isContactAuthority());
+		updatedReport.setAnimals(report.getAnimals());
+		
+		return updatedReport;
 	}
 
 	@Override
@@ -59,11 +65,34 @@ public class ReportDoaImpl implements ReportDAO {
 	}
 
 	@Override
-	public List<Report> reports() {
-		String jpql ="SELECT r FROM Report r";
-		return em.createQuery(jpql, Report.class).getResultList();		
+	public List<Report> reportsByNeighborhood(int nId) {
+		String jpql ="SELECT r FROM Report r WHERE r.user.household.address.neighborhood.id = :nId";
+		return em.createQuery(jpql, Report.class)
+				.setParameter("nId",nId)
+				.getResultList();		
 		
 	}
 
+	@Override
+	public List<Animal> viewAnimalReports(int id) {
+		Report report = em.find(Report.class, id);
+		List<Animal> animals = report.getAnimals();
+		
+		return animals;
+	}
+
+	@Override
+	public Animal addAnimalReport(String description, int id, int userId) {
+		Report report = em.find(Report.class, id);
+		User user = em.find(User.class, userId);
+		Animal addAnimal = new Animal();
+		
+		addAnimal.setReport(report);
+	
+		
+		return null;
+	}
+	
+	
 	
 }
