@@ -181,8 +181,11 @@ body {
 					<p>${post.description}</p>
 					<form action="commentLike.do" method="POST">
 						<input name="postId" type="hidden" value="${post.id}"></input> <input
-							name="userId" type="hidden" value="${post.user.id}"></input> <input
-							type="submit" class="btn btn-default" value="Like">
+							name="userId" type="hidden" value="${loggedinuser.id}"></input>
+						
+							<input type="submit" class="btn btn-default" value="Like">
+							<span class="pull-right text-muted">${likes}
+								likes</span>
 					</form>
 
 
@@ -199,8 +202,7 @@ body {
 
 							<a class="btn btn-warning" href="updatePost.do?id=${post.id}"
 								role="button">Edit Post</a> 
-								<span class="pull-right text-muted">#
-								likes</span>
+								
 						</form>
 					</c:if>
 
@@ -236,8 +238,11 @@ body {
 							<div class="img-push">
 
 								<label for="decription"></label> <input type="text"
-									name="description" value="" /> <input name="postId"
-									type="hidden" value="${post.id}"></input> <input type="submit"
+									name="description" value="" /> 
+									<input name="postId" type="hidden" value="${post.id}"></input> 
+									<input name="userId" type="hidden" value="${loggedinuser.id}"></input> 
+									
+									<input type="submit"
 									class="btn btn-success" value="Comment">
 							</div>
 						</form>
