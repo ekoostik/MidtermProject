@@ -20,4 +20,5 @@ public interface PostDAO {
 	public boolean likeComment(int postId, int userId);
 	public List<Post> viewAllPostByNeighborhoodById(int id);
 	public List<Post> viewAllPostByUser(int id);
+	
 }

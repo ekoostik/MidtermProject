@@ -27,7 +27,7 @@ public class NeighborhoodController {
 	public String viewAll(Model model) {
 		model.addAttribute("event", NHDao.allEvents());
 
-		return "/webpages/forms/neighborhoodEventForm";
+		return "/webpages/forms/viewAllEvent";
 	}
 
 	@RequestMapping(path = "addNEvent.do", method = RequestMethod.POST)
@@ -58,10 +58,10 @@ public class NeighborhoodController {
 		return mv;
 	}
 
-	@RequestMapping(path = "getNEventById.do", method = RequestMethod.GET)
+	@RequestMapping(path = "getEventById.do", method = RequestMethod.GET)
 	public String getnEvent(int id, Model model) {
 		NeighborhoodEvent event = NHDao.findEventById(id);
-		model.addAttribute("events", event);
+		model.addAttribute("event", event);
 
 		return "/webpages/forms/neighborhoodEventForm";
 	}

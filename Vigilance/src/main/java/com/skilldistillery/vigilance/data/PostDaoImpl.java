@@ -66,7 +66,6 @@ public class PostDaoImpl implements PostDAO {
 
 	@Override
 	public Post findpostById(int id) {
-
 		return em.find(Post.class, id);
 	}
 
@@ -104,7 +103,7 @@ public class PostDaoImpl implements PostDAO {
 
 	@Override
 	public boolean likeComment(int userId, int postId) {
-
+		boolean isLiked = false;
 		Post post = em.find(Post.class, postId);
 		User user = em.find(User.class, userId);
 
@@ -112,12 +111,13 @@ public class PostDaoImpl implements PostDAO {
 			post.getLikes().add(user);
 
 			em.persist(post);
+			isLiked = true;
 		} else {
 			post.getLikes().remove(user);
 
 		}
 
-		return true;
+		return isLiked;
 	}
 
 	@Override
@@ -135,5 +135,7 @@ public class PostDaoImpl implements PostDAO {
 		List<Post> posts=user.getPosts();
 		return posts;
 	}
+
+	
 
 }

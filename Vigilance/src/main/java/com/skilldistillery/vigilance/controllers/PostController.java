@@ -72,22 +72,31 @@ public class PostController {
 	}
 
 	@GetMapping("getPostById.do")
-	public String getnpost(int id, Model model) {
+	public String getnpost(int id, Model model, HttpSession session) {
+
 		Post post = postDao.findpostById(id);
+		User loggedInUser = (User) session.getAttribute("loggedinuser");
 		List<Comment> comments = postDao.viewComments(id);
 		int likes = post.getLikes().size();
-		model.addAttribute("likes", likes);
-		model.addAttribute("comments", comments);
-		model.addAttribute("post", post);
+		if (post.getLikes().contains(loggedInUser)) {
+			model.addAttribute("likes", likes);
+			model.addAttribute("comments", comments);
+			model.addAttribute("post", post);
+			return "/webpages/forms/LikedPost";
+		} else {
+			model.addAttribute("likes", likes);
+			model.addAttribute("comments", comments);
+			model.addAttribute("post", post);
 
-		return "/webpages/forms/viewPost";
+			return "/webpages/forms/viewPost";
+		}
 	}
 
 	@GetMapping("updatePost.do")
 	public String updatepost(int id, Model model) {
 		model.addAttribute("post", postDao.findpostById(id));
 
-		return "/webpages/forms/TestLanding";
+		return "/webpages/forms/updatePost";
 	}
 
 	@PostMapping("submitPostUpdate.do")
@@ -109,8 +118,8 @@ public class PostController {
 	public String updatedpost(Post post, Model model) {
 
 		List<Comment> comments = postDao.viewComments(post.getId());
-		model.addAttribute("comments", comments);
 
+		model.addAttribute("comments", comments);
 		model.addAttribute("post", post);
 		return "/webpages/forms/viewPost";
 
@@ -167,11 +176,20 @@ public class PostController {
 	public String addedNewComment(Comment comment, Model model) {
 		Post post = postDao.findpostById(comment.getPost().getId());
 		List<Comment> comments = postDao.viewComments(post.getId());
+		User user = comment.getUser();
 		int likes = post.getLikes().size();
-		model.addAttribute("comments", comments);
-		model.addAttribute("likes", likes);
-		model.addAttribute("post", post);
-		return "/webpages/forms/viewPost";
+		if (post.getLikes().contains(user)) {
+			model.addAttribute("likes", likes);
+			model.addAttribute("comments", comments);
+			model.addAttribute("post", post);
+			return "/webpages/forms/LikedPost";
+		} else {
+			model.addAttribute("likes", likes);
+			model.addAttribute("comments", comments);
+			model.addAttribute("post", post);
+
+			return "/webpages/forms/viewPost";
+		}
 	}
 
 	@PostMapping("commentLike.do")
@@ -184,10 +202,13 @@ public class PostController {
 			model.addAttribute("comments", comments);
 			model.addAttribute("likes", likes);
 			model.addAttribute("post", post);
-			return "/webpages/forms/viewPost";
+			return "/webpages/forms/LikedPost";
 
 		} else
-			return "/webpages/failurePage";
+			model.addAttribute("comments", comments);
+		model.addAttribute("likes", likes);
+		model.addAttribute("post", post);
+		return "/webpages/forms/viewPost";
 	}
 
 	@GetMapping("GoToProfile.do")
@@ -201,12 +222,8 @@ public class PostController {
 	public String getNeighborhoodPost(int id, Model model) {
 		List<Post> post = postDao.viewAllPostByNeighborhoodById(id);
 
-		if (!post.isEmpty()) {
-			model.addAttribute("post", post);
-			return "/webpages/forms/TestLanding";
-		} else
-			return "/webpages/failurePage";
-
+		model.addAttribute("post", post);
+		return "/webpages/forms/TestLanding";
 	}
 
 }
