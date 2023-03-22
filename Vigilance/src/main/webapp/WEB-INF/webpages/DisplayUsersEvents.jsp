@@ -1,24 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
-<title>Profile</title>
+<title>Display Users Events</title>
+<!-- Collin -->
 <link rel="stylesheet" href="css/stylesheet.css">
 <style>
 body {
 	margin-top: 20px;
 	background: #DCDCDC;
-}
-
-#centerButtons {
-	color: #DCDCDC;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .content {
@@ -662,43 +656,72 @@ blockquote {
 </head>
 <jsp:include page="../bootstrap/navbar.jsp" />
 <body>
-	<div class="card">
-		<h1>${loggedinuser.firstName}${loggedinuser.lastName}</h1>
-		<p>This page will show all posts, entries, etc particular to the
-			user.</p>
-		<jsp:include page="../bootstrap/bootstrapFooter.jsp" />
-		<div id="centerButtons">
-			<a href="#" width="100px" height="100px"><img
-				src="https://bootdey.com/img/Content/avatar/avatar1.png"
-				class="img-responsive" alt="image post"></a><br><br><br>
+	<c:forEach var="event" items="${event }">
+		<div class="col-md-12 col-lg-12">
+			<article class="post vt-post">
+				<div class="row">
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
+						<div class="post-type post-img">
+							<a href="#"><img
+								src="https://bootdey.com/img/Content/avatar/avatar1.png"
+								class="img-responsive" alt="image post"></a>
+						</div>
+						<div class="author-info author-info-2">
+							<ul class="list-inline">
+								<li>
+									<div class="info">
+										<p>Posted on:</p>
+										<strong>${event.createDate}</strong>
+									</div>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
+						<div class="caption">
+							<h3 class="md-heading">
+								<a href="#">${event.description}</a>
+							</h3>
+							<p>
+							<ul>
+							<li>Location:</li>
+							<li>${event.address.address1 } <br>
+							   ${event.address.city }, ${event.address.state } ${event.address.zipCode }</li>
+							<li>Neighborhood: ${event.neighborhoodId.name}</li>
+							</ul>
+							</p>
+							
+						</div>
+					</div>
+				</div>
+			</article>
+
+
+
 		</div>
-		<div id="centerButtons">
-		
-				<a class="btn btn-default" href="RetrieveMyPosts.do" 
-				role="button">View My Posts</a> 
-				
-				<a class="btn btn-default" href="RetrieveMyReports.do"
-				role="button">View My Reports</a> 
-				
-				<a class="btn btn-default"
-				href="RetrieveMyEvents.do" role="button" >View My Events</a> <br>
-		</div>
-		<strong>About me:</strong>
-		<c:choose>
-			<c:when test="${loggedinuser.aboutme == null}">
-				<a href="updateUserForm.do">No About Me Yet! Add one</a>
-			</c:when>
-			<c:otherwise>
-					${loggedinuser.aboutme}
-				</c:otherwise>
-		</c:choose>
-		<h4>
-			Name: ${loggedinuser.firstName } ${loggedinuser.lastName}<br> 
-			Date Joined Vigilance: ${loggedinuser.createDate }<br> 
-			Date of Birth: ${loggedinuser.dateOfBirth }<br>
-			Email: ${loggedinuser.email }<br>
-		</h4>
-	</div>
-	</div>
+	</c:forEach>
+
+	<button onclick="window.location.href='createPost.do';">New
+		Report</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<jsp:include page="../bootstrap/bootstrapFooter.jsp" />
+	
+
+
 </body>
 </html>
