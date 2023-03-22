@@ -1,6 +1,5 @@
 package com.skilldistillery.vigilance.data;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,24 +107,13 @@ public class PostDaoImpl implements PostDAO {
 	public boolean likeComment(int userId, int postId) {
 //		boolean like = false;
 		Post post = em.find(Post.class, postId);
-		User user =em.find(User.class, userId);
-		
-		
-		
-		
-		List<User>likeUser = new ArrayList<>();
-		List<Post>likePost = new ArrayList<>();
-		likeUser.add(user);
-		likePost.add(post);
-	
-		
-		
-		user.setPostLikes(likePost);
-		post.setLikes(likeUser);
-//		em.persist(user);
+		User user = em.find(User.class, userId);
+
+		post.getLikes().add(user);
+
 		em.persist(post);
-		
-		
+
+	
 		return true;
 	}
 

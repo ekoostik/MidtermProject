@@ -11,7 +11,7 @@ import com.skilldistillery.vigilance.entities.Vehicle;
 public interface HouseholdDAO {
 
 	public HouseHold createNewHousehold(HouseHold household);
-	public HouseHold updateHousehold(HouseHold household);
+	public HouseHold updateHousehold(int householdId, HouseHold household);
 	public List<Pet> listAllPetsByHousehold(int householdId);
 	public Pet addPet(int householdId, Pet pet);
 	public Pet updatePet(int petId, Pet pet);
