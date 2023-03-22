@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+body {
+  
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(135deg, #000000, #6a6665);
+}
+
+.container{
+	max-width: 700px;
+	width: 100%;
+	background: #fff;
+	padding: 25px, 30px;
+	border-radius: 5px;
+}
+
+.container .title {
+	font-size: 25px;
+	font-weight: 500;
+	position: relative;
+	
+}
+
+.container form .user-details{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+form .user-details .input-box {
+	margin: 20px 0 12px 0;
+	width: calc(100% /2 - 20px);
+}
+
+.user-detail .input-box .details{
+	font-weight: 500;
+	margin-bottom: 5px;
+	
+}
+form .user-details .input-box input {
+	height: 45px;
+	width: 100%;
+	outline: none;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	padding-left: 15px;
+	font-size: 16px;
+}
+
+form .button {
+	align-items: center;
+}
+
+form .button input{
+	height: 45px;
+	width: 500px;
+	align-items: center;
+	outline: none;
+	color: white;
+	padding-bottom: 5px;
+	border: none;
+	font-size: 18px;
+	font-weight: 500;
+	letter-spacing: 1px; 
+	border-radius: 5px;
+	background: linear-gradient(135deg, #000000, #6a6665);
+}
+
+form .button input:hover{
+	background: linear-gradient(-135deg, #000000, #6a6665);
+}
