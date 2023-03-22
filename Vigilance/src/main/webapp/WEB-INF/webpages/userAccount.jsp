@@ -7,12 +7,6 @@
 <jsp:include page="../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Account</title>
-<!-- <style>
-
-.profile {
-  border-radius: 50%;
-}
-</style> -->
 <link rel="stylesheet" href="../stylesheet.css">
 </head>
 <jsp:include page="../bootstrap/navbar.jsp" />
@@ -30,7 +24,7 @@
 				<br>
 			</c:otherwise>
 		</c:choose>
-		<h1>${loggedinuser.firstName}'sAccount</h1>
+		<h1 class="profileH1">${loggedinuser.firstName}'s Account</h1>
 		<br>
 		<h2>User Information</h2>
 		<ul style="list-style-type: none;">
@@ -40,7 +34,7 @@
 			<li>Email: ${loggedinuser.email}</li>
 			<li>Date of Birth: ${loggedinuser.dateOfBirth}</li>
 		</ul>
-		<h3>About Me</h3>
+		<h3 class="profileH3">About Me</h3>
 		${loggedinuser.aboutme}
 		<form action="updateUserInfo.do" method="GET">
 			<button name="update" type="submit" class="btn btn-dark">Update
@@ -71,7 +65,6 @@
 						</ul>
 					</td>
 					<td>${loggedinuser.household.occupants}<br>
-					<a href="updateOccupants.do" class="btn btn-secondary" role="button">Update</a>
 					</td>
 					<td>
 					<c:choose>
@@ -87,16 +80,13 @@
 								<li>Color: ${v.color}</li>
 								<li>Description: ${v.description}</li>
 							</ul>
-							<a href="updateVehicle.do" class="btn btn-secondary" role="button">Update</a>
-							<a href="removeVehicle.do" class="btn btn-secondary" role="button">Remove</a>
 						</c:forEach>
 					</c:otherwise>
 					</c:choose>	
 					</td>
 				<td>
 				<c:choose>
-					<c:when test="${empty loggedinuser.household.pets}">No Pets Listed<br>
-					<a href="addPet.do" class="btn btn-secondary" role="button">Add Pet</a>
+					<c:when test="${empty loggedinuser.household.pets}">No Pets Listed
 					</c:when>
 					<c:otherwise>
 					<c:forEach var="p" items="${loggedinuser.household.pets}">
@@ -107,12 +97,37 @@
 								<li>Color: ${p.color}</li>
 								<%-- <li>Tagged: ${p.tagged}</li> --%>
 							</ul>
-							<a href="updateVehicle.do" class="btn btn-secondary" role="button">Update</a>
-							<a href="removeVehicle.do" class="btn btn-secondary" role="button">Remove</a>
 						</c:forEach>
 					</c:otherwise>
 					</c:choose>	
+							
 						</td>
+				</tr>
+				<tr>
+				<td></td>	
+				<td></td>	
+				<td><a href="updateOccupants.do" class="btn btn-secondary" role="button">Update Occupants</a></td>	
+				<td>
+				<c:choose>
+					<c:when test="${empty loggedinuser.household.vehicles}">
+					<a href="addVehicle.do" class="btn btn-secondary" role="button">Add Vehicle</a>
+					</c:when>
+					<c:otherwise>
+				<a href="updateVehicle.do" class="btn btn-secondary" role="button">Update Vehicle</a>
+				<a href="removeVehicle.do" class="btn btn-secondary" role="button">Remove Vehicle</a>
+					</c:otherwise>
+					</c:choose>
+				</td>	
+				<td><c:choose>
+					<c:when test="${empty loggedinuser.household.pets}">
+					<a href="addPet.do" class="btn btn-secondary" role="button">Add Pet</a>
+					</c:when>
+					<c:otherwise>
+					<a href="updatePet.do" class="btn btn-secondary" role="button">Update Pet</a>
+					<a href="add another.do" class="btn btn-secondary" role="button">Add Pet</a>
+					</c:otherwise>
+					</c:choose>
+					</td>	
 				</tr>
 			</tbody>
 		</table>
