@@ -47,7 +47,7 @@ private ReportDAO reportDao;
 		Report report = reportDao.findReportById(id);
 		model.addAttribute("report", report);
 
-		return "/webpages/forms/reportForm";
+		return "/webpages/forms/viewSingleReport";
 	}
 
 	@RequestMapping(path = "updatereport.do", method = RequestMethod.GET)
