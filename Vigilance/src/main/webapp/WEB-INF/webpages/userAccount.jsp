@@ -41,7 +41,7 @@
 				Information</button>
 		</form>
 		<br>
-		<h2>Household Information</h2>
+		<h2>Household Information</h2> 
 		<table>
 			<thead>
 				<tr>
@@ -125,7 +125,7 @@
 					</c:when>
 					<c:otherwise>
 					<a href="updatePet.do" class="btn btn-secondary" role="button">Update Pet</a>
-					<a href="add another.do" class="btn btn-secondary" role="button">Add Pet</a>
+					<a href="addPet.do" class="btn btn-secondary" role="button">Add Pet</a>
 					</c:otherwise>
 					</c:choose>
 					</td>	
@@ -133,11 +133,6 @@
 			</tbody>
 		</table>
 		<br>
-
-		<p>This page will hold their respective information. Such as
-			address/contact information, neighborhood, time online, etc</p>
-		<p>As well as the logic to edit their information to be reflected
-			in the database</p>
 	</div>
 	<jsp:include page="../bootstrap/bootstrapFooter.jsp" />
 </body>

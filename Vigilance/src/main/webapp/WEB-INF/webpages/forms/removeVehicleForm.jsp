@@ -68,7 +68,7 @@
 											<select name="id">
 											<c:forEach var="v" items="${loggedinuser.household.vehicles}">
 												<option value="${v.id}">
-												Make: ${v.make}
+												${v.make}, ${v.model} 
 												</option>
 											</c:forEach>
 											</select>

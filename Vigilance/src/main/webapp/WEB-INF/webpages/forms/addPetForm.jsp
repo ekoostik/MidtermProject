@@ -7,34 +7,42 @@
 <head>
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
-<title>Add Vehicle</title>
+<title>Add Pet</title>
 <link rel="stylesheet" href="../../../../registrationStylesheet.css">
 </head>
 <body>
 <div class="container">
-<div class="title">Add A New Vehicle</div>
-<form action="vehicleAdded.do" method="POST">
+<div class="title">Add A New Pet</div>
+<form action="petAdded.do" method="POST">
 <div class ="user-details">
 <div class ="input-box">
-  <span class="details">Make</span>
-  <input type="text" name="make" required/>
+  <span class="details">Name</span>
+  <input type="text" name="make" required/><br>
  </div>
 <div class ="input-box">
-  <span class="details">Model</span>
-  <input type="text" name="model" required/>
+  <span class="details">Species</span>
+  <input type="text" name="model" required/><br>
+ </div>
+<div class ="input-box">
+  <span class="details">Breed</span>
+  <input type="text" name="color" /><br>
  </div>
 <div class ="input-box">
   <span class="details">Color</span>
-  <input type="text" name="color" required />
+  <input type="text" name="description" /><br>
  </div>
-<div class ="input-box">
-  <span class="details">Description</span>
-  <input type="text" name="description" />
- </div>
+ <div class ="tagged-details">
+   <span class="details">Tagged?</span>
+<select name="tagged">
+	<option value="1">Yes</option>
+	<option value="0">No</option>
+	<option value="0">Unknown</option>
+</select>
+</div>
  <div class="button">
- <input type="submit" value="Add Vehicle">
+ <input type="submit" value="Add Pet">
   </div>
- </div>
+  </div>
 </form> 
 <div class="cancel">
  <a href="cancelUpdate.do" class="btn btn-danger" role="button">Cancel</a>

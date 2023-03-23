@@ -58,6 +58,7 @@ form .user-details .input-box input {
 }
 
 
+
 form .button input{
 	height: 45px;
 	width: 675px;
@@ -77,6 +78,44 @@ form .button input:hover{
 	background: linear-gradient(-135deg, #000000, #6a6665);
 }
 
+
+form .tagged-details .tag-input{
+	font-size: 20px;
+	font-weight: 500;
+}
+
+form .tagged-details .category {
+	display: flex;
+	width: 80%;
+	margin: 14px 0;
+	justify-content: space-between;
+}
+
+.tag-details .category label {
+	display: flex;
+	align-items: center;
+}
+
+.tag-details .category .dot{
+	height: 18px;
+	width: 18px;
+	background: blue;
+	border-radius: 50%;
+	margin-right: 10px;
+	border: 5px solid transparent;
+	transition: all 0.3s ease;
+}
+
+#dot-1:checked ~ .category label .one, 
+#dot-2:checked ~ .category label .two, 
+#dot-3:checked ~ .category label .three{
+	border-color: blue;
+	background: grey;
+}
+
+form input[type="radio"]{
+display: none;
+}
 .cancel {
   margin: center;
   width: 100%;

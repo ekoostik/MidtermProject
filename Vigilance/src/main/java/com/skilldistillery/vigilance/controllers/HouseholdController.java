@@ -85,10 +85,13 @@ public class HouseholdController {
 		return "webpages/forms/addVehicleForm";
 	}	
 	
-	@RequestMapping(path = "vehicleAdded.do",method = RequestMethod.POST)
+	@RequestMapping(path = "vehicleAdded.do", method = RequestMethod.POST)
 	public String vehicleAdded( Vehicle vehicle, Model model, HttpSession session) {
 		User loggedInUser = (User)session.getAttribute("loggedinuser");
-		model.addAttribute("loggedinuser", loggedInUser);
+		if (loggedInUser != null) {
+			loggedInUser = userDao.findUserById(loggedInUser.getId());
+			session.setAttribute("loggedinuser", loggedInUser);
+		}
 		vehicle = householdDao.addVehicle(loggedInUser.getHousehold().getId(), vehicle);
 		return "webpages/userAccount";
 	}	
@@ -130,6 +133,24 @@ public class HouseholdController {
 		model.addAttribute("loggedinuser", loggedInUser);
 		return "webpages/userAccount";
 	}
+	
+	@RequestMapping(path = "addPet.do",method = RequestMethod.GET)
+	public String addPet( Model model, HttpSession session) {
+		User loggedInUser = (User)session.getAttribute("loggedinuser");
+		model.addAttribute("loggedinuser", loggedInUser);
+		return "webpages/forms/addPetForm";
+	}	
+	
+	@RequestMapping(path = "petAdded.do",method = RequestMethod.POST)
+	public String petAdded( Pet pet, Model model, HttpSession session) {
+		User loggedInUser = (User)session.getAttribute("loggedinuser");
+		if (loggedInUser != null) {
+			loggedInUser = userDao.findUserById(loggedInUser.getId());
+			session.setAttribute("loggedinuser", loggedInUser);
+		}
+		pet = householdDao.addPet(loggedInUser.getHousehold().getId(), pet);
+		return "webpages/userAccount";
+	}	
 	
 	@RequestMapping(path = "updatePet.do",method = RequestMethod.GET)
 	public String updatePet( Model model, HttpSession session) {
