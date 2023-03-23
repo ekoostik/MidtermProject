@@ -7,45 +7,45 @@
 <head>
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
-<title>Account Registration</title>
+<title>Add Pet</title>
 <link rel="stylesheet" href="../../../../registrationStylesheet.css">
 </head>
 <body>
 <div class="container">
-<div class="title">Register A New Account</div>
-<form action="register.do" method="POST">
+<div class="title">Add A New Pet</div>
+<form action="petAdded.do" method="POST">
 <div class ="user-details">
 <div class ="input-box">
-  <span class="details">First Name</span>
-  <input type="text" name="firstName" required/><br>
+  <span class="details">Name</span>
+  <input type="text" name="make" required/><br>
  </div>
 <div class ="input-box">
-  <span class="details">Last Name</span>
-  <input type="text" name="lastName" required/><br>
+  <span class="details">Species</span>
+  <input type="text" name="model" required/><br>
  </div>
 <div class ="input-box">
-  <span class="details">Email</span>
-  <input type="text" name="email" required /><br>
+  <span class="details">Breed</span>
+  <input type="text" name="color" /><br>
  </div>
 <div class ="input-box">
-  <span class="details">Date of Birth</span>
-  <input type="date" name="dob" required/><br>
+  <span class="details">Color</span>
+  <input type="text" name="description" /><br>
  </div>
-<div class ="input-box">
-  <span class="details">Username</span>
-  <input type="text" name="username" required/><br>
- </div>
-<div class ="input-box">
-  <span class="details">Password</span>
-  <input type="password" name="password" required/><br>
- </div>
+ <div class ="tagged-details">
+   <span class="details">Tagged?</span>
+<select name="tagged">
+	<option value="1">Yes</option>
+	<option value="0">No</option>
+	<option value="0">Unknown</option>
+</select>
+</div>
  <div class="button">
- <input type="submit" value="Register">
+ <input type="submit" value="Add Pet">
   </div>
- </div>
+  </div>
 </form> 
 <div class="cancel">
- <a href="cancelRegistration.do" class="btn btn-danger" role="button">Cancel</a>
+ <a href="cancelUpdate.do" class="btn btn-danger" role="button">Cancel</a>
   </div>
 </div>
 

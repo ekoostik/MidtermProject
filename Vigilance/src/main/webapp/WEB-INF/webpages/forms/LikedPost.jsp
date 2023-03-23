@@ -25,11 +25,11 @@ body {
 }
 .box-widget {
 	border: none;
-	position: center;
+	position: relative;
 }
 
 .box {
-	position: center;
+	position: relative;
 	border-radius: 3px;
 	background: #ffffff;
 	border-top: 3px solid #d2d6de;
@@ -46,7 +46,7 @@ body {
 	color: #444;
 	display: block;
 	padding: 10px;
-	position: center;
+	position: relative;
 }
 
 .user-block img {
@@ -182,7 +182,7 @@ body {
 					</div>
 
 				</div>
-		
+
 
 				<div class="box-body" style="display: block;">
 					<img class="img-responsive pad" src="${post.image}" alt="Photo">
@@ -191,7 +191,7 @@ body {
 					<form action="commentLike.do" method="POST">
 						<input name="postId" type="hidden" value="${post.id}"></input> <input
 							name="userId" type="hidden" value="${loggedinuser.id}"></input> <input
-							type="submit" class="btn btn-default" value="Like"> <span
+							type="submit" class="btn btn-default" value="Unlike"> <span
 							class="pull-right text-muted">${likes} likes</span>
 					</form>
 

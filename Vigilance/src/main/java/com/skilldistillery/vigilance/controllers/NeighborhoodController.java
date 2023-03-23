@@ -2,9 +2,12 @@ package com.skilldistillery.vigilance.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,7 +30,7 @@ public class NeighborhoodController {
 	public String viewAll(Model model) {
 		model.addAttribute("event", NHDao.allEvents());
 
-		return "/webpages/forms/neighborhoodEventForm";
+		return "/webpages/forms/viewAllEvent";
 	}
 
 	@RequestMapping(path = "addNEvent.do", method = RequestMethod.POST)
@@ -58,10 +61,10 @@ public class NeighborhoodController {
 		return mv;
 	}
 
-	@RequestMapping(path = "getNEventById.do", method = RequestMethod.GET)
+	@RequestMapping(path = "getEventById.do", method = RequestMethod.GET)
 	public String getnEvent(int id, Model model) {
 		NeighborhoodEvent event = NHDao.findEventById(id);
-		model.addAttribute("events", event);
+		model.addAttribute("event", event);
 
 		return "/webpages/forms/neighborhoodEventForm";
 	}
@@ -118,6 +121,7 @@ public class NeighborhoodController {
 
 	@RequestMapping(path = "viewAllNeighborhoods.do", method = RequestMethod.GET)
 	public String viewAllHoods(Model model) {
+		
 		model.addAttribute("hood", NHDao.allNeighborhoods());
 
 		return "/webpages/forms/neighborhoodForm";
@@ -192,7 +196,19 @@ public class NeighborhoodController {
 		List <Post> postList = NHDao.findHoodById(id).getPosts();
 		model.addAttribute("post", postList);
 		
+		return "/webpages/forms/viewAllPost";
+	}
+	
+	@GetMapping("getHoodById.do")
+	public String getHoodById(int id, Model model) {
+		Neighborhood neighborhood = NHDao.findHoodById(id);
+		List<Post> post = neighborhood.getPosts();
+		List<NeighborhoodEvent> event = neighborhood.getnEvents();
+		model.addAttribute("event", event);
+		model.addAttribute("post", post);
+		model.addAttribute("hood", neighborhood);
 		return "/webpages/forms/TestLanding";
 	}
+	
 
 }

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -7,19 +7,37 @@
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Neighborhood Event</title>
-<link rel="stylesheet" href="css/stylesheet.css">
+<link rel="stylesheet" href="../../../../registrationStylesheet.css">
 </head>
+<style>
+</style>
 <body>
- <p>Looks like we don't have a neighborhood for your address</p>
- <p>Please fill out the following fields to continue.</p>
+<div class="container">
+<div class="title">Enter New Neighborhood</div>
 <form action="newneighborhood.do" method="POST">
-  Name<input type="text" name="name" /><br>
-  Image(Optional)<input type="text" name="imageUrl" /><br>
-  Description <input type="text" name="description" /><br>
- <button type="submit" class="btn btn-primary">Submit</button>
+<div class ="user-details">
+<div class ="input-box">
+  <span class="details">Neighborhood Name</span>
+  <input type="text" name="name" required/><br>
+ </div>
+<div class ="input-box">
+  <span class="details">Image(Optional)</span>
+  <input type="text" name="imageUrl" /><br>
+ </div>
+<div class ="input-box">
+  <span class="details">Description (Optional)</span>
+  <input type="text" name="description" /><br>
+ </div>
+ <div class="button">
+ <input type="submit" value="Submit">
+  </div>
+ </div>
 </form> 
+<div class="cancel">
+ <a href="cancelRegistration.do" class="btn btn-danger" role="button">Cancel</a>
+  </div>
+</div>
 
-
-<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
+	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

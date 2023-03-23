@@ -7,13 +7,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.skilldistillery.vigilance.data.NeighborhoodDAO;
 import com.skilldistillery.vigilance.data.PostDAO;
+import com.skilldistillery.vigilance.data.UserDAO;
 import com.skilldistillery.vigilance.entities.Comment;
+import com.skilldistillery.vigilance.entities.Neighborhood;
 import com.skilldistillery.vigilance.entities.Post;
 import com.skilldistillery.vigilance.entities.User;
 
@@ -23,14 +26,20 @@ public class PostController {
 	@Autowired
 	private PostDAO postDao;
 
-	@RequestMapping(path = "viewAllposts.do", method = RequestMethod.GET)
+	@Autowired
+	private UserDAO userDao;
+
+//	@Autowired
+//	private NeighborhoodDAO hoodDao;
+
+	@GetMapping("viewAllposts.do")
 	public String viewAll(Model model) {
 		model.addAttribute("post", postDao.allposts());
 
 		return "/webpages/forms/viewAllPost";
 	}
 
-	@RequestMapping(path = "addPost.do", method = RequestMethod.POST)
+	@PostMapping("addPost.do")
 	public ModelAndView addNewpost(String description, String photo, HttpSession session, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		Post newpost = null;
@@ -41,7 +50,7 @@ public class PostController {
 			int neighborhood = loggedInUser.getHousehold().getAddress().getNeighborhood().getId();
 			newpost = postDao.createpost(description, photo, userId, neighborhood);
 		} catch (RuntimeException e) {
-			mv.setViewName("error");
+			mv.setViewName("/webpages/failurePage");
 			return mv;
 		}
 		if (newpost != null) {
@@ -49,65 +58,74 @@ public class PostController {
 			mv.setViewName("redirect:PostAdded.do");
 			return mv;
 		} else {
-			mv.setViewName("error");
+			mv.setViewName("/webpages/failurePage");
 			return mv;
 		}
 
 	}
 
-	@RequestMapping(path = "PostAdded.do", method = RequestMethod.GET)
+	@GetMapping("PostAdded.do")
 	public ModelAndView addedNpost() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/webpages/forms/viewPost");
 		return mv;
 	}
 
-	@RequestMapping(path = "getPostById.do", method = RequestMethod.GET)
-	public String getnpost(int id, Model model) {
+	@GetMapping("getPostById.do")
+	public String getnpost(int id, Model model, HttpSession session) {
+
 		Post post = postDao.findpostById(id);
+		User loggedInUser = (User) session.getAttribute("loggedinuser");
 		List<Comment> comments = postDao.viewComments(id);
 		int likes = post.getLikes().size();
-		model.addAttribute("likes", likes);
-		model.addAttribute("comments", comments);
-		model.addAttribute("post", post);
+		if (post.getLikes().contains(loggedInUser)) {
+			model.addAttribute("likes", likes);
+			model.addAttribute("comments", comments);
+			model.addAttribute("post", post);
+			return "/webpages/forms/LikedPost";
+		} else {
+			model.addAttribute("likes", likes);
+			model.addAttribute("comments", comments);
+			model.addAttribute("post", post);
 
-		return "/webpages/forms/viewPost";
+			return "/webpages/forms/viewPost";
+		}
 	}
 
-	@RequestMapping(path = "updatePost.do", method = RequestMethod.GET)
+	@GetMapping("updatePost.do")
 	public String updatepost(int id, Model model) {
 		model.addAttribute("post", postDao.findpostById(id));
 
-		return "/webpages/forms/TestLanding";
+		return "/webpages/forms/updatePost";
 	}
 
-	@RequestMapping(path = "submitPostUpdate.do", method = RequestMethod.POST)
-	public ModelAndView update(String description, int userId, int postId, RedirectAttributes redir) {
+	@PostMapping("submitPostUpdate.do")
+	public ModelAndView update(String description, String photo, int postId, RedirectAttributes redir) {
 
 		ModelAndView mv = new ModelAndView();
-		Post post = postDao.updatepost(description, userId, postId);
+		Post post = postDao.updatepost(description, photo, postId);
 		if (post != null) {
 			redir.addFlashAttribute("post", post);
 			mv.setViewName("redirect:postUpdated.do");
 			return mv;
 		} else {
-			mv.setViewName("error");
+			mv.setViewName("/webpages/failurePage");
 			return mv;
 		}
 	}
 
-	@RequestMapping(path = "postUpdated.do", method = RequestMethod.GET)
+	@GetMapping("postUpdated.do")
 	public String updatedpost(Post post, Model model) {
 
 		List<Comment> comments = postDao.viewComments(post.getId());
-		model.addAttribute("comments", comments);
 
+		model.addAttribute("comments", comments);
 		model.addAttribute("post", post);
 		return "/webpages/forms/viewPost";
 
 	}
 
-	@RequestMapping(path = "deletePost.do", method = RequestMethod.POST)
+	@PostMapping("deletePost.do")
 	public ModelAndView deletPost(int id, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		boolean deleted = postDao.deletepost(id);
@@ -116,30 +134,31 @@ public class PostController {
 			mv.setViewName("redirect:postDeleted.do");
 			return mv;
 		} else {
-			mv.setViewName("error");
+			mv.setViewName("/webpages/failurePage");
 			return mv;
 		}
 
 	}
 
-	@RequestMapping(path = "postDeleted.do", method = RequestMethod.GET)
-	public String deletedPostt() {
-		return "/webpages/home";
+	@GetMapping("postDeleted.do")
+	public String deletedPostt(Model model) {
+		model.addAttribute("post", postDao.allposts());
+		return "/webpages/forms/viewAllPost";
 	}
 
-	@RequestMapping(path = "createPost.do", method = RequestMethod.GET)
+	@GetMapping("createPost.do")
 	public String createPost() {
 		return "/webpages/forms/postForm";
 	}
 
-	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
+	@PostMapping("addComment.do")
 	public ModelAndView addNewCommentt(String description, int postId, int userId, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		Comment newComment = null;
 		try {
 			newComment = postDao.addComment(description, postId, userId);
 		} catch (RuntimeException e) {
-			mv.setViewName("error");
+			mv.setViewName("\"/webpages/failurePage\"");
 			return mv;
 		}
 		if (newComment != null) {
@@ -147,31 +166,64 @@ public class PostController {
 			mv.setViewName("redirect:commentAdded.do");
 			return mv;
 		} else {
-			mv.setViewName("error");
+			mv.setViewName("/webpages/failurePage");
 			return mv;
 		}
 
 	}
 
-	@RequestMapping(path = "commentAdded.do", method = RequestMethod.GET)
+	@GetMapping("commentAdded.do")
 	public String addedNewComment(Comment comment, Model model) {
 		Post post = postDao.findpostById(comment.getPost().getId());
 		List<Comment> comments = postDao.viewComments(post.getId());
+		User user = comment.getUser();
 		int likes = post.getLikes().size();
-		model.addAttribute("comments", comments);
+		if (post.getLikes().contains(user)) {
+			model.addAttribute("likes", likes);
+			model.addAttribute("comments", comments);
+			model.addAttribute("post", post);
+			return "/webpages/forms/LikedPost";
+		} else {
+			model.addAttribute("likes", likes);
+			model.addAttribute("comments", comments);
+			model.addAttribute("post", post);
+
+			return "/webpages/forms/viewPost";
+		}
+	}
+
+	@PostMapping("commentLike.do")
+	public String likeComment(int userId, int postId, Model model) {
+		boolean liked = postDao.likeComment(userId, postId);
+		Post post = postDao.findpostById(postId);
+		List<Comment> comments = post.getComments();
+		int likes = post.getLikes().size();
+		if (liked) {
+			model.addAttribute("comments", comments);
+			model.addAttribute("likes", likes);
+			model.addAttribute("post", post);
+			return "/webpages/forms/LikedPost";
+
+		} else
+			model.addAttribute("comments", comments);
 		model.addAttribute("likes", likes);
 		model.addAttribute("post", post);
 		return "/webpages/forms/viewPost";
 	}
 
-	@RequestMapping(path = "commentLike.do", method = RequestMethod.POST)
-	public ModelAndView likeComment(int userId, int postId) {
-		ModelAndView mv = new ModelAndView();
-		boolean liked = postDao.likeComment(userId, postId);
-		if (liked) {
-			mv.setViewName("/webpages/forms/viewPost");
-		}
-		return mv;
+	@GetMapping("GoToProfile.do")
+	public String Profile(Model model, int id) {
+		User user = userDao.findUserById(id);
+		model.addAttribute("user", user);
+		return "webpages/userProfile";
+	}
+
+	@GetMapping("viewPostByNeighborhood.do")
+	public String getNeighborhoodPost(int id, Model model) {
+		List<Post> post = postDao.viewAllPostByNeighborhoodById(id);
+
+		model.addAttribute("post", post);
+		return "/webpages/forms/TestLanding";
 	}
 
 }

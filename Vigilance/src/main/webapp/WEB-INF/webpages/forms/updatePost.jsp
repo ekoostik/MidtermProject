@@ -196,7 +196,7 @@ portlet {
                     <div class="portlet-body chat-widget" style=" ": auto; width: auto; height: 300px;">
                         <div class="row">
                             <div class="col-lg-12">
-                                <p class="text-center text-muted small">${post.createDate}</p>
+                                <p class="text-center text-muted small">Posted on:${post.createDate}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -209,27 +209,37 @@ portlet {
                                     </a>
                                     <div class="media-body">
                                         <h4 class="media-heading">${loggedinuseruser.firstName}
-                                          ${post.description}
+                                         <p> ${post.description}</p>
+                                        
                                         </h4>
+                       
                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                  
-                       
+                    
                   
                         <hr>
                     </div>
                     </div>
                     <div class="portlet-footer">
-                        <form action="addPost.do?" method="post">
-                                <input name="description" class="form-control" type="text" placeholder="Say something about your post">
+                        <form action="submitPostUpdate.do?postId=${post.id}" method="post">
+                                <input name="description" class="form-control" type="text" placeholder="Update Description">
                                 <label for="decription"></label> 
-                                <input name="photo" class="form-control" type="text" placeholder="Upload a Photo">
+                                <input name="photo" class="form-control" type="text" maxlength="2000" placeholder="Update Photo">
                                 <label for="photo"></label> 
+                                <input name="postId" type="hidden" value="${post.id}"></input>
                                 
-								<input type="submit" class="btn btn-success" value="Post">                      
+								<input type="submit" class="btn btn-success" value="Post"> 
+                                
+								
+								
+								
+								
+								
+								                    
                                 </form>
                         
                     </div>

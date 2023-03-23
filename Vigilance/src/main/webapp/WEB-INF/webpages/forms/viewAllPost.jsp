@@ -11,7 +11,12 @@
 <style>
 body {
 	margin-top: 20px;
-	background: #DCDCDC;
+ background-image: url('https://media.timeout.com/images/105489784/image.jpg'), url('https://wallpapercosmos.com/w/full/c/c/e/1163036-3840x2160-desktop-4k-town-background.jpg');
+	-webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
 }
 
 .content {
@@ -358,81 +363,6 @@ blockquote {
 	margin-bottom: 0px;
 }
 
-.share-this {
-	padding: 20px 45px;
-	border-bottom: 1px solid #eef3f6;
-	float: left;
-	width: 100%;
-}
-
-.share-this p, .share-this ul {
-	margin-bottom: 0px;
-}
-
-.share-this li a {
-	background: #2c3840;
-	line-height: 34px;
-	text-align: center;
-	color: #fff;
-	width: 32px;
-	height: 32px;
-	display: block;
-	border-radius: 50%;
-}
-
-.share-this li a.pinterest {
-	background: #d91c1c;
-}
-
-.share-this li a.google-plus {
-	background: #f25353;
-}
-
-.share-this li a.facebook {
-	background: #2b77be;
-}
-
-.share-this li a.twitter {
-	background: #62bfef;
-}
-
-.related-post {
-	padding: 40px 45px;
-	border-bottom: 1px solid #eef3f6;
-	float: left;
-	width: 100%;
-}
-
-.related-post .thumbnail {
-	padding: 0px;
-	border: none;
-}
-
-.related-post .thumbnail .caption {
-	padding: 30px 0px 0px 0px;
-}
-
-.related-post .thumbnail .caption a {
-	font-size: 18px;
-	line-height: 28px;
-	font-weight: 300;
-	color: #49545b;
-}
-
-.related-post .thumbnail .caption a:hover {
-	color: #36a0e7;
-}
-
-.related-post .thumbnail:hover a img {
-	opacity: 0.7;
-}
-
-.related-post h4 {
-	color: #49545b;
-	font-weight: 700;
-	font-size: 18px;
-	margin: 0px 0px 20px 0px;
-}
 
 .comment-count {
 	padding: 45px 45px;
@@ -663,9 +593,9 @@ blockquote {
 			<div class="col-md-12 col-lg-12">
 				<article class="post vt-post">
 					<div class="row">
-						<div class="col-xs col-sm-5 col-md-5 col-lg-4">
+						<div class="col-xs col-sm-5 col-md-5 col-lg-2">
 							<div>
-								<a href="profile.do?id=${post.user.id}"><img
+								<a href="GoToProfile.do?id=${post.user.id}"><img
 									src="${post.user.profilePic}"
 									height="200" alt="image post" /></a>
 							</div>
@@ -684,13 +614,13 @@ blockquote {
 						<div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
 							<div class="caption">
 								<h3 class="md-heading">
-									<a href="#">${post.user.firstName}</a>
+									<a href="GoToProfile.do?id=${post.user.id}">${post.user.firstName} ${post.user.lastName}</a>
 								</h3>
-								<p>${post.description}</p>
+								<img class="" src="${post.image}" alt="Photo">
+								<p><a href="getPostById.do?id=${post.id}">${post.description}</a></p>
 							</div>
 						</div>
-						<a class="btn btn-default" href="getPostById.do?id=${post.id}"
-							role="button">Read Post</a>
+					
 					</div>
 				</article>
 
@@ -699,8 +629,13 @@ blockquote {
 			</div>
 		</c:forEach>
 		</div>
-		<button onclick="window.location.href='createPost.do';">New
+		
+		<div class="scrollable">
+    <!-- Your table -->
+
+<button onclick="window.location.href='createPost.do';">New
 			Post</button>
+			</div>
 
 
 		</article>
