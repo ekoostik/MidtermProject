@@ -39,11 +39,15 @@ public class PostDaoImpl implements PostDAO {
 	}
 
 	@Override
-	public Post updatepost(String description, int userId, int postId) {
+	public Post updatepost(String description, String photo, int postId) {
 		// TODO Auto-generated method stub
 		Post updated = em.find(Post.class, postId);
 		updated.setDescription(description);
-//		updated.setImage(post.getImage());
+		if(photo !=null) {
+			updated.setImage(photo);
+		}else {
+			updated.setImage(updated.getImage());
+		}
 
 		return updated;
 	}
@@ -72,7 +76,7 @@ public class PostDaoImpl implements PostDAO {
 	@Override
 	public List<Post> allposts() {
 		// TODO Auto-generated method stub
-		String jpql = "SELECT p FROM Post p";
+		String jpql = "SELECT p FROM Post p order by p.createDate desc";
 		return em.createQuery(jpql, Post.class).getResultList();
 	}
 
@@ -122,9 +126,8 @@ public class PostDaoImpl implements PostDAO {
 
 	@Override
 	public List<Post> viewAllPostByNeighborhoodById(int id) {
-		String jpql ="SELECT p FROM Post p WHERE p.nid.id=:id";
-		
-		
+		String jpql = "SELECT p FROM Post p WHERE p.nid.id=:id";
+
 		return em.createQuery(jpql, Post.class).setParameter("id", id).getResultList();
 	}
 
@@ -132,10 +135,8 @@ public class PostDaoImpl implements PostDAO {
 	public List<Post> viewAllPostByUser(int id) {
 		// TODO Auto-generated method stub
 		User user = em.find(User.class, id);
-		List<Post> posts=user.getPosts();
+		List<Post> posts = user.getPosts();
 		return posts;
 	}
-
-	
 
 }
