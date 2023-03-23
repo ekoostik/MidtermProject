@@ -25,7 +25,7 @@
   <br>
  <button type="submit" class="btn btn-primary">Update</button>
 </form> 
-
+ <a href="cancelRegistration.do" class="btn btn-danger" role="button">Cancel</a>
 <jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

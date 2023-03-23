@@ -63,11 +63,19 @@
 			</c:forEach>
 		</c:if>
 	</c:if>
-	<form action="updateReport.do" method="GET">
-		<input type="hidden" name="id" value="${report.id}"> <input
-			type="submit" value="Update">
-	</form>
 
+<c:if test="${loggedinuser.id == report.user.id}">
+	<form action="deleteReport.do" method="POST">
+							<label for="id"></label> <input type="hidden" name="id"
+								value="${report.id}" /> <input type="submit"
+								class="btn btn-danger" value="Delete" /> <a
+								class="btn btn-warning" href="updateReport.do?id=${report.id}"
+								role="button">Revise</a>
+
+						</form>
+</c:if>
+
+	
 	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>
