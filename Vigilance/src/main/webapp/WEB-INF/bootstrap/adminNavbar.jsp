@@ -10,10 +10,10 @@
           <a class="nav-link active" aria-current="page" href="home.do">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="viewAllEvents.do">Events</a>
+          <a class="nav-link" href="viewAllEvents.do">Users</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="#" >Neighbors</a>
+          <a class="nav-link" href="viewAllEvents.do">Neighborhoods</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -44,7 +44,7 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="profile.do">Profile</a></li>
             <li><a class="dropdown-item" href="account.do"> Account</a></li>
-            <li><a class="dropdown-item" href="account.do"> Administration</a></li>
+            <li><a class="dropdown-item" href="adminDashboard.do"> Administration</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout.do">Logout</a></li>
           </ul>

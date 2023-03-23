@@ -36,7 +36,7 @@ a member of any of the following</h3>
  <a href="cancelRegistration.do" class="btn btn-danger" role="button">Cancel</a>
   </div>
 </div>
-
+</div>
 
 <jsp:include page="../bootstrap/bootstrapFooter.jsp" />
 </body>

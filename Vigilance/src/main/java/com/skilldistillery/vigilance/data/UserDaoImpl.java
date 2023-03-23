@@ -1,6 +1,7 @@
 package com.skilldistillery.vigilance.data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.vigilance.entities.Address;
 import com.skilldistillery.vigilance.entities.HouseHold;
-import com.skilldistillery.vigilance.entities.Neighborhood;
 import com.skilldistillery.vigilance.entities.User;
 
 //AUTHOR: ROB TISDALE
@@ -37,6 +37,7 @@ public class UserDaoImpl implements UserDAO {
 			user.getHousehold().getVehicles().size();
 			user.getEventComments().size();
 			user.getNeighborhoodEvent().size();
+			user.getReports().size();
 		} catch (Exception e) {
 			e.printStackTrace();
 			user = null;
@@ -138,7 +139,18 @@ public class UserDaoImpl implements UserDAO {
 		return user;
 	}
 
-
+	@Override
+	public List<User> findAllUsers() {
+		String jpql = "SELECT u FROM User u";
+		List<User> users = new ArrayList<>();
+		try {
+			users = em.createQuery(jpql, User.class).getResultList();
+			return users;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 
 }

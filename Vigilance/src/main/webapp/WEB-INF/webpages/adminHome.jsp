@@ -15,7 +15,7 @@
      style="background-image: url('https://media.timeout.com/images/105489784/image.jpg'), url('https://wallpapercosmos.com/w/full/c/c/e/1163036-3840x2160-desktop-4k-town-background.jpg'); background-position: right bottom, left top; background-repeat: no-repeat, repeat;
             height: 70vh;">
 <div class="container-fluid">
-<h2 class="homeh2"> Welcome ${loggedinuser.firstName}!</h2>
+<h2 class="homeh2"> Welcome ${loggedinadmin.firstName}!</h2>
 <a href="viewAllEvents.do" class="btn btn-secondary" role="button">View all Events</a>
 <a href="getPostById.do?id=1" class="btn btn-secondary" role="button">View all Post</a>
 <a href="viewAllNeighborhoods.do" class="btn btn-secondary" role="button">View all Neighborhoods</a>

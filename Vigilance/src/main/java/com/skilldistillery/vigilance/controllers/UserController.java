@@ -61,7 +61,7 @@ public class UserController {
 			session.setAttribute("loginTime", localTime);
 			return "/webpages/home"; 
 		}else if (user != null && user.getRole().equals("admin")) {
-			session.setAttribute("loggedinuser", user);
+			session.setAttribute("loggedinadmin", user);
 			LocalDateTime localTime = LocalDateTime.now();
 			session.setAttribute("loginTime", localTime);
 			return "/webpages/adminHome";
@@ -190,6 +190,20 @@ public class UserController {
 	public String cancelUpdate( Model model) {
 		return "webpages/forms/login_register";
 	}
+	
+	@RequestMapping(path = "adminDashboard.do")
+	public String adminDashboard( Model model, HttpSession session) {
+		User admin = (User) session.getAttribute("loggedinadmin");
+		if (admin != null) {
+		List<User> allUsers = userDao.findAllUsers();
+		model.addAttribute("allusers", allUsers);
+		model.addAttribute("loggedinadmin", admin);
+		
+		return "webpages/administration";
+		}
+		return "webpages/administration";
+	}
+	
 	
 //Stretch Goal
 //	@RequestMapping(path = "cancelAndDeleteRegistration.do", method = RequestMethod.POST)

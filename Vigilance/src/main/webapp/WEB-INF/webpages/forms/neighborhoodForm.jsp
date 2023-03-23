@@ -13,7 +13,8 @@
 </style>
 <body>
 <div class="container">
-<div class="title">Enter New Neighborhood</div>
+<div class="title">Looks like you're the first of your neighborhood!
+<p>Please enter details below</p></div>
 <form action="newneighborhood.do" method="POST">
 <div class ="user-details">
 <div class ="input-box">
