@@ -26,9 +26,10 @@ public class ReportDoaImpl implements ReportDAO {
 	}
 
 	@Override
-	public Report createReport(Report report) {
+	public Report createReport(Report report, User user) {
 		Report newReport = new Report();
 		
+		newReport.setUser(user);
 		newReport.setReportDate(report.getReportDate());
 		newReport.setDesription(report.getDesription());
 		newReport.setContactAuthority(report.isContactAuthority());

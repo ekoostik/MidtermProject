@@ -20,11 +20,11 @@
 			<!-- input for date -->
 			<div class="input-box">
 				<span class="details">Date:</span> <input type="date"
-					name="reportDate" required /><br>
+					name="reportDateAlt" required /><br>
 			</div>
 			<!-- input for subject-->
 			<div class="input-box">
-				<span class="details">Subject:</span> <input type="text" placeholder="Enter subject here"
+				<span class="subject">Subject:</span> <input type="text" placeholder="Enter subject here"
 					name="subject" required /><br>
 			</div>
 			<!-- input for description -->
@@ -44,13 +44,13 @@
 				<option value="False">No</option>
 			</select><br>
 			</div>
-			<div>
+			<!-- <div>
 			<label for="animalsPresent">Were the animals involved?</label> <select
 				id="animalsPresent" name="animalsPresent" required>
 				<option value="True">Yes</option>
 				<option value="False">No</option>
 			</select><br>
-			</div>
+			</div> -->
 			
 			<!-- ==========START OF ANIMAL REPORT================================== -->
 			
