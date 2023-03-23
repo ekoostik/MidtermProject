@@ -14,9 +14,9 @@
 <jsp:include page="../../bootstrap/navbar.jsp" />
 <body>
 
-<c:choose>
-		<c:when test="${! empty post}">
-<c:forEach var="post" items="${post}">
+<<%-- c:choose>
+		<c:when test="${! empty hood}">
+<c:forEach var="post" items="${doo}">
 <ul>
 
 <li><p><a href="getPostById.do?id=${post.id}">${post.description}</a></p></li>
@@ -34,14 +34,16 @@
 	
 
 	</form>
+ --%>
 
 
+<strong>${hood.name}</strong>
+<br>${hood.description}
+<c:forEach var="post" items="${post}">
+<p><a href="getPostById.do?id=${post.id}">${post.description}</a></p>
 
 
-
-
-
-
+</c:forEach>
 
 <jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>

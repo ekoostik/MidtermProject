@@ -100,10 +100,10 @@ public class PostController {
 	}
 
 	@PostMapping("submitPostUpdate.do")
-	public ModelAndView update(String description, int userId, int postId, RedirectAttributes redir) {
+	public ModelAndView update(String description, String photo, int postId, RedirectAttributes redir) {
 
 		ModelAndView mv = new ModelAndView();
-		Post post = postDao.updatepost(description, userId, postId);
+		Post post = postDao.updatepost(description, photo, postId);
 		if (post != null) {
 			redir.addFlashAttribute("post", post);
 			mv.setViewName("redirect:postUpdated.do");

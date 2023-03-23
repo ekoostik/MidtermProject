@@ -363,81 +363,6 @@ blockquote {
 	margin-bottom: 0px;
 }
 
-.share-this {
-	padding: 20px 45px;
-	border-bottom: 1px solid #eef3f6;
-	float: left;
-	width: 100%;
-}
-
-.share-this p, .share-this ul {
-	margin-bottom: 0px;
-}
-
-.share-this li a {
-	background: #2c3840;
-	line-height: 34px;
-	text-align: center;
-	color: #fff;
-	width: 32px;
-	height: 32px;
-	display: block;
-	border-radius: 50%;
-}
-
-.share-this li a.pinterest {
-	background: #d91c1c;
-}
-
-.share-this li a.google-plus {
-	background: #f25353;
-}
-
-.share-this li a.facebook {
-	background: #2b77be;
-}
-
-.share-this li a.twitter {
-	background: #62bfef;
-}
-
-.related-post {
-	padding: 40px 45px;
-	border-bottom: 1px solid #eef3f6;
-	float: left;
-	width: 100%;
-}
-
-.related-post .thumbnail {
-	padding: 0px;
-	border: none;
-}
-
-.related-post .thumbnail .caption {
-	padding: 30px 0px 0px 0px;
-}
-
-.related-post .thumbnail .caption a {
-	font-size: 18px;
-	line-height: 28px;
-	font-weight: 300;
-	color: #49545b;
-}
-
-.related-post .thumbnail .caption a:hover {
-	color: #36a0e7;
-}
-
-.related-post .thumbnail:hover a img {
-	opacity: 0.7;
-}
-
-.related-post h4 {
-	color: #49545b;
-	font-weight: 700;
-	font-size: 18px;
-	margin: 0px 0px 20px 0px;
-}
 
 .comment-count {
 	padding: 45px 45px;
@@ -668,7 +593,7 @@ blockquote {
 			<div class="col-md-12 col-lg-12">
 				<article class="post vt-post">
 					<div class="row">
-						<div class="col-xs col-sm-5 col-md-5 col-lg-4">
+						<div class="col-xs col-sm-5 col-md-5 col-lg-2">
 							<div>
 								<a href="GoToProfile.do?id=${post.user.id}"><img
 									src="${post.user.profilePic}"
@@ -704,8 +629,13 @@ blockquote {
 			</div>
 		</c:forEach>
 		</div>
-		<button onclick="window.location.href='createPost.do';">New
+		
+		<div class="scrollable">
+    <!-- Your table -->
+
+<button onclick="window.location.href='createPost.do';">New
 			Post</button>
+			</div>
 
 
 		</article>

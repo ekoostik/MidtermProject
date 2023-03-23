@@ -13,16 +13,23 @@
 <style>
 body {
 	margin-top: 20px;
-	background-color: #ecf0f5;
+	background-image:
+		url('https://media.timeout.com/images/105489784/image.jpg'),
+		url('https://wallpapercosmos.com/w/full/c/c/e/1163036-3840x2160-desktop-4k-town-background.jpg');
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
+}
 .box-widget {
 	border: none;
-	position: relative;
+	position: center;
 }
 
 .box {
-	position: relative;
+	position: center;
 	border-radius: 3px;
 	background: #ffffff;
 	border-top: 3px solid #d2d6de;
@@ -39,7 +46,7 @@ body {
 	color: #444;
 	display: block;
 	padding: 10px;
-	position: relative;
+	position: center;
 }
 
 .user-block img {
@@ -170,26 +177,25 @@ body {
 					<div class="user-block">
 						<img class="img-circle" src="${post.user.profilePic}"
 							alt="User Image" class="user"> <a
-							href="GoToProfile.do?id=${post.user.id}">${post.user.firstName}</a> <span
-							class="description">Posted:${post.createDate}</span>
+							href="GoToProfile.do?id=${post.user.id}">${post.user.firstName}</a>
+						<span class="description">Posted:${post.createDate}</span>
 					</div>
 
 				</div>
-				
+		
 
 				<div class="box-body" style="display: block;">
 					<img class="img-responsive pad" src="${post.image}" alt="Photo">
 					<p>${post.description}</p>
-				
+
 					<form action="commentLike.do" method="POST">
 						<input name="postId" type="hidden" value="${post.id}"></input> <input
-							name="userId" type="hidden" value="${loggedinuser.id}"></input>
-							<input type="submit" class="btn btn-default" value="Like">
-							<span class="pull-right text-muted">${likes}
-								likes</span>
+							name="userId" type="hidden" value="${loggedinuser.id}"></input> <input
+							type="submit" class="btn btn-default" value="Like"> <span
+							class="pull-right text-muted">${likes} likes</span>
 					</form>
-					
-				
+
+
 
 
 
@@ -197,14 +203,12 @@ body {
 
 
 						<form action="deletePost.do" method="POST">
-						<label for="id"></label>
-						<input type="hidden" name="id" value="${post.id}" />
-						<input type="submit" class="btn btn-danger" value="Delete" />
+							<label for="id"></label> <input type="hidden" name="id"
+								value="${post.id}" /> <input type="submit"
+								class="btn btn-danger" value="Delete" /> <a
+								class="btn btn-warning" href="updatePost.do?id=${post.id}"
+								role="button">Edit Post</a>
 
-
-							<a class="btn btn-warning" href="updatePost.do?id=${post.id}"
-								role="button">Edit Post</a> 
-								
 						</form>
 					</c:if>
 
@@ -221,13 +225,11 @@ body {
 							<img class="img-circle img-sm" src="${comments.user.profilePic}"
 								alt="User Image">
 							<div class="comment-text">
-								<span class="username"></span>
-								 <span
-									class="text-muted pull-right">${comments.createDate}
-									
-									</span>
-									<a href="GoToProfile.do?id=${comments.user.id}">${comments.user.firstName} ${comments.user.lastName}</a> 
-								 
+								<span class="username"></span> <span
+									class="text-muted pull-right">${comments.createDate} </span> <a
+									href="GoToProfile.do?id=${comments.user.id}">${comments.user.firstName}
+									${comments.user.lastName}</a>
+
 								<p>${comments}</p>
 							</div>
 						</c:forEach>
@@ -240,12 +242,10 @@ body {
 							<div class="img-push">
 
 								<label for="decription"></label> <input type="text"
-									name="description" value="" /> 
-									<input name="postId" type="hidden" value="${post.id}"></input> 
-									<input name="userId" type="hidden" value="${loggedinuser.id}"></input> 
-									
-									<input type="submit"
-									class="btn btn-success" value="Comment">
+									name="description" value="" /> <input name="postId"
+									type="hidden" value="${post.id}"></input> <input name="userId"
+									type="hidden" value="${loggedinuser.id}"></input> <input
+									type="submit" class="btn btn-success" value="Comment">
 							</div>
 						</form>
 					</div>
@@ -254,7 +254,7 @@ body {
 		</div>
 
 
-</div>
+	</div>
 
 
 
@@ -277,6 +277,6 @@ body {
 
 
 
-		<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
+	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>
