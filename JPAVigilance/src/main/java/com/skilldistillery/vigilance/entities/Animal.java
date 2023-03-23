@@ -70,14 +70,6 @@ public class Animal {
 		this.description = description;
 	}
 
-//	public Report getReport() {
-//		return report;
-//	}
-//
-//	public void setReport(Report report) {
-//		this.report = report;
-//	}
-
 	public Report getReport() {
 		return report;
 	}
