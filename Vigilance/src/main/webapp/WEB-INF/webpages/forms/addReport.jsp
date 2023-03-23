@@ -18,23 +18,41 @@
 	<form action="reportAdded.do" method="POST">
 		<fieldset>
 			<!-- input for date -->
-			<label for="name">Name:</label> <br> <input id="name"
-				name="name" type="text" required> <br>
-			      <input type="text" id="description" name="description" />
+			<div class="input-box">
+				<span class="details">Date of Birth</span> <input type="date"
+					name="reportDate" required /><br>
+			</div>
+			<!-- input for description -->
+			<div>
+				<input name="description" class="form-control" type="text"
+					placeholder="Description"> <label for="decription"></label>
+			</div>
+			<!-- input for authority contacted -->
+			<div>
 			
-				<!-- input for description -->
-				<!-- input for authority contacted -->
-				<!-- ==START OF ANIMAL REPORT== -->
-				<!-- input for species involved -->
-				<!-- input for spottting date -->
-				<!-- input for description -->
-				
-					<label for="contactAuthority">Were the police contacted?</label> <select
-						id="contactAuthority" name="contactAuthority" required>
-						<option value="True">Yes</option>
-						<option value="False">No</option>
-					</select><br>
-					<button type="submit" class="btn btn-primary">Submit</button>
+
+			<label for="contactAuthority">Were the police contacted?</label> <select
+				id="contactAuthority" name="contactAuthority" required>
+				<option value="True">Yes</option>
+				<option value="False">No</option>
+			</select><br>
+			</div>
+			
+			<!-- ==START OF ANIMAL REPORT== -->
+			
+
+			<!-- input for species involved -->
+			<div>
+			
+			</div>
+
+			<!-- input for spottting date -->
+			<div>
+			
+			</div>
+
+		
+			<button type="submit" class="btn btn-primary">Submit</button>
 		</fieldset>
 	</form>
 

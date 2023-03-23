@@ -304,11 +304,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `postlikeß`
+-- Table `postlike`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `postlikeß` ;
+DROP TABLE IF EXISTS `postlike` ;
 
-CREATE TABLE IF NOT EXISTS `postlikeß` (
+CREATE TABLE IF NOT EXISTS `postlike` (
   `post_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`post_id`, `user_id`),
