@@ -1,5 +1,7 @@
 package com.skilldistillery.vigilance.data;
 
+import java.util.List;
+
 import com.skilldistillery.vigilance.entities.Address;
 import com.skilldistillery.vigilance.entities.User;
 
@@ -13,6 +15,7 @@ public interface UserDAO {
 	public User registerNewUser(String dob, User user);
 	boolean deleteAddress(int addressId);
 	boolean deleteUser(int userId);
+	List<User> findAllUsers();
 	
 	
 	
