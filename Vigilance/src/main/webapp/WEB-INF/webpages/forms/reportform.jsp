@@ -27,7 +27,7 @@
 					<c:if test="${not empty report.description}">
 						
 						<td>
-						<a href="getReportById.do?id=${report.id}">${report.description}</a>
+						<a href="getReportById.do?id=${report.id}">${report.subject}</a>
 						</td>
 						<td>${report.reportDate}</td>
 						<td></td>
