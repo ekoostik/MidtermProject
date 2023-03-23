@@ -419,10 +419,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `vigilancedb`;
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (1, 'admin', 'admin', 1, 'admin', 'Skill', 'Distillery', 'sd@distillery.edu', NULL, NULL, '2008-03-27', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (2, 'DRich', 'user', 1, NULL, 'Damien', 'Richards', 'drich@distillery.edu', NULL, NULL, '2022-12-10', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (3, 'RTisdale', 'flower', 1, NULL, 'Rob', 'Tisdale', 'rtisdale@distillery.edu', NULL, NULL, '2023-04-20', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (4, 'Wheaties23', 'foofoo', 1, NULL, 'Collin', 'Wheat', 'cwheat@distillery.edu', NULL, NULL, '2018-03-27', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (5, 'DunDun', 'dunnn', 1, NULL, 'David', 'Dunlevy', 'dunlevy@distillery.edu', NULL, NULL, '2020-03-02', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (2, 'DRich', 'user', 1, 'user', 'Damien', 'Richards', 'drich@distillery.edu', NULL, NULL, '2022-12-10', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (3, 'RTisdale', 'flower', 1, 'user', 'Rob', 'Tisdale', 'rtisdale@distillery.edu', NULL, NULL, '2023-04-20', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (4, 'Wheaties23', 'foofoo', 1, 'user', 'Collin', 'Wheat', 'cwheat@distillery.edu', NULL, NULL, '2018-03-27', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (5, 'DunDun', 'dunnn', 1, 'user', 'David', 'Dunlevy', 'dunlevy@distillery.edu', NULL, NULL, '2020-03-02', NULL, NULL);
 
 COMMIT;
 
@@ -525,15 +525,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `vigilancedb`;
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (1, 'Moose found in driveway', '2023-02-22', 1, 2, 'Moose found in driveway');
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (2, 'I drove into the neighborhood and saw a tall man in a black shirt and jeans walking along the street. As he passed by each car he would stop and look to see what was inside of each car. I don\'t know if he was looking to break into one of them or not.', '2023-01-13', 1, 1, 'Possible Car Break-in');
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (3, 'Bobcat Family ', '2022-12-06', 0, 3, 'Bobcat Family ');
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (4, 'Missing Dog seen running near the pond', '2023-01-11', 0, 2, 'Loose Dog');
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (5, 'Moutain Lion roaming near the neighborhood', '2023-02-15', 0, 5, 'Moutain Lion roaming near the neighborhood');
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (6, 'Gator spotted near the pond', '2023-01-18', 0, 3, 'Gator spotted near the pond');
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (7, 'I came out to my car this morning. It was parked on the street in front of my house and found that there was a huge dent with blue scuff marks on it. I contacted my insurance already but no sight of a note left behind of the car that hit mine.', NULL, 1, 1, 'Hit and run');
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (8, 'I was expecting a package today and was alerted by amazon that it had delivered. However, it was nowhere to be seen so i checked my doorbell camera and saw a female in a red hoodie come up to the porch, take my package, and drive off!', NULL, 1, 4, 'Package Theft');
-INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (10, 'Wolves sighting', '2022-03-23', 0, 2, 'Wolves sighting');
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (1, 'Moose found in driveway', '2023-02-22', 1, 2, NULL);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (2, 'I drove into the neighborhood and saw a tall man in a black shirt and jeans walking along the street. As he passed by each car he would stop and look to see what was inside of each car. I don\'t know if he was looking to break into one of them or not.', '2023-01-13', 1, 1, NULL);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (3, 'Bobcat Family ', '2022-12-06', 0, 3, NULL);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (4, 'Missing Dog seen running near the pond', '2023-01-11', 0, 2, NULL);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (5, 'Moutain Lion roaming near the neighborhood', '2023-02-15', 0, 5, NULL);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (6, 'Gator spotted near the pond', '2023-01-18', 0, 3, NULL);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (7, 'I came out to my car this morning. It was parked on the street in front of my house and found that there was a huge dent with blue scuff marks on it. I contacted my insurance already but no sight of a note left behind of the car that hit mine.', NULL, 1, 1, NULL);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (8, 'I was expecting a package today and was alerted by amazon that it had delivered. However, it was nowhere to be seen so i checked my doorbell camera and saw a female in a red hoodie come up to the porch, take my package, and drive off!', NULL, 1, 4, NULL);
+INSERT INTO `report` (`id`, `description`, `report_time`, `contact_authority`, `user_id`, `subject`) VALUES (10, 'Wolves sighting', '2022-03-23', 0, 2, NULL);
 
 COMMIT;
 
