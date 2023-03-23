@@ -2,10 +2,9 @@
     max-width: unset;
 }
 
-body {
-background: rgb(0,0,0);
-background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(18,26,27,1) 9%, rgba(142,107,92,1) 85%);
-
+body, container-fluid{
+background: rgb(216,216,226);
+background: linear-gradient(45deg, rgba(216,216,226,1) 0%, rgba(0,3,82,0.7217480742296919) 100%);
 }
 
 h1 {
@@ -18,7 +17,14 @@ h2 {
 	
 }
 .button {
-	font-size: 30px;
+  font-size: 30px;
+  background-color: black; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
 table {
 	border: 1px solid;
@@ -42,6 +48,7 @@ th, td{
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  
 }
 
 tr:hover {background-color: teal;}
@@ -64,12 +71,15 @@ tr:hover {background-color: teal;}
   padding: 20px;
       }
 .homeh2 {
+	text-align: center;
 	color: white;
 }
 
 #map {
   height: 600px; /* The height is 400 pixels */
-  width: 50%; /* The width is the width of the web page */
+  width: 100%; /* The width is the width of the web page */
+  align-items:left;
+  margin-right:100px;
 }
 
 .aboutText {
@@ -82,4 +92,26 @@ tr:hover {background-color: teal;}
 
 .profileH3 {
 	color: white;
+}
+
+.create-new-post{
+	background-color:rgba(216,216,226,1);
+    align-items:center;
+}
+
+
+.flex-child {
+    flex: 1;
+    border: 2px solid black;
+    align-items:center;
+}  
+
+.flex-child:first-child {
+	box-sizing: border-box;
+	height: 492px;
+	align-items: center;
+} 
+
+.flex-child:second-child{
+	box-sizing: border-box;
 }
