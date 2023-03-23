@@ -419,10 +419,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `vigilancedb`;
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (1, 'admin', 'admin', 1, 'admin', 'Skill', 'Distillery', 'sd@distillery.edu', NULL, NULL, '2008-03-27', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (2, 'DRich', 'user', 1, NULL, 'Damien', 'Richards', 'drich@distillery.edu', NULL, NULL, '2022-12-10', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (3, 'RTisdale', 'flower', 1, NULL, 'Rob', 'Tisdale', 'rtisdale@distillery.edu', NULL, NULL, '2023-04-20', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (4, 'Wheaties23', 'foofoo', 1, NULL, 'Collin', 'Wheat', 'cwheat@distillery.edu', NULL, NULL, '2018-03-27', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (5, 'DunDun', 'dunnn', 1, NULL, 'David', 'Dunlevy', 'dunlevy@distillery.edu', NULL, NULL, '2020-03-02', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (2, 'DRich', 'user', 1, 'user', 'Damien', 'Richards', 'drich@distillery.edu', NULL, NULL, '2022-12-10', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (3, 'RTisdale', 'flower', 1, 'user', 'Rob', 'Tisdale', 'rtisdale@distillery.edu', NULL, NULL, '2023-04-20', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (4, 'Wheaties23', 'foofoo', 1, 'user', 'Collin', 'Wheat', 'cwheat@distillery.edu', NULL, NULL, '2018-03-27', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `first_name`, `last_name`, `email`, `profile_url`, `about_me`, `create_date`, `update_date`, `date_of_birth`) VALUES (5, 'DunDun', 'dunnn', 1, 'user', 'David', 'Dunlevy', 'dunlevy@distillery.edu', NULL, NULL, '2020-03-02', NULL, NULL);
 
 COMMIT;
 
