@@ -698,7 +698,7 @@ blockquote {
 						<div class="card">
 							<div class="post-type post-img">
 								<a href="#"><img
-									src="https://bootdey.com/img/Content/avatar/avatar1.png"
+									src="images/events.png" width="100" height="100"
 									class="img-responsive" alt="image post"></a>
 							</div>
 							<div class="author-info author-info-2">
@@ -726,7 +726,7 @@ blockquote {
 					</div>
 				</article>
 
-
+				</div>
 			</div>
 	</c:forEach>
 
