@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skilldistillery.vigilance.data.HouseholdDAO;
 import com.skilldistillery.vigilance.data.NeighborhoodDAO;
 import com.skilldistillery.vigilance.data.UserDAO;
 import com.skilldistillery.vigilance.entities.Address;
+import com.skilldistillery.vigilance.entities.HouseHold;
 import com.skilldistillery.vigilance.entities.Neighborhood;
+import com.skilldistillery.vigilance.entities.Pet;
 import com.skilldistillery.vigilance.entities.User;
+import com.skilldistillery.vigilance.entities.Vehicle;
 
 //AUTHOR: ROB TISDALE 
 
@@ -27,6 +31,8 @@ public class UserController {
 	private UserDAO userDao;
 	@Autowired
 	private NeighborhoodDAO neighborhoodDAO;
+	@Autowired
+	private HouseholdDAO householdDao;
 
 	@RequestMapping(path = { "/", "login.do" })
 	public String main(Model model) {
@@ -87,10 +93,14 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "newaddr.do", method = RequestMethod.POST)
-	public String newAddress(Address address, int householdId, Model model) {
-		System.out.println(householdId);
-		System.out.println("***********************************");
+	public String newAddress(Address address, Model model, HttpSession session) {
+		User loggedInUser = (User)session.getAttribute("loggedinuser");
+		int householdId = loggedInUser.getHousehold().getId();
 		address = userDao.addnewAddress(householdId, address);
+		if (loggedInUser != null) {
+			loggedInUser = userDao.findUserById(loggedInUser.getId());
+			session.setAttribute("loggedinuser", loggedInUser);
+		}
 		List<Neighborhood> nhoods = neighborhoodDAO.findNeighborhoodsByCityStateZip(address.getCity(),
 				address.getState(), address.getZipCode());
 		System.out.println(nhoods);
@@ -101,11 +111,11 @@ public class UserController {
 			return "webpages/forms/neighborhoodForm";
 		}
 	}
-//	@RequestMapping(path = "newneighborhood.do")
-//	public String newNeighborhood( Model model) {
-//			return "webpages/forms/neighborhoodForm";
-//		
-//	}
+	@RequestMapping(path = "enterNewNeighborhood.do")
+	public String newNeighborhood( Model model) {
+			return "webpages/forms/neighborhoodForm";
+		
+	}
 	
 
 	@RequestMapping(path = "newneighborhood.do", method = RequestMethod.POST)
@@ -140,7 +150,16 @@ public class UserController {
 		User loggedInUser = (User) session.getAttribute("loggedinuser");
 		if (loggedInUser != null) {
 			loggedInUser = userDao.findUserById(loggedInUser.getId());
+			HouseHold household = loggedInUser.getHousehold();
+			List<Vehicle> vehicles = loggedInUser.getHousehold().getVehicles();
+			Address address = loggedInUser.getHousehold().getAddress();
+			List<Pet> pets = loggedInUser.getHousehold().getPets();
+			session.setAttribute("household", household);
+			session.setAttribute("vehicles", vehicles);
+			session.setAttribute("address", address);
+			session.setAttribute("pets", pets);
 			session.setAttribute("loggedinuser", loggedInUser);
+			
 			return "webpages/userAccount";
 		} 
 		return "webpages/forms/login_register";
@@ -166,4 +185,26 @@ public class UserController {
 //	  session.removeAttribute("timeOnSite");
 		return "webpages/forms/login_register";
 	}
+	
+	@RequestMapping(path = "cancelRegistration.do")
+	public String cancelUpdate( Model model) {
+		return "webpages/forms/login_register";
+	}
+	
+//Stretch Goal
+//	@RequestMapping(path = "cancelAndDeleteRegistration.do", method = RequestMethod.POST)
+//	public String cancelRegistration(Model model, HttpSession session) {
+//		User loggedInUser = (User) session.getAttribute("loggedinuser");
+//		if (loggedInUser != null) {
+//			loggedInUser = userDao.findUserById(loggedInUser.getId());
+//			session.setAttribute("loggedinuser", loggedInUser);
+//		}
+//		HouseHold household = loggedInUser.getHousehold();
+//		Address address = loggedInUser.getHousehold().getAddress();
+//		userDao.deleteAddress(address.getId());
+//		householdDao.deleteHoushold(household.getId());
+//		userDao.deleteUser(loggedInUser.getId());
+//			return "webpages/forms/login_register";
+//	}
+	
 }

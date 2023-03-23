@@ -54,25 +54,25 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>${loggedinuser.household.id}</td>
+					<td>${household.id}</td>
 					<td>
 						<ul style="list-style-type: none;">
-							<li>${loggedinuser.household.address.address1}</li>
-							<li>${loggedinuser.household.address.address2}</li>
-							<li>${loggedinuser.household.address.city}</li>
-							<li>${loggedinuser.household.address.state}</li>
-							<li>${loggedinuser.household.address.zipCode}</li>
+							<li>${address.address1}</li>
+							<li>${address.address2}</li>
+							<li>${address.city}</li>
+							<li>${address.state}</li>
+							<li>${address.zipCode}</li>
 						</ul>
 					</td>
-					<td>${loggedinuser.household.occupants}<br>
+					<td>${household.occupants}<br>
 					</td>
 					<td>
 					<c:choose>
-					<c:when test="${empty loggedinuser.household.vehicles}">No Vehicles Listed
+					<c:when test="${empty vehicles}">No Vehicles Listed
 					</c:when>
 					<c:otherwise>
 					<c:forEach var="v"
-							items="${loggedinuser.household.vehicles}">
+							items="${vehicles}">
 							<ul style="list-style-type: none;">
 								<li>Make: ${v.make}</li>
 								<li>Model: ${v.model}</li>
@@ -85,10 +85,10 @@
 					</td>
 				<td>
 				<c:choose>
-					<c:when test="${empty loggedinuser.household.pets}">No Pets Listed
+					<c:when test="${empty pets}">No Pets Listed
 					</c:when>
 					<c:otherwise>
-					<c:forEach var="p" items="${loggedinuser.household.pets}">
+					<c:forEach var="p" items="${pets}">
 							<ul style="list-style-type: none;">
 								<li>Name: ${p.name}</li>
 								<li>Species: ${p.species}</li>
@@ -106,26 +106,27 @@
 				<tr>
 				<td></td>	
 				<td></td>	
-				<td><a href="updateOccupants.do" class="btn btn-secondary" role="button">Update Occupants</a></td>	
+				<td><a href="updateOccupants.do" class="btn btn-warning" role="button">Update Occupants</a></td>	
 				<td>
 				<c:choose>
-					<c:when test="${empty loggedinuser.household.vehicles}">
-					<a href="addVehicle.do" class="btn btn-secondary" role="button">Add Vehicle</a>
+					<c:when test="${empty vehicles}">
+					<a href="addVehicle.do" class="btn btn-success" role="button">Add Vehicle</a>
 					</c:when>
 					<c:otherwise>
-				<a href="addVehicle.do" class="btn btn-secondary" role="button">Add Vehicle</a>
-				<a href="updateVehicle.do" class="btn btn-secondary"  role="button">Update Vehicle</a>
+				<a href="addVehicle.do" class="btn btn-success" role="button">Add Vehicle</a>
+				<a href="updateVehicle.do" class="btn btn-warning"  role="button">Update Vehicle</a>
+				<a href="removeVehicle.do" class="btn btn-danger"  role="button">Remove Vehicle</a>
 					</c:otherwise>
 					</c:choose>
 				</td>	
 				<td><c:choose>
-					<c:when test="${empty loggedinuser.household.pets}">
-					<a href="addPet.do" class="btn btn-secondary" role="button">Add Pet</a>
+					<c:when test="${empty pets}">
+					<a href="addPet.do" class="btn btn-success" role="button">Add Pet</a>
 					</c:when>
 					<c:otherwise>
-					<a href="updatePet.do" class="btn btn-secondary" role="button">Update Pet</a>
-					<a href="addPet.do" class="btn btn-secondary" role="button">Add Pet</a>
-					<a href="removePet.do" class="btn btn-secondary" role="button">Remove Pet</a>
+					<a href="addPet.do" class="btn btn-success" role="button">Add Pet</a>
+					<a href="updatePet.do" class="btn btn-warning" role="button">Update Pet</a>
+					<a href="removePet.do" class="btn btn-danger" role="button">Remove Pet</a>
 					</c:otherwise>
 					</c:choose>
 					</td>	
