@@ -115,7 +115,6 @@
 					<c:otherwise>
 				<a href="addVehicle.do" class="btn btn-secondary" role="button">Add Vehicle</a>
 				<a href="updateVehicle.do" class="btn btn-secondary"  role="button">Update Vehicle</a>
-				<a href="removeVehicle.do" class="btn btn-secondary" role="button">Remove Vehicle</a>
 					</c:otherwise>
 					</c:choose>
 				</td>	
@@ -126,6 +125,7 @@
 					<c:otherwise>
 					<a href="updatePet.do" class="btn btn-secondary" role="button">Update Pet</a>
 					<a href="addPet.do" class="btn btn-secondary" role="button">Add Pet</a>
+					<a href="removePet.do" class="btn btn-secondary" role="button">Remove Pet</a>
 					</c:otherwise>
 					</c:choose>
 					</td>	
