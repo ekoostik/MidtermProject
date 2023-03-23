@@ -22,6 +22,6 @@ public interface NeighborhoodDAO {
 	public List<Neighborhood> findNeighborhoodsByCityStateZip(String city, String State, String zipCode);
 	void assignNeighborhoodToAddress(int userId, int neighborhoodid);
 	
-	
+	public Neighborhood findHoodByUserId(int id);
 
 }

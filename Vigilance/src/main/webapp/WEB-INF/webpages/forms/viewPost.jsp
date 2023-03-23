@@ -187,7 +187,7 @@ body {
 				<div class="box-body" style="display: block;">
 					<img class="img-responsive pad" src="${post.image}" alt="Photo">
 					<p>${post.description}</p>
-
+			
 					<form action="commentLike.do" method="POST">
 						<input name="postId" type="hidden" value="${post.id}"></input> <input
 							name="userId" type="hidden" value="${loggedinuser.id}"></input> <input
@@ -213,12 +213,12 @@ body {
 					</c:if>
 
 
-
-
-
-
-
 				</div>
+
+
+
+
+
 				<div class="box-footer box-comments" style="display: block;">
 					<div class="box-comment">
 						<c:forEach var="comments" items="${comments}">

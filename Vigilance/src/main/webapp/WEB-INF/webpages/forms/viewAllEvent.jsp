@@ -6,68 +6,43 @@
 <head>
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
-<title>Neighborhood Event</title>
+<title>View Reports</title>
 <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 
 <jsp:include page="../../bootstrap/navbar.jsp" />
 <body>
 
+	<table class="table table-striped table-hover">
+		<thead>
+			
+			<th>Event</th>
+			<th>Event Date</th>
+			<!-- header -->
+			<!--header  -->
+		</thead>
+		<tbody>
+			<c:forEach var="event" items="${event}">
+				<tr>
+					<c:if test="${not empty event}">
+						
+						<td>
+						<a href="getEventById.do?id=${event.id}"><strong>${event.name}</strong></a>
+						<br>
+						${event.description}
+						<br>
+						In the ${event.address.neighborhood.name} Neighborhood
+						</td>
+						<td>${event.eventDate}</td>
+						<td></td>
+					</c:if>
+					
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+<button onclick="window.location.href='addEvent.do';">New Event</button>
 
-
-
-
-
-<c:forEach var="event" items="${event}">
-<ul>
-<li> <a href="getEventById.do?id=${event.id}"><strong>${event.description}</strong></a></li>
-<li> <strong>${event.name}</strong></li>
-<li> <strong>${event.eventDate}</strong></li>
-<li> <strong>${event.address}</strong></li>
-
-</ul>
-</c:forEach>
-
-
-
-
-
-<div>
-
-<h2> create a new event</h2>
-<form action="addNevent.do" method="POST">
-	<label for="name">Event Name</label>
-	<input type="text" name="name" value=""/>
-	<br>
-	<label for="description">Description</label>
-	<input type="text" name="name" value=""/>
-	<br>
-	<label for="eventDate">Event Date</label>
-	<input type="date" name="name" value=""/>
-	<br>
-	<label for="createDate">Create Date</label>
-	<input type="date" name="name" value=""/>
-	<br>
-	<label for="neighborhoodId">Neighborhood</label>
-	<input type="text" name="name" value=""/>
-	<br>
-	<label for="address">Address</label>
-	<input type="text" name="name" value=""/>
-	<br>
-	<input type="submit" class="btn btn-success"value="Add Event">
-</form>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
+	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

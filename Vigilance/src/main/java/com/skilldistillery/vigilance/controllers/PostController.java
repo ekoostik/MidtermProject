@@ -225,5 +225,12 @@ public class PostController {
 		model.addAttribute("post", post);
 		return "/webpages/forms/TestLanding";
 	}
+	@GetMapping("viewPostByProfile.do")
+	public String getUserPost(String id, Model model) {
+		model.addAttribute("post", postDao.viewAllPostByUser(Integer.parseInt(id)));
+		return "/webpages/forms/viewAllPost";
+	}
+	
+	
 
 }

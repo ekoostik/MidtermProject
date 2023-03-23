@@ -32,8 +32,15 @@ public class NeighborhoodController {
 
 		return "/webpages/forms/viewAllEvent";
 	}
+	
+	@RequestMapping(path = "addEvent.do", method = RequestMethod.GET)
+	public String newEvent() {
 
-	@RequestMapping(path = "addNEvent.do", method = RequestMethod.POST)
+		return "/webpages/forms/neighborhoodEventForm";
+	}
+	
+
+	@RequestMapping(path = "addNewEvent.do", method = RequestMethod.POST)
 	public ModelAndView addNEvent(NeighborhoodEvent event, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		NeighborhoodEvent newEvent = null;
@@ -66,7 +73,7 @@ public class NeighborhoodController {
 		NeighborhoodEvent event = NHDao.findEventById(id);
 		model.addAttribute("event", event);
 
-		return "/webpages/forms/neighborhoodEventForm";
+		return "/webpages/forms/viewEvent";
 	}
 
 	@RequestMapping(path = "update.do", method = RequestMethod.GET)
@@ -199,7 +206,7 @@ public class NeighborhoodController {
 		return "/webpages/forms/viewAllPost";
 	}
 	
-	@GetMapping("getHoodById.do")
+	@GetMapping("getHoodById.do")	
 	public String getHoodById(int id, Model model) {
 		Neighborhood neighborhood = NHDao.findHoodById(id);
 		List<Post> post = neighborhood.getPosts();
@@ -208,6 +215,18 @@ public class NeighborhoodController {
 		model.addAttribute("post", post);
 		model.addAttribute("hood", neighborhood);
 		return "/webpages/forms/TestLanding";
+	}
+	
+	
+	@GetMapping("getHoodByUserId.do")	
+	public String getHoodByUserId(int id, Model model) {
+		Neighborhood neighborhood =NHDao.findHoodByUserId(id);
+		List<Post> post = neighborhood.getPosts();
+		List<NeighborhoodEvent> event = neighborhood.getnEvents();
+		model.addAttribute("event", event);
+		model.addAttribute("post", post);
+		model.addAttribute("hood", neighborhood);
+		return "/webpages/forms/neighborhoodForm";
 	}
 	
 
