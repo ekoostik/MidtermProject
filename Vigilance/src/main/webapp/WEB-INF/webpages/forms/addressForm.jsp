@@ -42,6 +42,9 @@
   </div>
  </div>
 </form> 
+<div class="cancel">
+ <a href="cancelRegistration.do" class="btn btn-danger" role="button">Cancel</a>
+  </div>
 </div>
 	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>

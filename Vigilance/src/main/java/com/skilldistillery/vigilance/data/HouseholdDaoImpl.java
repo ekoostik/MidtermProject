@@ -6,9 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.vigilance.entities.Address;
 import com.skilldistillery.vigilance.entities.HouseHold;
 import com.skilldistillery.vigilance.entities.Pet;
 import com.skilldistillery.vigilance.entities.Vehicle;
@@ -27,6 +27,19 @@ public class HouseholdDaoImpl implements HouseholdDAO {
 	}
 	
 	@Override
+	public boolean deleteHoushold(int householdId) {
+		HouseHold deleteHousehold = em.find(HouseHold.class, householdId);
+		em.remove(deleteHousehold);
+		em.flush();
+		
+		if (em.find(HouseHold.class, householdId) == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
 	public HouseHold updateHousehold(int householdId, HouseHold household) {
 		HouseHold updateHousehold = em.find(HouseHold.class, householdId);
 		updateHousehold.setOccupants(household.getOccupants());
@@ -42,6 +55,7 @@ public class HouseholdDaoImpl implements HouseholdDAO {
 		
 		return pet;	
 	} 
+
 	
 	@Override
 	public Pet updatePet(int petId, Pet pet) {
@@ -56,8 +70,8 @@ public class HouseholdDaoImpl implements HouseholdDAO {
 	
 	
 	@Override
-	public Pet removePet(int householdId, Pet pet) {
-		Pet removePet = em.find(Pet.class, pet.getId());
+	public Pet removePet(int petId) {
+		Pet removePet = em.find(Pet.class, petId);
 		em.remove(removePet);
 		return removePet;	
 	} 
@@ -82,7 +96,8 @@ public class HouseholdDaoImpl implements HouseholdDAO {
 	} 
 	@Override
 	public List<Vehicle> listAllVehiclesByHousehold(int householdId) {
-		String jpql = "SELECT v FROM Vehicle v JOIN FETCH v.household h WHERE h.id = :householdId";
+		//ysql> SELECT * FROM vehicle v JOIN household h ON v.household_id = h.id WHERE h.id = 3;
+		String jpql = "SELECT v FROM Vehicle v JOIN House h ON v.household_id = h.id WHERE h.id = :householdId";
 		List<Vehicle> vehicles = em.createQuery(jpql, Vehicle.class)
 				.setParameter("householdId", householdId)
 				.getResultList();
@@ -97,12 +112,12 @@ public class HouseholdDaoImpl implements HouseholdDAO {
 
 	@Override
 	public List<Pet> listAllPetsByHousehold(int householdId) {
-		String jpql = "SELECT p FROM Pet p JOIN FETCH p.household h WHERE h.id = :householdId";
+		String jpql = "SELECT p FROM Pet p JOIN FETCH p.house h WHERE h.id = :householdId";
 		List<Pet> pets = em.createQuery(jpql, Pet.class)
 				.setParameter("householdId", householdId)
 				.getResultList();
 		return pets;
-	}
+	} 
 
 
 	

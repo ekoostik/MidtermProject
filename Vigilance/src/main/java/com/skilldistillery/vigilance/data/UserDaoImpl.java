@@ -83,6 +83,19 @@ public class UserDaoImpl implements UserDAO {
 	}
 	
 	@Override
+	public boolean deleteAddress(int addressId) {
+		Address deleteAddress = em.find(Address.class, addressId);
+		em.remove(deleteAddress);
+		em.flush();
+		
+		if (em.find(Address.class, addressId) == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
 	public User updateUser(int userId, User user) {
 		User updateUser =em.find(User.class, userId);
 		updateUser.setUsername(user.getUsername());
@@ -99,6 +112,19 @@ public class UserDaoImpl implements UserDAO {
 		return updateUser;
 		
 	} 
+	
+	@Override
+	public boolean deleteUser(int userId) {
+		User deletedUser = em.find(User.class, userId);
+		em.remove(deletedUser);
+		em.flush();
+		
+		if (em.find(User.class, userId) == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 
 	@Override
