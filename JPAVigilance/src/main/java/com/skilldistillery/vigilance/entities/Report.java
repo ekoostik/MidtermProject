@@ -25,6 +25,8 @@ public class Report {
 
 	private String description;
 	
+	private String subject;
+	
 	@CreationTimestamp
 	@Column(name = "report_time")
 	private LocalDate reportDate;
@@ -50,6 +52,14 @@ public class Report {
 
 	public void setDesription(String description) {
 		this.description = description;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
 	public LocalDate getReportDate() {

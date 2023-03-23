@@ -33,6 +33,7 @@ public class ReportDoaImpl implements ReportDAO {
 		newReport.setDesription(report.getDesription());
 		newReport.setContactAuthority(report.isContactAuthority());
 		newReport.setAnimals(report.getAnimals());
+		newReport.setSubject(report.getSubject());
 	
 		
 		em.persist(newReport);
@@ -48,6 +49,7 @@ public class ReportDoaImpl implements ReportDAO {
 		updatedReport.setDesription(report.getDesription());
 		updatedReport.setContactAuthority(report.isContactAuthority());
 		updatedReport.setAnimals(report.getAnimals());
+		updatedReport.setSubject(report.getSubject());
 		
 		return updatedReport;
 	}
