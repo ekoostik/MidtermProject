@@ -49,14 +49,16 @@ public class UserController {
 	public String login(User user, Model model, HttpSession session) {
 //	User user = userOne;
 		user = userDao.login(user);
-		if (user != null && user.getRole().equals("user")) {
+		if (user != null) {
 			session.setAttribute("loggedinuser", user);
 			LocalDateTime localTime = LocalDateTime.now();
 			session.setAttribute("loginTime", localTime);
 			return "/webpages/home";
-		} else if (user != null && user.getRole().equals("admin")){
-			return "webpages/adminHome";
-		} else {
+		}
+//		} else if (user != null && user.getRole().equals("admin")) {
+//			return "webpages/adminHome";
+//		} 
+			else {
 			return "/webpages/forms/login_register";
 		}
 	}

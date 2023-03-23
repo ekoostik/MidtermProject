@@ -16,10 +16,6 @@
 	<p>Thanks ${loggedinuser.firstName} Please enter your address to locate any
 		existing neighborhoods</p>
 <form action="newaddr.do" method="POST">
-<div class ="input-box">
-  <span class="details"></span>
-<input type="hidden" name="householdId" value="${householdid }" />
- </div>
 <div class ="user-details">
 <div class ="input-box">
   <span class="details">Street</span>
