@@ -107,6 +107,8 @@ public class UserDaoImpl implements UserDAO {
 		user.getHousehold().getPets().size();
 		user.getHousehold().getVehicles().size();
 		user.getEventComments().size();
+		user.getNeighborhoodEvent().size();
+		user.getReports().size();
 		return user;
 	}
 

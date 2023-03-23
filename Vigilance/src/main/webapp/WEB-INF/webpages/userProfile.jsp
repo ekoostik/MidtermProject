@@ -663,13 +663,13 @@ blockquote {
 <jsp:include page="../bootstrap/navbar.jsp" />
 <body>
 	<div class="card">
-		<h1>${loggedinuser.firstName}${loggedinuser.lastName}</h1>
+		<h1>${user.firstName}${user.lastName}</h1>
 		<p>This page will show all posts, entries, etc particular to the
 			user.</p>
 		<jsp:include page="../bootstrap/bootstrapFooter.jsp" />
 		<div id="centerButtons">
 			<a href="#" width="100px" height="100px"><img
-				src="https://bootdey.com/img/Content/avatar/avatar1.png"
+				src="${user.profilePic}"
 				class="img-responsive" alt="image post"></a><br><br><br>
 		</div>
 		<div id="centerButtons">
@@ -685,18 +685,18 @@ blockquote {
 		</div>
 		<strong>About me:</strong>
 		<c:choose>
-			<c:when test="${loggedinuser.aboutme == null}">
+			<c:when test="${user.aboutme == null}">
 				<a href="updateUserForm.do">No About Me Yet! Add one</a>
 			</c:when>
 			<c:otherwise>
-					${loggedinuser.aboutme}
+					${user.aboutme}
 				</c:otherwise>
 		</c:choose>
 		<h4>
-			Name: ${loggedinuser.firstName } ${loggedinuser.lastName}<br> 
-			Date Joined Vigilance: ${loggedinuser.createDate }<br> 
-			Date of Birth: ${loggedinuser.dateOfBirth }<br>
-			Email: ${loggedinuser.email }<br>
+			Name: ${user.firstName } ${loggedinuser.lastName}<br> 
+			Date Joined Vigilance: ${user.createDate }<br> 
+			Date of Birth: ${user.dateOfBirth }<br>
+			Email: ${user.email }<br>
 		</h4>
 	</div>
 	</div>

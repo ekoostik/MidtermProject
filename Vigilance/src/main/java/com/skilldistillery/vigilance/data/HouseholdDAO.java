@@ -19,7 +19,7 @@ public interface HouseholdDAO {
 	public Vehicle addVehicle(int householdId, Vehicle vehicle);
 	public Vehicle updateVehicle(int householdId, Vehicle vehicle);
 	public List<Vehicle>listAllVehiclesByHousehold(int householdId);
-	public Vehicle removeVehicle(int householdId, Vehicle vehicle);
+	public Vehicle removeVehicle(int vehicleId);
 	
  
 

@@ -67,6 +67,7 @@ public class HouseholdDaoImpl implements HouseholdDAO {
 		HouseHold household = em.find(HouseHold.class, householdId);
 		vehicle.setHouse(household);
 		em.persist(household);
+		em.persist(vehicle);
 		em.flush();
 		return vehicle;	
 	} 
@@ -88,8 +89,8 @@ public class HouseholdDaoImpl implements HouseholdDAO {
 		return vehicles;	
 	} 
 	@Override
-	public Vehicle removeVehicle(int householdId, Vehicle vehicle) {
-		Vehicle removeVehicle = em.find(Vehicle.class, vehicle.getId());
+	public Vehicle removeVehicle(int vehicleId) {
+		Vehicle removeVehicle = em.find(Vehicle.class, vehicleId);
 		em.remove(removeVehicle);
 		return removeVehicle;	
 	}
