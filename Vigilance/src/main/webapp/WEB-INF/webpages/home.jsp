@@ -11,12 +11,7 @@
 </head>
 <jsp:include page="../bootstrap/navbar.jsp" />
 <body>
-	<!--<div class="bg-image"
-		style="background-image: url('https://media.timeout.com/images/105489784/image.jpg'), url('https://wallpapercosmos.com/w/full/c/c/e/1163036-3840x2160-desktop-4k-town-background.jpg');
-		background-position: right bottom, left top; 
-		background-repeat: no-repeat, repeat; 
-		height: 30vh;">
-		</div> -->
+	
 	<div class="container-fluid">
 
 		<h2 class="homeh2">Welcome ${loggedinuser.firstName}!</h2>
@@ -46,7 +41,6 @@
                 </div>
                 <div class="panel-body">
                         <div class="col"> <br>
-                           <img alt="" class="img-thumbnail" src="${loggedinuser.profilePic}">  
                                 <form action="addPost.do?" method="post">
                                 <input name="description" class="form-control" type="text" placeholder="Description">
                                 <label for="decription"></label> 

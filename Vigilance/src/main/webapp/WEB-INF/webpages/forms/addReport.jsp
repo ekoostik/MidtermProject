@@ -13,22 +13,50 @@
 <jsp:include page="../../bootstrap/navbar.jsp" />
 <body>
 
-<h3>Report Information</h3>
+	<h3>Report Information</h3>
 
- <form action="reportAdded.do" method="POST">
+	<form action="reportAdded.do" method="POST">
 		<fieldset>
-			<legend>Enter information to make a report:</legend>
-				
-				<label for="contactAuthority">Were the police contacted?</label> <select
-					id="contactAuthority" name="contactAuthority" required>
-					<option value="True">Yes</option>
-					<option value="False">No</option>
-				</select><br>
+			<!-- input for date -->
+			<div class="input-box">
+				<span class="details">Date of Birth</span> <input type="date"
+					name="reportDate" required /><br>
+			</div>
+			<!-- input for description -->
+			<div>
+				<input name="description" class="form-control" type="text"
+					placeholder="Description"> <label for="decription"></label>
+			</div>
+			<!-- input for authority contacted -->
+			<div>
+			
+
+			<label for="contactAuthority">Were the police contacted?</label> <select
+				id="contactAuthority" name="contactAuthority" required>
+				<option value="True">Yes</option>
+				<option value="False">No</option>
+			</select><br>
+			</div>
+			
+			<!-- ==START OF ANIMAL REPORT== -->
+			
+
+			<!-- input for species involved -->
+			<div>
+			
+			</div>
+
+			<!-- input for spottting date -->
+			<div>
+			
+			</div>
+
+		
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</fieldset>
 	</form>
 
-	
 
-<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
+
+	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
