@@ -11,6 +11,8 @@ public interface UserDAO {
 	public Address addnewAddress(int householdId, Address address);
 	public Address updateAddress(int id, Address address);
 	public User registerNewUser(String dob, User user);
+	boolean deleteAddress(int addressId);
+	boolean deleteUser(int userId);
 	
 	
 	

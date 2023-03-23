@@ -37,7 +37,7 @@
  </div>
 <div class ="input-box">
   <span class="details">Password</span>
-  <input type="text" name="password" required/><br>
+  <input type="password" name="password" required/><br>
  </div>
  <div class="button">
  <input type="submit" value="Register">
@@ -45,7 +45,7 @@
  </div>
 </form> 
 <div class="cancel">
- <a href="login.do" class="btn btn-danger" role="button">Cancel</a>
+ <a href="cancelRegistration.do" class="btn btn-danger" role="button">Cancel</a>
   </div>
 </div>
 
