@@ -64,9 +64,9 @@
 		
 		<div class="row">
 			<div class="col" class="buttons">
-				<a href="viewAllEvents.do" class="btn btn-secondary"" role="button">View all
-					Events</a> <br> <br> <a href="viewAllNeighborhoods.do"
-					class="btn btn-secondary" role="button">View all Neighborhoods</a> <br> <br>
+				<a href="viewAllEvents.do" class="btn btn-secondary" role="button">View all
+					Events</a> <br> <br> <a href="getHoodByUserId.do?id=${loggedinuser.id}"
+					class="btn btn-secondary" role="button">View Your Neighborhood</a> <br> <br>
 				<a href="viewAllposts.do" class="btn btn-secondary" role="button">View All
 					Posts</a><br> <br> <a href="viewAllreports.do" class="btn btn-secondary"
 					role="button">View All Reports</a><br> <br>

@@ -151,5 +151,13 @@ public class NeighborhoodDoaImpl implements NeighborhoodDAO {
 		
 		return neighborhood;
 	}
+//	@Override
+//	public Neighborhood findAllUsersForNeighborhood(int id) {
+//		
+//		Neighborhood neighborhood = em.find(Neighborhood.class, id);
+//		List<User>user=nei
+//		
+//		return neighborhood;
+//	}
 
 }
