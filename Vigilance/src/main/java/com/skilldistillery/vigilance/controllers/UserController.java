@@ -59,14 +59,9 @@ public class UserController {
 			session.setAttribute("loggedinuser", user);
 			LocalDateTime localTime = LocalDateTime.now();
 			session.setAttribute("loginTime", localTime);
-			return "/webpages/home";
+			return "/webpages/home"; 
 
-		
-		} else {
-
-		}
-
-			else {
+		}else {
 
 			return "/webpages/forms/login_register";
 		}
