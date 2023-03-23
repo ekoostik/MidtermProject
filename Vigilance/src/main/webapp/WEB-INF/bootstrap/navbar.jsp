@@ -21,7 +21,7 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="viewAllposts.do">Posts</a></li>
-            <li><a class="dropdown-item" href="viewAllEvents.do">Events</a></li>
+            <li><a class="dropdown-item" href="#">Events</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="viewAllreports.do" style="background-color: red">Reports</a></li>
           </ul>
