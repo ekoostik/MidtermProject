@@ -17,19 +17,19 @@
 <div class ="user-details">
 <div class ="input-box">
   <span class="details">Name</span>
-  <input type="text" name="make" required/><br>
+  <input type="text" name="name" required/><br>
  </div>
 <div class ="input-box">
   <span class="details">Species</span>
-  <input type="text" name="model" required/><br>
+  <input type="text" name="species" required/><br>
  </div>
 <div class ="input-box">
   <span class="details">Breed</span>
-  <input type="text" name="color" /><br>
+  <input type="text" name="breed" /><br>
  </div>
 <div class ="input-box">
   <span class="details">Color</span>
-  <input type="text" name="description" /><br>
+  <input type="text" name="color" /><br>
  </div>
  <div class ="tagged-details">
    <span class="details">Tagged?</span>

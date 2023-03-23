@@ -78,12 +78,12 @@
 					</c:otherwise>
 					</c:choose>	</td>
 						<td><c:choose>
-								<c:when test="${ !empty loggedinuser.household.pets}">
-										<form action="vehicleRemoved.do" method="POST">									
+								<c:when test="${ !empty pets}">
+										<form action="petRemoved.do" method="POST">									
 											<select name="id">
-											<c:forEach var="p" items="${loggedinuser.household.pets}">
+											<c:forEach var="p" items="${pets}">
 												<option value="${p.id}">
-												${p.species}, ${p.name} 
+												${p.species}: ${p.name} 
 												</option>
 											</c:forEach>
 											</select>

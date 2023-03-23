@@ -184,7 +184,14 @@ public class HouseholdController {
 	@RequestMapping(path = "removePet.do",method = RequestMethod.GET)
 	public String removePet( Model model, HttpSession session) {
 		User loggedInUser = (User)session.getAttribute("loggedinuser");
+		if (loggedInUser != null) {
+			loggedInUser = userDao.findUserById(loggedInUser.getId());
+			session.setAttribute("loggedinuser", loggedInUser);
+		}
 		model.addAttribute("loggedinuser", loggedInUser);
+		List<Pet> pets = loggedInUser.getHousehold().getPets();
+		System.out.println(pets);
+		model.addAttribute("pets", pets);
 		return "webpages/forms/removePetForm";
 	}
 	
