@@ -18,8 +18,7 @@
 			
 			<th>Report</th>
 			<th>Date Reported</th>
-			<!-- header -->
-			<!--header  -->
+		
 		</thead>
 		<tbody>
 			<c:forEach var="report" items="${report}">
