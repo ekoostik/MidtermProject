@@ -658,6 +658,11 @@ blockquote {
 .pagination {
 	margin: 0px;
 }
+
+.profile {
+  border-radius: 50%;
+}
+
 </style>
 </head>
 <jsp:include page="../bootstrap/navbar.jsp" />
@@ -668,9 +673,17 @@ blockquote {
 			user.</p>
 		<jsp:include page="../bootstrap/bootstrapFooter.jsp" />
 		<div id="centerButtons">
-			<a href="#" width="100px" height="100px"><img
-				src="${user.profilePic}"
-				class="img-responsive" alt="image post"></a><br><br><br>
+		<c:choose>
+			<c:when test="${empty loggedinuser.profilePic}">
+				<img class="profile" src="images/defaultPic.png" width="200"
+					height="200">
+			</c:when>
+			<c:otherwise>
+				<img class="profile" src="${loggedinuser.profilePic}" width="200"
+					height="200">
+				<br>
+			</c:otherwise>
+		</c:choose> 
 		</div>
 		<div id="centerButtons">
 		

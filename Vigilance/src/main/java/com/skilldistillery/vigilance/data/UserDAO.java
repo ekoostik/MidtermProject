@@ -16,6 +16,8 @@ public interface UserDAO {
 	boolean deleteAddress(int addressId);
 	boolean deleteUser(int userId);
 	List<User> findAllUsers();
+	User activateUser(int userId);
+	User deactivateUser(int userId);
 	
 	
 	
