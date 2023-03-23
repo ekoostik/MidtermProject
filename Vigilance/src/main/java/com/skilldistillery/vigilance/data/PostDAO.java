@@ -25,6 +25,6 @@ public interface PostDAO {
 
 	public List<Post> viewAllPostByNeighborhoodById(int id);
 
-	public List<Post> viewAllPostByUser(int id);
+	public List<Post> viewAllPostByUser(Integer id);
 
 }

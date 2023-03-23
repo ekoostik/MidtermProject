@@ -30,7 +30,7 @@
 
 <div>
 
-<h2> create a new event</h2>
+<h2> Create a new event</h2>
 <form action="addNevent.do" method="POST">
 	<label for="name">Event Name</label>
 	<input type="text" name="name" value=""/>

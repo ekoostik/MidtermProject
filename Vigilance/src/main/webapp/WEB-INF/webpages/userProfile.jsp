@@ -674,7 +674,7 @@ blockquote {
 		</div>
 		<div id="centerButtons">
 		
-				<a class="btn btn-default" href="RetrieveMyPosts.do" 
+				<a class="btn btn-default" href="viewPostByProfile.do?id=${user.id}"
 				role="button">View My Posts</a> 
 				
 				<a class="btn btn-default" href="RetrieveMyReports.do"
@@ -693,7 +693,7 @@ blockquote {
 				</c:otherwise>
 		</c:choose>
 		<h4>
-			Name: ${user.firstName } ${loggedinuser.lastName}<br> 
+			Name: ${user.firstName } ${user.lastName}<br> 
 			Date Joined Vigilance: ${user.createDate }<br> 
 			Date of Birth: ${user.dateOfBirth }<br>
 			Email: ${user.email }<br>

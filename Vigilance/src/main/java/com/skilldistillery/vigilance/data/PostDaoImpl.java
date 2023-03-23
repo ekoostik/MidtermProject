@@ -132,11 +132,9 @@ public class PostDaoImpl implements PostDAO {
 	}
 
 	@Override
-	public List<Post> viewAllPostByUser(int id) {
-		// TODO Auto-generated method stub
-		User user = em.find(User.class, id);
-		List<Post> posts = user.getPosts();
-		return posts;
+	public List<Post> viewAllPostByUser(Integer id) {
+		String jpql = "SELECT p FROM Post p WHERE p.user.id=:id";
+		return em.createQuery(jpql, Post.class).setParameter("id", id).getResultList();
 	}
 
 }

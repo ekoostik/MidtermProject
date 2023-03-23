@@ -46,7 +46,7 @@ public class Post {
 	private Neighborhood nid;
 	
 	@ManyToMany
-	@JoinTable(name="postlikeß", 
+	@JoinTable(name="postlike", 
 	joinColumns=@JoinColumn(name="post_id"),
 	inverseJoinColumns=@JoinColumn(name="user_id"))
 	private List<User> likes;

@@ -144,4 +144,12 @@ public class NeighborhoodDoaImpl implements NeighborhoodDAO {
 		return em.createQuery(jpql, Neighborhood.class).getResultList();
 	}
 
+	@Override
+	public Neighborhood findHoodByUserId(int id) {
+		User user =em.find(User.class, id);
+		Neighborhood neighborhood = user.getHousehold().getAddress().getNeighborhood();
+		
+		return neighborhood;
+	}
+
 }
