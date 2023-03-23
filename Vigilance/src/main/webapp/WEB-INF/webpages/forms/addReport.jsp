@@ -19,37 +19,60 @@
 		<fieldset>
 			<!-- input for date -->
 			<div class="input-box">
-				<span class="details">Date of Birth</span> <input type="date"
+				<span class="details">Date:</span> <input type="date"
 					name="reportDate" required /><br>
+			</div>
+			<!-- input for subject-->
+			<div class="input-box">
+				<span class="details">Subject:</span> <input type="text" placeholder="Enter subject here"
+					name="subject" required /><br>
 			</div>
 			<!-- input for description -->
 			<div>
-				<input name="description" class="form-control" type="text"
-					placeholder="Description"> <label for="decription"></label>
+				<label for="description"> Description:</label><br>
+				<textarea id="description" name="description" rows="4" cols="50">Enter description..
+				</textarea>
 			</div>
-			<!-- input for authority contacted -->
-			<div>
 			
 
+
+			<!-- input for authority contacted -->
+			<div>
 			<label for="contactAuthority">Were the police contacted?</label> <select
 				id="contactAuthority" name="contactAuthority" required>
 				<option value="True">Yes</option>
 				<option value="False">No</option>
 			</select><br>
 			</div>
+			<div>
+			<label for="animalsPresent">Were the animals involved?</label> <select
+				id="animalsPresent" name="animalsPresent" required>
+				<option value="True">Yes</option>
+				<option value="False">No</option>
+			</select><br>
+			</div>
 			
-			<!-- ==START OF ANIMAL REPORT== -->
+			<!-- ==========START OF ANIMAL REPORT================================== -->
 			
 
 			<!-- input for species involved -->
-			<div>
-			
+			<!-- <div>
+			<div class="input-box">
+				<span class="details">Species Involved</span> <input type="text"
+					name="reportDate" placeholder="Enter species here" required /><br>
+			</div>
 			</div>
 
-			<!-- input for spottting date -->
+			input for spottting date
 			<div>
-			
+			<div class="input-box">
+				<span class="details">Spotting Date:</span> <input type="date"
+					name="spottingTime" required /><br>
 			</div>
+			</div> -->
+			
+
+			
 
 		
 			<button type="submit" class="btn btn-primary">Submit</button>

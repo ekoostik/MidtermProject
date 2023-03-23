@@ -55,16 +55,18 @@ public class UserController {
 	public String login(User user, Model model, HttpSession session) {
 //	User user = userOne;
 		user = userDao.login(user);
-		if (user != null) {
+		if (user != null && user.getRole().equals("user")) {
 			session.setAttribute("loggedinuser", user);
 			LocalDateTime localTime = LocalDateTime.now();
 			session.setAttribute("loginTime", localTime);
 			return "/webpages/home"; 
-
-		}else {
-
-			return "/webpages/forms/login_register";
+		}else if (user != null && user.getRole().equals("admin")) {
+			session.setAttribute("loggedinuser", user);
+			LocalDateTime localTime = LocalDateTime.now();
+			session.setAttribute("loginTime", localTime);
+			return "/webpages/adminHome";
 		}
+		return "webpages/forms/login_register";
 	}
 
 	@RequestMapping(path = "registration.do")
