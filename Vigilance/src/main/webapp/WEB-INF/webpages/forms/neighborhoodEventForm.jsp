@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Neighborhood Event</title>
-<link rel="stylesheet" href="css/stylesheet.css">
+<link rel="stylesheet" href="./stylesheet.css">
 </head>
 
-<jsp:include page="../../bootstrap/navbar.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/navbar.jsp" />
 <body>
 
 
@@ -52,6 +52,6 @@
 
 
 
-<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

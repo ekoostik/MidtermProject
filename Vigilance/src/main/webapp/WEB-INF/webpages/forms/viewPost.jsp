@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>View Post</title>
-<link rel="stylesheet" href="../../stylesheet.css">
+<link rel="stylesheet" href="./stylesheet.css">
 <style>
 body {
 	margin-top: 20px;
@@ -160,7 +160,7 @@ body {
 </style>
 </head>
 
-<jsp:include page="../../bootstrap/navbar.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/navbar.jsp" />
 <body>
 
 
@@ -276,6 +276,6 @@ body {
 
 
 
-	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
+	<jsp:include page="/WEB-INF/bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

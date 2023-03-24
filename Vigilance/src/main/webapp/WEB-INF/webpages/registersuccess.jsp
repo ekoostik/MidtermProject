@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Registration successful</title>
-<link rel="stylesheet" href="css/stylesheet.css">
+<link rel="stylesheet" href="./stylesheet.css">
 </head>
 <body>
 <h1>SUCCESSFUL- VALUE IN CONTROLLER WAS TRUE</h1>
-<jsp:include page="../bootstrap/bootstrapFooter.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Vigilance Home</title>
-<link rel="stylesheet" href="../stylesheet.css">
+<link rel="stylesheet" href="./stylesheet.css">
 </head>
-<jsp:include page="../bootstrap/adminNavbar.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/adminNavbar.jsp" />
 <body>
 	<!--<div class="bg-image"
 		style="background-image: url('https://media.timeout.com/images/105489784/image.jpg'), url('https://wallpapercosmos.com/w/full/c/c/e/1163036-3840x2160-desktop-4k-town-background.jpg');
@@ -102,6 +102,6 @@
 
 	<br>
 	<br>
-	<jsp:include page="../bootstrap/bootstrapFooter.jsp" />
+	<jsp:include page="/WEB-INF/bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

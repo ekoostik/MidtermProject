@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Admin</title>
-<link rel="stylesheet" href="../stylesheet.css">
+<link rel="stylesheet" href="./stylesheet.css">
 </head>
-<jsp:include page="../bootstrap/adminNavbar.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/adminNavbar.jsp" />
 <body>
 <body>
 	<div class="container-fluid">
@@ -93,6 +93,6 @@
 				</tbody>
 				</table>
 	</div>
-	<jsp:include page="../bootstrap/bootstrapFooter.jsp" />
+	<jsp:include page="/WEB-INF/bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

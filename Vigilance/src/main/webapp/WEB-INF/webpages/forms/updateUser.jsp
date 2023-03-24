@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>User Update</title>
-<link rel="stylesheet" href="../../stylesheet.css">
+<link rel="stylesheet" href="./stylesheet.css">
 </head>
 <body>
 <h1> Update User Information</h1>

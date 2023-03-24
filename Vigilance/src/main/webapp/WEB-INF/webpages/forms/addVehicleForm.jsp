@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Add Vehicle</title>
-<link rel="stylesheet" href="../../../../registrationStylesheet.css">
+<link rel="stylesheet" href="./registrationStylesheet.css">
 </head>
 <body>
 <div class="container">
@@ -46,6 +46,6 @@
   
   <!--MAYBE ADD LOGIC FOR USER TO COMPARE EXISTING NEIGHBORHOODS (STRETCH)  -->
   
-<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

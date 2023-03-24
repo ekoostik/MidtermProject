@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../../stylesheet.css">
+<link rel="stylesheet" href="./stylesheet.css">
 </head>
 
-<jsp:include page="../../bootstrap/navbar.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/navbar.jsp" />
 <body>
 
 	<h3>Event Information</h3>
@@ -50,6 +50,6 @@
 		
 	</c:if>
 
-	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
+	<jsp:include page="/WEB-INF/bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

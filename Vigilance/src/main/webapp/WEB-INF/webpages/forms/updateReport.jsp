@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Update Report</title>
-<link rel="stylesheet" href="css/stylesheet.css">
+<link rel="stylesheet" href="./stylesheet.css">
 <style>
 body {
 	margin-top: 20px;
@@ -652,7 +652,7 @@ blockquote {
 }
 </style>
 </head>
-<jsp:include page="../../bootstrap/navbar.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/navbar.jsp" />
 <body>
 
 	<h1>

@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Display User's Reports</title>
 <!-- Collin -->
-<link rel="stylesheet" href="css/stylesheet.css">
+<link rel="stylesheet" href="./stylesheet.css">
 <style>
 body {
 	margin-top: 20px;
@@ -654,7 +654,7 @@ blockquote {
 }
 </style>
 </head>
-<jsp:include page="../bootstrap/navbar.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/navbar.jsp" />
 <body>
 	<c:forEach var="report" items="${report }">
 		<div class="col-md-12 col-lg-12">
@@ -715,7 +715,7 @@ blockquote {
 
 
 
-	<jsp:include page="../bootstrap/bootstrapFooter.jsp" />
+	<jsp:include page="/WEB-INF/bootstrap/bootstrapFooter.jsp" />
 	
 
 </body>

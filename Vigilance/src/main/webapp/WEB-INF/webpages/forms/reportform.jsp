@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>View Reports</title>
-<link rel="stylesheet" href="css/stylesheet.css">
+<link rel="stylesheet" href="./stylesheet.css">
 </head>
 
-<jsp:include page="../../bootstrap/navbar.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/navbar.jsp" />
 <body>
 
 	<table class="table table-striped table-hover">
@@ -38,6 +38,6 @@
 	</table>
 <button onclick="window.location.href='addReport.do';">Make A Report</button>
 
-	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
+	<jsp:include page="/WEB-INF/bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

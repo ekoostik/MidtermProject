@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../../../../registrationStylesheet.css">
+<link rel="stylesheet" href="./registrationStylesheet.css">
 </head>
 <body>
 <div class="container">
@@ -38,6 +38,6 @@ a member of any of the following</h3>
 </div>
 </div>
 
-<jsp:include page="../bootstrap/bootstrapFooter.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

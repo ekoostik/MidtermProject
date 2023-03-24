@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Registration</title>
-<link rel="stylesheet" href="../../../../registrationStylesheet.css">
+<link rel="stylesheet" href="./registrationStylesheet.css">
 </head>
 <body>
 <div class="container">
@@ -46,6 +46,6 @@
  <a href="cancelRegistration.do" class="btn btn-danger" role="button">Cancel</a>
   </div>
 </div>
-	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
+	<jsp:include page="/WEB-INF/bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

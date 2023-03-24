@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Profile</title>
-<link rel="stylesheet" href="css/stylesheet.css">
+<link rel="stylesheet" href="./stylesheet.css">
 <style>
 body {
 	margin-top: 20px;
@@ -665,13 +665,13 @@ blockquote {
 
 </style>
 </head>
-<jsp:include page="../bootstrap/navbar.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/navbar.jsp" />
 <body>
 	<div class="card">
 		<h1>${user.firstName}${user.lastName}</h1>
 		<p>This page will show all posts, entries, etc particular to the
 			user.</p>
-		<jsp:include page="../bootstrap/bootstrapFooter.jsp" />
+		<jsp:include page="/WEB-INF/bootstrap/bootstrapFooter.jsp" />
 		<div id="centerButtons">
 		<c:choose>
 			<c:when test="${empty loggedinuser.profilePic}">

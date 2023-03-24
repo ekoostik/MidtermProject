@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html style="background: #08081b">
 <head>
-<jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
+<jsp:include page="/WEB-INF/bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Vigilance Login</title>
-<link rel="stylesheet" href="../stylesheet.css">
+<link rel="stylesheet" href="./stylesheet.css">
 </head>
 <body>
 <div class="container1" style= "background: #08081b">
@@ -16,7 +16,7 @@
 	
 	<div class="row">
 		<div class="col text-center">
-			<img src="../../../../images/MTLogoMain.png" width="1000"
+			<img src="images/MTLogoMain.png" width="1000"
 				height="500" align="middle">
 		</div>
 	</div>
