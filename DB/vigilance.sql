@@ -517,10 +517,15 @@ INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (2, 
 INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (3, 4, 3, 3);
 INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (4, 2, 4, 2);
 INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (5, 8, 5, 1);
-INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (6, 8, 2, 6);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (6, 8, 6, 6);
 INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (7, 1, 7, 7);
-INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (8, 8, 2, 8);
-INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (9, 1, 1, 9);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (8, 8, 8, 8);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (9, 1, 9, 9);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (10, 1, 10, 10);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (11, 2, 11, 11);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (12, 2, 12, 12);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (13, 3, 13, 13);
+INSERT INTO `household` (`id`, `occupants`, `address_id`, `user_id`) VALUES (14, 1, 14, 14);
 
 COMMIT;
 
