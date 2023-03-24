@@ -1,5 +1,3 @@
-<!-- David -->
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -25,11 +23,11 @@ body {
 }
 .box-widget {
 	border: none;
-	position: center;
+	position: relative;
 }
 
 .box {
-	position: center;
+	position: relative;
 	border-radius: 3px;
 	background: #ffffff;
 	border-top: 3px solid #d2d6de;
@@ -46,7 +44,7 @@ body {
 	color: #444;
 	display: block;
 	padding: 10px;
-	position: center;
+	position: relative;
 }
 
 .user-block img {
@@ -182,12 +180,13 @@ body {
 					</div>
 
 				</div>
-		
+
 
 				<div class="box-body" style="display: block;">
-					<img class="img-responsive pad" src="${post.image}" alt="Photo">
+					<c:if test="${!empty post.image}">
+					<img class="img-responsive pad" src="${post.image}" alt="" height="200" width="200"></c:if>
 					<p>${post.description}</p>
-			
+
 					<form action="commentLike.do" method="POST">
 						<input name="postId" type="hidden" value="${post.id}"></input> <input
 							name="userId" type="hidden" value="${loggedinuser.id}"></input> <input
@@ -213,12 +212,12 @@ body {
 					</c:if>
 
 
+
+
+
+
+
 				</div>
-
-
-
-
-
 				<div class="box-footer box-comments" style="display: block;">
 					<div class="box-comment">
 						<c:forEach var="comments" items="${comments}">

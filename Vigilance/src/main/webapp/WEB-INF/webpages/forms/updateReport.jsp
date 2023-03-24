@@ -1,22 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
-<title>View All Post</title>
-<link rel="stylesheet" href="../../stylesheet.css">
+<title>Update Report</title>
+<link rel="stylesheet" href="css/stylesheet.css">
 <style>
 body {
 	margin-top: 20px;
- background-image: url('https://media.timeout.com/images/105489784/image.jpg'), url('https://wallpapercosmos.com/w/full/c/c/e/1163036-3840x2160-desktop-4k-town-background.jpg');
-	-webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
+	background: #DCDCDC;
 }
 
 .content {
@@ -33,15 +27,14 @@ body {
 }
 
 .post {
-	width: 75%;
-	float: center;
+	width: 100%;
+	float: left;
 	-webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
 	-moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
 	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
 	background: #fff;
 	margin-bottom: 40px;
 	border-radius: 3px;
-
 }
 
 .feature-post .thumbnail .author-info {
@@ -364,6 +357,81 @@ blockquote {
 	margin-bottom: 0px;
 }
 
+.share-this {
+	padding: 20px 45px;
+	border-bottom: 1px solid #eef3f6;
+	float: left;
+	width: 100%;
+}
+
+.share-this p, .share-this ul {
+	margin-bottom: 0px;
+}
+
+.share-this li a {
+	background: #2c3840;
+	line-height: 34px;
+	text-align: center;
+	color: #fff;
+	width: 32px;
+	height: 32px;
+	display: block;
+	border-radius: 50%;
+}
+
+.share-this li a.pinterest {
+	background: #d91c1c;
+}
+
+.share-this li a.google-plus {
+	background: #f25353;
+}
+
+.share-this li a.facebook {
+	background: #2b77be;
+}
+
+.share-this li a.twitter {
+	background: #62bfef;
+}
+
+.related-post {
+	padding: 40px 45px;
+	border-bottom: 1px solid #eef3f6;
+	float: left;
+	width: 100%;
+}
+
+.related-post .thumbnail {
+	padding: 0px;
+	border: none;
+}
+
+.related-post .thumbnail .caption {
+	padding: 30px 0px 0px 0px;
+}
+
+.related-post .thumbnail .caption a {
+	font-size: 18px;
+	line-height: 28px;
+	font-weight: 300;
+	color: #49545b;
+}
+
+.related-post .thumbnail .caption a:hover {
+	color: #36a0e7;
+}
+
+.related-post .thumbnail:hover a img {
+	opacity: 0.7;
+}
+
+.related-post h4 {
+	color: #49545b;
+	font-weight: 700;
+	font-size: 18px;
+	margin: 0px 0px 20px 0px;
+}
 
 .comment-count {
 	padding: 45px 45px;
@@ -584,76 +652,33 @@ blockquote {
 }
 </style>
 </head>
-
-
 <jsp:include page="../../bootstrap/navbar.jsp" />
 <body>
 
-	<div class="container">
-		<c:forEach var="post" items="${post}">
-			<div class="col-md-12 col-lg-12">
-				<article class="post vt-post">
-					<div class="row">
-						<div class="col-xs col-sm-5 col-md-5 col-lg-2">
-							<div>
-								<a href="GoToProfile.do?id=${post.user.id}"><img
-									src="${post.user.profilePic}"
-									height="150" width="150" alt="image post" /></a>
-							</div>
-							<div class="author-info author-info-2">
-								<ul class="list-inline">
-									<li>
-										<div class="info">
-											<p>Posted on:</p>
-											<strong>${post.createDate}</strong>
-										</div>
-									</li>
+	<h1>
+		<ul>
+			<li>${report.description }</li>
+			<li>${report.reportDate }</li>
+			<li>${report.contactAuthority }</li>
+			<li>${report.user.firstName }</li>
+			<li>${report.user.lastName }</li>
+		</ul>
+	</h1>
 
-								</ul>
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-							<div class="caption">
-								<h3 class="md-heading">
-									<a href="GoToProfile.do?id=${post.user.id}">${post.user.firstName} ${post.user.lastName}</a>
-								</h3>
-								<c:if test="${!empty post.image}">
-					<img class="img-responsive pad" src="${post.image}" alt="" height="200" width="200"></c:if>
-								<p><a href="getPostById.do?id=${post.id}">${post.description}</a></p>
-							</div>
-						</div>
-					
-					</div>
-				</article>
+	<form action="reportUpdate.do" method="post">
+		<input type="hidden" name="id" value="${report.id}" /> Description: <input
+			name="description" class="form-control"
+			placeholder="${report.description }" type="text"> Date: <input
+			name="reportDate" class="form-control"
+			placeholder="${report.reportDate}" type="date" name="reportDate">
+		Authorities Were Contacted: <input name="contactAuthority"
+			class="form-control" placeholder="${report.contactAuthority }"
+			type="text">
+			<input
+			name="subject" class="form-control"
+			placeholder="${report.subject}" type="text" name="subject">
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
 
-
-
-			</div>
-		</c:forEach>
-		</div>
-		
-		<div class="scrollable">
-    <!-- Your table -->
-
-<button onclick="window.location.href='createPost.do';">New
-			Post</button>
-			</div>
-
-
-		</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>
 </html>

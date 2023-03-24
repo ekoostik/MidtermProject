@@ -13,96 +13,89 @@
 <jsp:include page="../../bootstrap/navbar.jsp" />
 <body>
 
-<table class="table table-striped table-hover">
+	<table class="table table-striped table-hover">
+			<c:choose>
+				<c:when test="${empty event}"><th>No Events Found</th></c:when>
+				<c:otherwise>
 		<thead>
-			
+
 			<th>Events for your Neighborhood</th>
 			<th>Event Date</th>
-			<!-- header -->
-			<!--header  -->
+		
 		</thead>
 		<tbody>
-			<c:forEach var="event" items="${event}">
-				<tr>
-					<c:if test="${not empty event}">
-						
-						<td>
-						<a href="getEventById.do?id=${event.id}"><strong>${event.name}</strong></a>
-						<br>
-						${event.description}
-						<br>
-						
-						</td>
-						<td>${event.eventDate}</td>
-						<td></td>
-					</c:if>
-					
-				</tr>
-			</c:forEach>
+
+					<c:forEach var="event" items="${event}">
+						<tr>
+
+							<td><a href="getEventById.do?id=${event.id}"><strong>${event.name}</strong></a>
+								<br> ${event.description} <br></td>
+							<td>${event.eventDate}</td>
+							<td></td>
+						</tr>
+					</c:forEach>
+
+
+				</c:otherwise>
+			</c:choose>
+
 		</tbody>
 	</table>
 	<table class="table table-striped table-hover">
+			<c:choose>
+				<c:when test="${empty post}"><th>No Post Found</th></c:when>
+				<c:otherwise>
 		<thead>
-			
+
 			<th>Post for your Neighborhood</th>
-			
-			
-			<!-- header -->
-			<!--header  -->
+
 		</thead>
 		<tbody>
-			<c:forEach var="post" items="${post}">
-				<tr>
-					<c:if test="${not empty post}">
-						
-						<td>
-						<a href="getEventById.do?id=${post.id}"><strong>${post.user.firstName}</strong></a>
-						<br>
-						${post.createDate}
-						<br>
-						${post.description}
-						<br>
-			
-						</td>
-					
-					</c:if>
-					
-				</tr>
-			</c:forEach>
+					<c:forEach var="post" items="${post}">
+						<tr>
+
+							<td><a href="getPostById.do?id=${post.id}"><strong>${post.user.firstName}</strong></a>
+								<br> ${post.createDate} <br> ${post.description} <br>
+
+							</td>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+
+
 		</tbody>
 	</table>
-			<table class="table table-striped table-hover">
+	<table class="table table-striped table-hover">
+			<c:choose>
+				<c:when test="${empty report}"><th>No Report Found</th></c:when>
+				<c:otherwise>
 		<thead>
 			<th>Reports for your Neighborhood</th>
-			
-			
-			<!-- header -->
-			<!--header  -->
-		</thead>
-		<tbody>
-			<c:forEach var="report" items="${report}">
-				<tr>
-					<c:if test="${not empty report}">
-						
-						<td>
-						<a href="getEventById.do?id=${report.id}"><strong>${report.user.firstName}</strong></a>
-						<br>
-						${report.reportDate}
-						<br>
-						${report.description}
-						<br>
-			
-						</td>
-					
-					</c:if>
-					
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	
+
 
 	
+		</thead>
+		<tbody>
+					<c:forEach var="report" items="${report}">
+						<tr>
+
+							<td><a href="getReportById.do?id=${report.id}"><strong>${report.user.firstName}</strong></a>
+								<br> ${report.reportDate} <br> ${report.description} <br>
+
+							</td>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+
+
+
+		</tbody>
+	</table>
+
+
+
 
 	<jsp:include page="../../bootstrap/bootstrapFooter.jsp" />
 </body>

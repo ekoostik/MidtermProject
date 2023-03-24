@@ -185,7 +185,8 @@ body {
 
 
 				<div class="box-body" style="display: block;">
-					<img class="img-responsive pad" src="${post.image}" alt="Photo">
+					<c:if test="${!empty post.image}">
+					<img class="img-responsive pad" src="${post.image}" alt="" height="200" width="200"></c:if>
 					<p>${post.description}</p>
 
 					<form action="commentLike.do" method="POST">
