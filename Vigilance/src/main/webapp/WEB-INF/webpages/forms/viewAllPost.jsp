@@ -33,14 +33,15 @@ body {
 }
 
 .post {
-	width: 100%;
-	float: left;
+	width: 75%;
+	float: center;
 	-webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
 	-moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
 	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
 	background: #fff;
 	margin-bottom: 40px;
 	border-radius: 3px;
+
 }
 
 .feature-post .thumbnail .author-info {
@@ -616,7 +617,8 @@ blockquote {
 								<h3 class="md-heading">
 									<a href="GoToProfile.do?id=${post.user.id}">${post.user.firstName} ${post.user.lastName}</a>
 								</h3>
-								<img class="" src="${post.image}" alt="Photo">
+								<c:if test="${!empty post.image}">
+					<img class="img-responsive pad" src="${post.image}" alt="" height="200" width="200"></c:if>
 								<p><a href="getPostById.do?id=${post.id}">${post.description}</a></p>
 							</div>
 						</div>

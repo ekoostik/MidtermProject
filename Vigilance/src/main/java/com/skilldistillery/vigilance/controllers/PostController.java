@@ -44,7 +44,7 @@ public class PostController {
 		ModelAndView mv = new ModelAndView();
 		Post newpost = null;
 		User loggedInUser = (User) session.getAttribute("loggedinuser");
-
+		
 		try {
 			int userId = loggedInUser.getId();
 			int neighborhood = loggedInUser.getHousehold().getAddress().getNeighborhood().getId();

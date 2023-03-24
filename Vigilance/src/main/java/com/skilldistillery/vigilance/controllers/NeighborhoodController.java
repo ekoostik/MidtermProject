@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.vigilance.data.NeighborhoodDAO;
+import com.skilldistillery.vigilance.data.PostDAO;
 import com.skilldistillery.vigilance.data.ReportDAO;
 import com.skilldistillery.vigilance.data.UserDAO;
 import com.skilldistillery.vigilance.entities.Address;
@@ -19,6 +20,7 @@ import com.skilldistillery.vigilance.entities.Neighborhood;
 import com.skilldistillery.vigilance.entities.NeighborhoodEvent;
 import com.skilldistillery.vigilance.entities.Post;
 import com.skilldistillery.vigilance.entities.Report;
+import com.skilldistillery.vigilance.entities.User;
 
 @Controller
 public class NeighborhoodController {
@@ -30,6 +32,9 @@ public class NeighborhoodController {
 	
 	@Autowired
 	private ReportDAO reportDao;
+	
+	@Autowired
+	private PostDAO postDao;
 
 	// ****************************** Neighborhood Events // *****************************
 	@RequestMapping(path = "viewAllEvents.do", method = RequestMethod.GET)
@@ -226,10 +231,13 @@ public class NeighborhoodController {
 	
 	@GetMapping("getHoodByUserId.do")	
 	public String getHoodByUserId(int id, Model model) {
-		Neighborhood neighborhood =NHDao.findHoodByUserId(id);
+	
+		User user = userDao.findUserById(id);
+		Neighborhood neighborhood= NHDao.findHoodByUserId(user.getId());
 		List<Post> post = neighborhood.getPosts();
 		List<NeighborhoodEvent> event = neighborhood.getnEvents();
 		List<Report>report=reportDao.reportsByNeighborhood(neighborhood.getId());
+//		List<Post> post = postDao.viewAllPostByNeighborhoodById(neighborhood.getId());
 		model.addAttribute("event", event);
 		model.addAttribute("post", post);
 		model.addAttribute("hood", neighborhood);
