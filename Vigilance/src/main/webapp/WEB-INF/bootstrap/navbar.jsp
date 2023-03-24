@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><img class="nav" src="../../images/MTLogo3.png" width="130" height="60"></a>
@@ -28,12 +29,12 @@
         </li>
       </ul>
     </div>
-    <div class="d-lg-flex justify-content-center">
+   <!--  <div class="d-lg-flex justify-content-center">
       <form class="d-flex " role="search">
         <input class="form-control me-auto mb-2 mb-lg-0" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-      </div>
+      </div> -->
      <div class="d-flex justify-content-end"> 
      <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -42,7 +43,7 @@
             Account <img class="profile" src="${loggedinuser.profilePic} width="40" height="40">
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="profile.do">Profile</a></li>
+            <li><a class="dropdown-item" href="profile.do?id=${loggedinuser.id}">Profile</a></li>
             <li><a class="dropdown-item" href="account.do"> Account</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout.do">Logout</a></li>

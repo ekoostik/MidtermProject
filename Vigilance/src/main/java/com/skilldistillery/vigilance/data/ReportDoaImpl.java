@@ -68,7 +68,7 @@ public class ReportDoaImpl implements ReportDAO {
 
 	@Override
 	public List<Report> reportsByNeighborhood(int nId) {
-		String jpql ="SELECT r FROM Report r WHERE r.user.household.address.neighborhood.id = :nId";
+		String jpql ="SELECT r FROM Report r WHERE r.user.household.address.neighborhood.id = :nId ORDER BY r.reportDate";
 		return em.createQuery(jpql, Report.class)
 				.setParameter("nId",nId)
 				.getResultList();		

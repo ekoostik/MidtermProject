@@ -597,7 +597,7 @@ blockquote {
 							<div>
 								<a href="GoToProfile.do?id=${post.user.id}"><img
 									src="${post.user.profilePic}"
-									height="200" alt="image post" /></a>
+									height="150" width="150" alt="image post" /></a>
 							</div>
 							<div class="author-info author-info-2">
 								<ul class="list-inline">

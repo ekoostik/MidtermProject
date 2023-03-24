@@ -36,17 +36,11 @@
 			<li>Email: ${loggedinadmin.email}</li>
 			<li>Date of Birth: ${loggedinadmin.dateOfBirth}</li>
 		</ul>
-		<form action="updateUserInfo.do" method="GET">
-			<button name="update" type="submit" class="btn btn-dark">Update
-				Information</button>
-		</form>
-		<br>
 		<h2>User Information</h2>
 		<table>
 			<thead>
 				<tr>
 					<td>User ID</td>
-					<td>Picture</td>
 					<td>Name</td>
 					<td>Role</td>
 					<td>Details</td>
@@ -66,7 +60,6 @@
 						<c:forEach var="a" items="${allusers}">
 							<tr>
 								<td>${a.id}</td>
-								<td>${a.profilePic}</td>
 								<td>${a.firstName} ${a.lastName}</td>
 								<td>${a.role}</td>
 								<td>
@@ -80,11 +73,20 @@
 								<td>${a.dateOfBirth}</td>
 								<td>${a.email}</td>
 								<td>${a.username}</td>
-								<td>${a.username}</td>
 								<td>${a.password}</td>
 								<td>${a.createDate}</td>
 								<td>${a.enabled}</td>
-								</tr>
+								<td>
+													
+							<form action="activateUser.do" method="POST">
+								<button name="userId" type="submit" value="${a.id}" class="btn btn-success">Activate</button>
+							</form>
+
+							<form action="deactivateUser.do" method="POST">
+								<button name="userId" type="submit" value="${a.id}" class="btn btn-danger">Deactivate</button>
+							</form>
+						</td>
+						</tr>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>

@@ -68,6 +68,11 @@ public class UserController {
 		}
 		return "webpages/forms/login_register";
 	}
+	
+	@RequestMapping(path = "adminHome.do")
+	public String adminHome(Model model) {
+		return "/webpages/adminHome";
+	}
 
 	@RequestMapping(path = "registration.do")
 	public String register(Model model) {
@@ -199,6 +204,32 @@ public class UserController {
 		model.addAttribute("allusers", allUsers);
 		model.addAttribute("loggedinadmin", admin);
 		
+		return "webpages/administration";
+		}
+		return "webpages/administration";
+	}
+	
+	@RequestMapping(path = "activateUser.do", params = "userId",method = RequestMethod.POST)
+	public String activateUser(Model model, HttpSession session, @RequestParam("userId") int userId) {
+		userDao.activateUser(userId);
+		User admin = (User) session.getAttribute("loggedinadmin");
+		if (admin != null) {
+		List<User> allUsers = userDao.findAllUsers();
+		model.addAttribute("allusers", allUsers);
+		model.addAttribute("loggedinadmin", admin);
+		return "webpages/administration";
+		}
+		return "webpages/administration";
+	}
+	
+	@RequestMapping(path = "deactivateUser.do", params = "userId",method = RequestMethod.POST)
+	public String deactivateUser(Model model, HttpSession session, @RequestParam("userId") int userId) {
+		userDao.deactivateUser(userId);
+		User admin = (User) session.getAttribute("loggedinadmin");
+		if (admin != null) {
+		List<User> allUsers = userDao.findAllUsers();
+		model.addAttribute("allusers", allUsers);
+		model.addAttribute("loggedinadmin", admin);
 		return "webpages/administration";
 		}
 		return "webpages/administration";
