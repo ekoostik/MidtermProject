@@ -37,39 +37,51 @@
 					<li>Sending out reports of incidents or suspicious activity</li>
 				</ul>
 			</div>
-		 <div class="col" class="create-new-post">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        <span class="glyphicon glyphicon-th"></span>
-                        New Post   
-                    </h3>
-                </div>
-                <div class="panel-body">
-                        <div class="col"> <br>
-                           <img alt="" class="img-thumbnail" src="${loggedinuser.profilePic}">  
-                                <form action="addPost.do?" method="post">
-                                <input name="description" class="form-control" type="text" placeholder="Description">
-                                <label for="decription"></label> 
-                                <input name="photo" class="form-control" type="text" placeholder="Upload a Photo">
-                                <label for="photo"></label> 
-								<input type="submit" class="btn btn-success" value="Post">                      
-                                </form>
-                                <br>
-			
-                        </div>
-                </div>
-             
-            </div>
+			<div class="col" class="create-new-post">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<span class="glyphicon glyphicon-th"></span> New Post
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="col">
+						<br>
+						<c:choose>
+							<c:when test="${empty loggedinuser.profilePic}">
+								<img class="profile" src="images/defaultPic.png" width="200"
+									height="200">
+								<br>
+							</c:when>
+							<c:otherwise>
+								<img class="profile" src="${loggedinuser.profilePic}"
+									width="200" height="200">
+								<br>
+							</c:otherwise>
+						</c:choose>
+						<form action="addPost.do?" method="post">
+							<input name="description" class="form-control" type="text"
+								placeholder="Description"> <label for="decription"></label>
+							<input name="photo" class="form-control" type="text"
+								placeholder="Upload a Photo"> <label for="photo"></label>
+							<input type="submit" class="btn btn-success" value="Post">
+						</form>
+						<br>
+
+					</div>
+				</div>
+
+			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="col" class="buttons">
+
 				<a href="viewAllEvents.do" class="btn btn-secondary" role="button">View all
 					Events</a> <br> <br> <a href="getHoodByUserId.do?id=${loggedinuser.id}"
 					class="btn btn-secondary" role="button">View Your Neighborhood</a> <br> <br>
 				<a href="viewAllposts.do" class="btn btn-secondary" role="button">View All
 					Posts</a><br> <br> <a href="viewAllreports.do" class="btn btn-secondary"
-					role="button">View All Reports</a><br> <br>
+					 href="viewAllreports.do" class="btn btn-secondary" role="button">View All Reports</a><br> <br>
 			</div>
 			<div class="col" class="map">
 				<p>
@@ -81,8 +93,8 @@
 			</div>
 
 			<div class="col" class="newestPosts">
-				<a href="viewAllEvents.do" class="btn btn-secondary" role="button">View all
-					Events</a> <br> <br> <a href="viewAllNeighborhoods.do"></a>
+				<a href="viewAllEvents.do" class="btn btn-secondary" role="button">View
+					all Events</a> <br> <br> <a href="viewAllNeighborhoods.do"></a>
 			</div>
 
 		</div>
