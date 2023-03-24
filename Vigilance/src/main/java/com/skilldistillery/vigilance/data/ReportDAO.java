@@ -1,5 +1,6 @@
 package com.skilldistillery.vigilance.data;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.skilldistillery.vigilance.entities.Animal;
@@ -10,7 +11,7 @@ public interface ReportDAO {
 
 	public Report findReportById(int id);
 	public Report createReport(Report report, User user);
-	public Report updateReport(int id, Report report);
+	public Report updateReport(String description, LocalDate reportDate, Boolean contactAuthority, int id, String subject);
 	public boolean deleteReport(int id);
 	public List <Report> reportsByNeighborhood(int nId);
 	public List<Animal> viewAnimalReports(int id);

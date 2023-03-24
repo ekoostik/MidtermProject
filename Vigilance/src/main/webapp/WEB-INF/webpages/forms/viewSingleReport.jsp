@@ -65,12 +65,13 @@
 	</c:if>
 
 <c:if test="${loggedinuser.id == report.user.id}">
-	<form action="deleteReport.do" method="POST">
-							<label for="id"></label> <input type="hidden" name="id"
-								value="${report.id}" /> <input type="submit"
-								class="btn btn-danger" value="Delete" /> <a
-								class="btn btn-warning" href="updateReport.do?id=${report.id}"
-								role="button">Revise</a>
+							<form action="reportDeleted.do" method="POST">
+							<label for="id"></label>
+							 <input type="hidden" name="id"
+								value="${report.id}" /> 
+								<input type="submit"
+								class="btn btn-danger" value="Delete" />
+								 <a class="btn btn-warning" href="updateReport.do?id=${report.id}" role="button">Revise</a>
 
 						</form>
 </c:if>

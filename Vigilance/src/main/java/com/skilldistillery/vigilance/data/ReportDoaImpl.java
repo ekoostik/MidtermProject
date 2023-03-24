@@ -1,5 +1,6 @@
 package com.skilldistillery.vigilance.data;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -43,16 +44,14 @@ public class ReportDoaImpl implements ReportDAO {
 	}
 
 	@Override
-	public Report updateReport(int id, Report report) {
-		Report updatedReport = new Report();
+	public Report updateReport(String description, LocalDate reportDate, Boolean contactAuthority, int id, String subject) {
+		Report updated = em.find(Report.class, id);
+		updated.setDescription(description);
+		updated.setReportDate(reportDate);
+		updated.setContactAuthority(contactAuthority);
+		updated.setSubject(subject);
 		
-		updatedReport.setReportDate(report.getReportDate());
-		updatedReport.setDesription(report.getDesription());
-		updatedReport.setContactAuthority(report.isContactAuthority());
-		updatedReport.setAnimals(report.getAnimals());
-		updatedReport.setSubject(report.getSubject());
-		
-		return updatedReport;
+		return null;
 	}
 
 	@Override
