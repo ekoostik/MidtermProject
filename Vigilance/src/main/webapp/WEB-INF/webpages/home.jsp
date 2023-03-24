@@ -92,11 +92,6 @@
 				</p>
 			</div>
 
-			<div class="col" class="newestPosts">
-				<a href="viewAllEvents.do" class="btn btn-secondary" role="button">View
-					all Events</a> <br> <br> <a href="viewAllNeighborhoods.do"></a>
-			</div>
-
 		</div>
 	</div>
 

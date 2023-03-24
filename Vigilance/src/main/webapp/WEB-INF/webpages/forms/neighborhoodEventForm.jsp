@@ -16,18 +16,6 @@
 
 
 
-
-
-
-<p><a href="getEventById.do?id=${event.id}"><strong>${event.description}</strong></a>
- <strong>${event.name}</strong>
-</p>
-
-
-
-
-
-
 <div>
 
 <h2> Create a new event</h2>

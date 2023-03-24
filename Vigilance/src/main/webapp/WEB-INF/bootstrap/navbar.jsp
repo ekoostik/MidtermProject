@@ -14,7 +14,7 @@
           <a class="nav-link" href="viewAllEvents.do">Events</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="#" >Neighbors</a>
+          <a class="nav-link" href="getHoodByUserId.do?id=${loggedinuser.id}" >Neighborhood</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -22,7 +22,6 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="viewAllposts.do">Posts</a></li>
-            <li><a class="dropdown-item" href="#">Events</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="viewAllreports.do" style="background-color: red">Reports</a></li>
           </ul>
