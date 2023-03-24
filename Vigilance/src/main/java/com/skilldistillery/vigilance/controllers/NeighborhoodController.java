@@ -2,8 +2,6 @@ package com.skilldistillery.vigilance.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,16 +12,24 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.vigilance.data.NeighborhoodDAO;
+import com.skilldistillery.vigilance.data.ReportDAO;
+import com.skilldistillery.vigilance.data.UserDAO;
 import com.skilldistillery.vigilance.entities.Address;
 import com.skilldistillery.vigilance.entities.Neighborhood;
 import com.skilldistillery.vigilance.entities.NeighborhoodEvent;
 import com.skilldistillery.vigilance.entities.Post;
+import com.skilldistillery.vigilance.entities.Report;
 
 @Controller
 public class NeighborhoodController {
 
 	@Autowired
 	private NeighborhoodDAO NHDao;
+	@Autowired
+	private UserDAO userDao;
+	
+	@Autowired
+	private ReportDAO reportDao;
 
 	// ****************************** Neighborhood Events // *****************************
 	@RequestMapping(path = "viewAllEvents.do", method = RequestMethod.GET)
@@ -223,9 +229,11 @@ public class NeighborhoodController {
 		Neighborhood neighborhood =NHDao.findHoodByUserId(id);
 		List<Post> post = neighborhood.getPosts();
 		List<NeighborhoodEvent> event = neighborhood.getnEvents();
+		List<Report>report=reportDao.reportsByNeighborhood(neighborhood.getId());
 		model.addAttribute("event", event);
 		model.addAttribute("post", post);
 		model.addAttribute("hood", neighborhood);
+		model.addAttribute("report", report);
 		return "/webpages/forms/neighborhoodForm";
 	}
 	

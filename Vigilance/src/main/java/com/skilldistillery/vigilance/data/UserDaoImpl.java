@@ -151,6 +151,31 @@ public class UserDaoImpl implements UserDAO {
 			return null;
 		}
 	}
+	
+	@Override
+	public User activateUser(int userId) {
+		User user = em.find(User.class, userId);
+		user.setEnabled(true);
+		em.persist(user);
+		User userCheck = em.find(User.class, userId);
+		if (userCheck.isEnabled() == true) {
+			return userCheck;
+		}
+		return user;
+		
+	}
+	
+	@Override
+	public User deactivateUser(int userId) {
+		User user = em.find(User.class, userId);
+		user.setEnabled(false);
+		em.persist(user);
+		User userCheck = em.find(User.class, userId);
+		if (userCheck.isEnabled() == false) {
+			return userCheck;
+		}
+		return user;
+	}
 
 
 }
