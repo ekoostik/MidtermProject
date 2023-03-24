@@ -8,7 +8,7 @@
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>User Update</title>
-<link rel="stylesheet" href="css/stylesheet.css">
+<link rel="stylesheet" href="../../stylesheet.css">
 </head>
 <body>
 <h1> Update User Information</h1>

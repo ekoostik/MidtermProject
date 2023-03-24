@@ -9,7 +9,7 @@
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>View Post</title>
-<link rel="stylesheet" href="css/stylesheet.css">
+<link rel="stylesheet" href="../../stylesheet.css">
 <style>
 body {
 	margin-top: 20px;

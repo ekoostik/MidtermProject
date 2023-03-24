@@ -7,7 +7,7 @@
 <jsp:include page="../../bootstrap/bootstrapHeader.jsp" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/stylesheet.css">
+<link rel="stylesheet" href="../../stylesheet.css">
 </head>
 
 <jsp:include page="../../bootstrap/navbar.jsp" />
